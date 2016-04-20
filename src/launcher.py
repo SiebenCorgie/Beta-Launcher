@@ -44,6 +44,11 @@ class GUI:
 		window.show_all()
 
 		fct.readdefaults()
+#updating startup values:
+		#Install dialog
+		Eloc = self.builder.get_object('E_Location')
+		Eloc.set_text(fct.readconf('defloc','~/unrealengine'))
+		
 
 #HelpBrowser____________________________________________________________________
 
@@ -77,10 +82,17 @@ class GUI:
 		bsw.add(blogbrowser)
 		blogbrowser.show()
 
-#_______________________________________________________________________________
+#Install____________________**********************______________________________		
+#VersionHelper__________________________________________________________________
+	def on_E_VerHelper_clicked (self, button):
+		verhelper = self.builder.get_object('Version_Helper')
+		verhelper.show()
 
 
 
+	def on_B_Verhelper_Close_clicked (self, button):
+		verhelper = self.builder.get_object('Version_Helper')
+		verhelper.hide()
 
 
 
