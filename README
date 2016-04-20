@@ -1,15 +1,15 @@
 #Github repository for Beta Launcher
 
-A small luncher project I started, to make compiling and using UE4 on Linux easyer.
+A small launcher project I started, to make compiling and using UE4 on Linux easier.
 However, at the moment the project only has a working configuration via a ".config" file. And WebKit streaming of the Blog website and the help page.
-I am planing to make a version controll for UE4 as well as an integration of the CGTrader marketplaces as an alternative for the UE4 marketplace.
+I am planing to make a version control for UE4 as well as an integration of the CGTrader marketplaces as an alternative for the UE4 marketplace.
 Reason for the latter one is, that Linux people can't download anything from the UE4 marketplace at the time of writing this.
 
 Please keep in mind that I learned writing Python in fall 2015, so the code will be far from perfect.
 
 If you have questions feel free to contact me at siebencorgie@googlemail.com
 
-[further informations:]
+[further information:]
 
-Distro I am writing on : Arch Linux
-Started:  around easter 2016
+Distribution I am writing on : Arch Linux
+Started:  around Easter 2016
