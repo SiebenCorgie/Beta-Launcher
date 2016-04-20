@@ -29,9 +29,6 @@ def readdefaults():
 		deflistc = deflistc + 1
 
 	get.close
-
-	print (str(startlist))
-	print ('delistc is: ' + str(deflistc))
 #_______________________________________________________________________________
 
 def name():
