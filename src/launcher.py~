@@ -19,8 +19,9 @@
 import gi.repository
 gi.require_version('WebKit', '3.0')
 gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91')
 
-from gi.repository import Gtk, GdkPixbuf, Gdk, WebKit
+from gi.repository import Gtk, GdkPixbuf, Gdk, WebKit, Vte, GLib
 import os, sys, fct,subprocess
 
 
@@ -85,7 +86,68 @@ class GUI:
 #Install____________________**********************______________________________		
 #VersionHelper__________________________________________________________________
 	def on_E_VerHelper_clicked (self, button):
+		verhelper = self.builder.get_object('Version_Helper')
+		verhelper.show()
+
+
+
+	def on_B_Verhelper_Close_clicked (self, button):
+		verhelper = self.builder.get_object('Version_Helper')
+		verhelper.hide()
+
+#show install dialog
+
+	def on_B_Install_clicked (self, button):
+		instwin = self.builder.get_object('Install_Dialog')
+
+#init term		
+		termwin = self.builder.get_object('VTEWindow')
+
+		self.term     = Vte.Terminal()
+
+		self.term.spawn_sync(
+			Vte.PtyFlags.DEFAULT,
+			os.environ['HOME'],
+			["/bin/zsh"],
+			[],
+			GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+			None,
+			None,
+			)
+		termwin.add(self.term)
+#show windo
+		instwin.show()
+#print read message to terminal
+		command = "echo term is ready"
+		length=len(command)
+		self.term.feed_child(command, length)		
+
+#initialise vte
 		
+
+		
+#cancle install
+	def on_B_Install_Cancle_clicked (self, button):
+		instwin = self.builder.get_object('Install_Dialog')
+		notebook = self.builder.get_object('install_note')
+#reseting view
+		notebook.set_current_page(0)
+		instwin.hide()
+
+#clicking next
+	def on_B_Install_Next_clicked (self, button):
+		notebook = self.builder.get_object('install_note')
+		notebook.next_page()
+
+#clicking help
+	def on_B_Install_Help_clicked (self, button):
+		insthelp = self.builder.get_object('Install_Help')
+		insthelp.show()
+
+#close help
+	def on_B_install_help_Close_clicked (self, button):
+		insthelp = self.builder.get_object('Install_Help')
+		insthelp.hide()		
 
 
 
