@@ -40,12 +40,10 @@ class GUI:
 		self.builder.connect_signals(self)
 
 		window = self.builder.get_object('window')
-
-
+#show main window
 		window.show_all()
-
-		fct.readdefaults()
 #updating startup values:
+		fct.readdefaults()
 		#Install dialog
 		Eloc = self.builder.get_object('E_Location')
 		Eloc.set_text(fct.readconf('defloc','~/unrealengine'))
@@ -99,9 +97,9 @@ class GUI:
 
 	def on_B_Install_clicked (self, button):
 		instwin = self.builder.get_object('Install_Dialog')
+#init VTE
 
-#init term		
-		termwin = self.builder.get_object('VTEWindow')
+		termwin = self.builder.get_object('VTE')
 
 		self.term     = Vte.Terminal()
 
@@ -116,12 +114,10 @@ class GUI:
 			)
 		termwin.add(self.term)
 #show windo
-		instwin.show()
-#print read message to terminal	
-
-#initialise vte
-		
-
+		instwin.show_all()
+#set texts
+		defaultlocation =  self.builder.get_object('E_Install_DefLoc')
+		defaultlocation.set_text(fct.readconf('defloc','~/unrealengine'))	
 		
 #cancle install
 	def on_B_Install_Cancle_clicked (self, button):
@@ -420,7 +416,10 @@ class GUI:
 		fct.writefile()
 
 		print('file written!')
-		
+
+#close prefences
+		prefs = self.builder.get_object('Win_Preferences')
+		prefs.hide()
 #end of preferences ________________________________________________________		
 
 
