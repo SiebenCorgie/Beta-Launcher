@@ -162,11 +162,12 @@
   </object>
   <object class="GtkWindow" id="Install_Dialog">
     <property name="can_focus">False</property>
-    <property name="type">popup</property>
     <property name="title" translatable="yes">Installing...</property>
     <property name="window_position">center</property>
     <property name="default_width">600</property>
     <property name="default_height">400</property>
+    <property name="type_hint">dialog</property>
+    <property name="urgency_hint">True</property>
     <property name="deletable">False</property>
     <child>
       <object class="GtkBox">
@@ -337,8 +338,7 @@ some while.</property>
                     </child>
                     <child>
                       <object class="GtkButton" id="B_Install_Dep">
-                        <property name="label" translatable="yes">Install
-Dependencies!</property>
+                        <property name="label" translatable="yes">Install Dependencies!</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -373,28 +373,125 @@ Dependencies!</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Github Link:</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Configuring Command 1#</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkEntry" id="E_Install_GitHub">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkEntry" id="E_Install_Config">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Compile Slate Viewer</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">3</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkEntry" id="E_Install_SlateViewer">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">3</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Do you want to compile
+Slate Viewer? (optional)</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">2</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkCheckButton" id="CB_SlateCheck">
+                        <property name="label" translatable="yes">Yes</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="B_Install_DownloadEngine">
+                        <property name="label" translatable="yes">Download!</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <signal name="clicked" handler="on_B_Install_DownloadEngine_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">5</property>
+                      </packing>
                     </child>
                     <child>
                       <placeholder/>
@@ -785,8 +882,8 @@ know more about the building, please visit the wiki by klicking in on the
   </object>
   <object class="GtkWindow" id="Version_Helper">
     <property name="can_focus">False</property>
-    <property name="type">popup</property>
     <property name="window_position">center</property>
+    <property name="type_hint">dialog</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -835,9 +932,13 @@ know more about the building, please visit the wiki by klicking in on the
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="E_number">
+              <object class="GtkEntry" id="E_Install_number">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="text" translatable="yes">4.11</property>
+                <property name="overwrite_mode">True</property>
+                <property name="primary_icon_tooltip_text" translatable="yes">please provide an engine version if you
+selected "by_version" eg. 4.12</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -853,13 +954,13 @@ know more about the building, please visit the wiki by klicking in on the
                 <property name="active_id">0</property>
                 <items>
                   <item translatable="yes">release</item>
-                  <item translatable="yes">number branch</item>
+                  <item translatable="yes">by_version</item>
                   <item translatable="yes">dev-vr-editor</item>
                   <item translatable="yes">master</item>
                   <item translatable="yes">promoted</item>
                 </items>
                 <child internal-child="entry">
-                  <object class="GtkEntry">
+                  <object class="GtkEntry" id="CB_Install_Version">
                     <property name="can_focus">False</property>
                   </object>
                 </child>
@@ -1059,7 +1160,7 @@ needed. (This is WIP)</property>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>

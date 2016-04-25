@@ -47,7 +47,11 @@ class GUI:
 		#Install dialog
 		Eloc = self.builder.get_object('E_Location')
 		Eloc.set_text(fct.readconf('defloc','~/unrealengine'))
-		
+#Install________________________________________________________________________
+		#update version helper
+		versionhelper = self.builder.get_object('Version_Helper')
+		versionhelper.show_all()
+		versionhelper.hide()
 
 #HelpBrowser____________________________________________________________________
 
@@ -115,7 +119,7 @@ class GUI:
 			None,
 			)
 		termwin.add(self.term)
-#show windo
+#show window
 		instwin.show_all()
 #set texts
 #default location
@@ -135,17 +139,92 @@ class GUI:
 		else:
 			deps.set_text('Unknown distribution,please check settings!')
 
+#set text in "Download
+		EditGit = self.builder.get_object('E_Install_GitHub')
+		EditConfig = self.builder.get_object('E_Install_Config')
+		EditSlate = self.builder.get_object('E_Install_SlateViewer')
+		SlateCheck = self.builder.get_object('CB_SlateCheck')
+		#set texts
+		EditGit.set_text(str(fct.readconf('giturl' , 'no GitHub URL Found!')))
+		EditConfig.set_text(str(fct.readconf('s1','./Setup.sh && ./GenerateProjectFiles.sh')))
+		EditSlate.set_text(str(fct.readconf('s2','make SlateViewer')))
 #install depencies
 	def on_B_Install_Dep_clicked (self, button):
 		text = self.builder.get_object('E_Install_Dependencies')
-
-#printing wait window and reading terminal
+		#printing wait window and reading terminal
 		wait = self.builder.get_object('wait_dialog')
 		command = text.get_text()
 		wait.show()
 		self.term.feed_child(fct.termcommand(command), fct.termlength(command))
-#hide dialog after installing
+		#hide dialog after installing
 		wait.hide()
+
+#Download Engine and (optional) make SlateCheck
+	def on_B_Install_DownloadEngine_clicked (self, button):
+		#get all options
+		Link = self.builder.get_object('E_Install_GitHub')
+		S1 = self.builder.get_object('E_Install_Config')
+		Slate = self.builder.get_object('E_Install_SlateViewer')
+		SlateCheck = self.builder.get_object('CB_SlateCheck')
+		wait = self.builder.get_object('wait_dialog')
+		version_number = self.builder.get_object('E_Install_number')
+		version_typ = self.builder.get_object('CB_Branch')
+		#set some variables
+		branch = version_typ.get_active_text()
+		version_number = version_number.get_text()
+#TESTING
+		#show wait_dialog
+		wait.show_all()
+		
+		#cd in directory
+		CDcommand = 'cd ' + str(fct.readconf('defloc','~/unrealengine'))
+		self.term.feed_child(fct.termcommand(CDcommand), fct.termlength(CDcommand))
+		#delete old directory
+		if branch == 'by_version':
+			DelDircommand = 'rm -r ' + str(version_number)
+		else:
+			DelDircommand = 'rm -r ' + str(branch)
+		self.term.feed_child(fct.termcommand(DelDircommand), fct.termlength(DelDircommand))
+		#make new directory
+		if branch == 'by_version':
+			MKDircommand = 'mkdir ' + str(version_number)
+		else:
+			MKDircommand = 'mkdir ' + str(branch)
+		self.term.feed_child(fct.termcommand(MKDircommand), fct.termlength(MKDircommand))	
+		#cd in new made directory
+		if branch == 'by_version':
+			CDNEWcommand = 'cd ' + str(version_number)
+		else:
+			CDNEWcommand = 'cd ' + str(branch)
+		self.term.feed_child(fct.termcommand(CDNEWcommand), fct.termlength(CDNEWcommand))		
+
+		#make install command
+		print("branch = " + str(branch))
+
+		if branch == 'by_version':
+			Gitcommand = 'git clone -b '  + str(version_number) + ' ' + str(Link.get_text())
+		else:
+			Gitcommand = 'git clone -b ' + str(branch) + ' ' + str(Link.get_text())
+		print(str('donwload command: ' + Gitcommand))
+		#print to terminal
+		self.term.feed_child(fct.termcommand(Gitcommand), fct.termlength(Gitcommand))		
+		# after cloning
+		#cd into new unrealengine directory
+		UECDcommand = 'cd UnrealEngine' 
+		self.term.feed_child(fct.termcommand(UECDcommand), fct.termlength(UECDcommand))
+#Step 1
+		#run step one commands
+		S1command = str(fct.readconf('s1','./Setup.sh && ./GenerateProjectFiles.sh'))
+#make slate if ticked "yes"
+		if SlateCheck.get_active() == True:
+			SLATEcommand = fct.readconf( 's2' , 'make SlateViewer')
+		else:
+			SLATEcommand = 'echo passing_slate!'
+		self.term.feed_child(fct.termcommand(UECDcommand), fct.termlength(UECDcommand))		
+#Eding "
+		
+		
+
 		
 #close waiting dialog
 	def on_B_install_Wait_Close_clicked (self, button):
