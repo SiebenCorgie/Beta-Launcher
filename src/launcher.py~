@@ -22,7 +22,7 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')
 
 from gi.repository import Gtk, GdkPixbuf, Gdk, WebKit, Vte, GLib
-import os, sys, fct,subprocess
+import os, sys, fct,subprocess, time
 
 
 #Comment the first line and uncomment the second before installing
@@ -87,6 +87,9 @@ class GUI:
 		verhelper = self.builder.get_object('Version_Helper')
 		verhelper.show()
 
+	def on_B_Install_Help_OpenWiki_clicked (self, button):
+		os.system('xdg-open https://wiki.unrealengine.com/Building_On_Linux')
+
 
 
 	def on_B_Verhelper_Close_clicked (self, button):
@@ -98,7 +101,6 @@ class GUI:
 	def on_B_Install_clicked (self, button):
 		instwin = self.builder.get_object('Install_Dialog')
 #init VTE
-
 		termwin = self.builder.get_object('VTE')
 
 		self.term     = Vte.Terminal()
@@ -114,11 +116,43 @@ class GUI:
 			)
 		termwin.add(self.term)
 #show windo
-		instwin.show()
+		instwin.show_all()
 #set texts
+#default location
 		defaultlocation =  self.builder.get_object('E_Install_DefLoc')
 		defaultlocation.set_text(fct.readconf('defloc','~/unrealengine'))	
+
+#Dependecies
+		deps = self.builder.get_object('E_Install_Dependencies')
+		distroversion = fct.readconf('distibution' , '0')
+		print("distro = " + str(distroversion))
+		if distroversion == '0':
+			deps.set_text(str(fct.readconf('deparch', 'no Arch dependencies!')))
+		elif distroversion == '1':
+			deps.set_text(str(fct.readconf('depubuntu', 'no Ubuntu dependencies!')))	
+		elif distroversion == '2':
+			deps.set_text(str(fct.readconf('depmint', 'no Mint dependencies!')))
+		else:
+			deps.set_text('Unknown distribution,please check settings!')
+
+#install depencies
+	def on_B_Install_Dep_clicked (self, button):
+		text = self.builder.get_object('E_Install_Dependencies')
+
+#printing wait window and reading terminal
+		wait = self.builder.get_object('wait_dialog')
+		command = text.get_text()
+		wait.show()
+		self.term.feed_child(fct.termcommand(command), fct.termlength(command))
+#hide dialog after installing
+		wait.hide()
 		
+#close waiting dialog
+	def on_B_install_Wait_Close_clicked (self, button):
+		wait = self.builder.get_object('wait_dialog')
+		wait.hide()		
+
+			
 #cancle install
 	def on_B_Install_Cancle_clicked (self, button):
 		instwin = self.builder.get_object('Install_Dialog')

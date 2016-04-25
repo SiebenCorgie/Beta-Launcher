@@ -4,7 +4,9 @@
   <requires lib="gtk+" version="3.16"/>
   <object class="GtkDialog" id="Dependencies_Dialog">
     <property name="can_focus">False</property>
+    <property name="type">popup</property>
     <property name="resizable">False</property>
+    <property name="window_position">center</property>
     <property name="default_width">640</property>
     <property name="default_height">260</property>
     <property name="type_hint">dialog</property>
@@ -160,6 +162,7 @@
   </object>
   <object class="GtkWindow" id="Install_Dialog">
     <property name="can_focus">False</property>
+    <property name="type">popup</property>
     <property name="title" translatable="yes">Installing...</property>
     <property name="window_position">center</property>
     <property name="default_width">600</property>
@@ -174,6 +177,8 @@
           <object class="GtkHeaderBar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="title">Install Assistent</property>
+            <property name="subtitle">Beta Launcher</property>
             <child>
               <object class="GtkButton" id="B_Install_Cancle">
                 <property name="label" translatable="yes">Cancle</property>
@@ -289,28 +294,60 @@ some while.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Dependencies install command:</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkEntry" id="E_Install_Dependencies">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="editable">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
+                      <object class="GtkButton" id="B_Install_Dep">
+                        <property name="label" translatable="yes">Install
+Dependencies!</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <signal name="clicked" handler="on_B_Install_Dep_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">2</property>
+                      </packing>
                     </child>
                     <child>
                       <placeholder/>
@@ -526,7 +563,11 @@ some while.</property>
   </object>
   <object class="GtkWindow" id="Install_Help">
     <property name="can_focus">False</property>
+    <property name="type">popup</property>
     <property name="title" translatable="yes">Installing Help Page</property>
+    <property name="window_position">center</property>
+    <property name="default_width">600</property>
+    <property name="default_height">400</property>
     <property name="deletable">False</property>
     <child>
       <object class="GtkBox">
@@ -559,13 +600,138 @@ some while.</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <placeholder/>
+              <object class="GtkNotebook">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">The installer works in 4-5 steps. 
+First one will be a general information, 
+you will have to keep in mind, that the installation procedure will take some time
+ (dependent on your internet connection and PC-Power up to 5 h ). </property>
+                  </object>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Info</property>
+                  </object>
+                  <packing>
+                    <property name="tab_fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">The second part will download the dependencies needed to
+build the editor and some tools.
+WARNING: you will have to give the terminal your password for
+installing those packages.
+</property>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Dependencies</property>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                    <property name="tab_fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">The Third part 
+will download the Unreal-Engine 4 from Github, you will have to 
+enter your password and username FROM GITHUB. If you cant log in 
+or download, please check that you are linked with the Epic-repository on Github.
+
+After that the Launcher will configure your packages etc. to suit the 
+installation. This means executing “Setup.sh” (Downloading some 
+third-party applications) and executing “GenerateProjectFiles.sh”.</property>
+                  </object>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Download</property>
+                  </object>
+                  <packing>
+                    <property name="position">2</property>
+                    <property name="tab_fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">The 5th step will build the editor and its tools. This is the most time 
+consuming part. 
+Before that you have the opportunity to configure the 
+UnrealBuildTool (UBT), </property>
+                  </object>
+                  <packing>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Building</property>
+                  </object>
+                  <packing>
+                    <property name="position">3</property>
+                    <property name="tab_fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">label</property>
+                  </object>
+                  <packing>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Testing</property>
+                  </object>
+                  <packing>
+                    <property name="position">4</property>
+                    <property name="tab_fill">False</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkSeparator">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">WIP</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -574,7 +740,18 @@ some while.</property>
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">The Launcher uses the installation way of the Unreal-Wiki. If you want to
+know more about the building, please visit the wiki by klicking in on the
+"Open Wiki" button below.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -588,7 +765,13 @@ some while.</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="B_Install_Help_OpenWiki">
+                <property name="label" translatable="yes">Open Wiki</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_B_Install_Help_OpenWiki_clicked" swapped="no"/>
+              </object>
             </child>
           </object>
           <packing>
@@ -602,6 +785,8 @@ some while.</property>
   </object>
   <object class="GtkWindow" id="Version_Helper">
     <property name="can_focus">False</property>
+    <property name="type">popup</property>
+    <property name="window_position">center</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -716,6 +901,7 @@ some while.</property>
   </object>
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="can_focus">False</property>
+    <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">Beta Luncher</property>
     <property name="version">v1.0</property>
@@ -800,6 +986,106 @@ some while.</property>
   <object class="GtkMenu" id="menu6">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+  </object>
+  <object class="GtkWindow" id="wait_dialog">
+    <property name="can_focus">False</property>
+    <property name="type">popup</property>
+    <property name="title" translatable="yes">Please Stand By!</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center</property>
+    <property name="default_width">440</property>
+    <property name="default_height">250</property>
+    <property name="deletable">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkHeaderBar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Please wait!</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Please provide password in terminal if
+needed. (This is WIP)</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinner">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHeaderBar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="B_install_Wait_Close">
+                <property name="label" translatable="yes">Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_B_install_Wait_Close_clicked" swapped="no"/>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
   </object>
   <object class="GtkWindow" id="window">
     <property name="visible">True</property>
@@ -1441,7 +1727,9 @@ some while.</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Preference</property>
     <property name="resizable">False</property>
+    <property name="window_position">center</property>
     <property name="deletable">False</property>
+    <property name="gravity">center</property>
     <property name="attached_to">window</property>
     <signal name="destroy" handler="on_Win_Preferences_destroy" swapped="no"/>
     <child>
@@ -1561,6 +1849,7 @@ Location</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Default location is:</property>
+                    <property name="selectable">True</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

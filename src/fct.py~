@@ -3,6 +3,7 @@
 
 
 #read default values on startup for later use
+#test commi
 
 def readdefaults():
 
@@ -86,3 +87,7 @@ def writefile():
 		confile.write('{} = {}\n'.format(lines, newdict[lines]))
 
 	confile.close()
+
+def termlength(command):
+	length = len(command) + 1
+	return length

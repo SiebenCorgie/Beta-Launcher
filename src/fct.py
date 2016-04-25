@@ -87,3 +87,11 @@ def writefile():
 		confile.write('{} = {}\n'.format(lines, newdict[lines]))
 
 	confile.close()
+
+def termlength(command):
+	length = len(command) + 1
+	return length
+
+def termcommand(command):
+	final = command + '\n'
+	return final
