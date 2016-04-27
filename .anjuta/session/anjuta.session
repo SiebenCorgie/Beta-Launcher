@@ -3,7 +3,7 @@ Maximized=1
 Geometry=1920x1020+0+32
 
 [File Loader]
-Files=../../src/launcher.py#329%%%../../src/fct.py#38%%%../../src/launcher.ui
+Files=../../src/launcher.py#277%%%../../src/fct.py#38%%%../../src/launcher.ui
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n

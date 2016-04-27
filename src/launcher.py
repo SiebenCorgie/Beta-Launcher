@@ -255,12 +255,13 @@ class GUI:
 #Step 1
 		#run step one commands
 		S1command = str(fct.readconf('s1','./Setup.sh && ./GenerateProjectFiles.sh'))
+		self.term.feed_child(fct.termcommand(S1command), fct.termlength(S1command))
 #make slate if ticked "yes"
 		if SlateCheck.get_active() == True:
 			SLATEcommand = fct.readconf( 's2' , 'make SlateViewer')
 		else:
 			SLATEcommand = 'echo passing_slate!'
-		self.term.feed_child(fct.termcommand(UECDcommand), fct.termlength(UECDcommand))	
+		self.term.feed_child(fct.termcommand(SLATEcommand), fct.termlength(SLATEcommand))	
 #linking clang and clang++ when on mint and linking slate
 #linking clang
 		if SlateCheck.get_active() == True:				
@@ -273,7 +274,7 @@ class GUI:
 				print('not linking clang and slate')
 				ClangCommand = "echo passing_clang_link_for_mint"
 				SlateCommand = "echo passing_slate_link_for_mint"
-				ClangCommand_Slate = 'echo passing_first_slate_execute'
+				ClangCommand_Slate = 'echo passing_first_slate_execute_no_on_mint'
 				
 			self.term.feed_child(fct.termcommand(SlateCommand), fct.termlength(SlateCommand))	
 			self.term.feed_child(fct.termcommand(ClangCommand), fct.termlength(ClangCommand))
