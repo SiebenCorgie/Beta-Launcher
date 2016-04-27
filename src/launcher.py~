@@ -47,11 +47,31 @@ class GUI:
 		#Install dialog
 		Eloc = self.builder.get_object('E_Location')
 		Eloc.set_text(fct.readconf('defloc','~/unrealengine'))
-#Install________________________________________________________________________
+#Init_Install________________________________________________________________________
 		#update version helper
 		versionhelper = self.builder.get_object('Version_Helper')
 		versionhelper.show_all()
 		versionhelper.hide()
+#Init_Editor_Window
+		Editor_WW = self.builder.get_object('Editor_Working')
+#init Editor VTE
+		EDITORVTE = self.builder.get_object('VTE_Editor')
+
+		self.Editor_terminal     = Vte.Terminal()
+
+		self.Editor_terminal.spawn_sync(
+			Vte.PtyFlags.DEFAULT,
+			os.environ['HOME'],
+			["/bin/zsh"],
+			[],
+			GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+			None,
+			None,
+			)
+		EDITORVTE.add(self.Editor_terminal) 
+
+		Editor_WW.show_all
+		Editor_WW.hide()
 
 #HelpBrowser____________________________________________________________________
 
@@ -101,7 +121,6 @@ class GUI:
 		verhelper.hide()
 
 #show install dialog
-
 	def on_B_Install_clicked (self, button):
 		instwin = self.builder.get_object('Install_Dialog')
 #init VTE
@@ -122,13 +141,14 @@ class GUI:
 #show window
 		instwin.show_all()
 #set texts
+
 #default location
 		defaultlocation =  self.builder.get_object('E_Install_DefLoc')
 		defaultlocation.set_text(fct.readconf('defloc','~/unrealengine'))	
 
 #Dependecies
 		deps = self.builder.get_object('E_Install_Dependencies')
-		distroversion = fct.readconf('distibution' , '0')
+		distroversion = fct.readconf('distribution' , '0')
 		print("distro = " + str(distroversion))
 		if distroversion == '0':
 			deps.set_text(str(fct.readconf('deparch', 'no Arch dependencies!')))
@@ -148,6 +168,19 @@ class GUI:
 		EditGit.set_text(str(fct.readconf('giturl' , 'no GitHub URL Found!')))
 		EditConfig.set_text(str(fct.readconf('s1','./Setup.sh && ./GenerateProjectFiles.sh')))
 		EditSlate.set_text(str(fct.readconf('s2','make SlateViewer')))
+
+#set text in "Build"
+		ES3 = self.builder.get_object('E_Install_S3')
+		ES4 = self.builder.get_object('E_Install_S4')
+		infolabel = self.builder.get_object('L_Install_Info')
+		if fct.readconf('distribution', ' 4 ' ) == '0':
+			infolabel.set_text('  Please add "export PATH=$HOME/bin:$PATH" to your \n  .bashrc or .zshrc in your home folder before \n  continuing.\n')
+		else:
+			print("leaving arch info out")
+
+		ES3.set_text(fct.readconf('s3','make UE4Editor UE4Game UnrealPak CrashReportClient ShaderCompileWorker UnrealLightmass'))
+		ES4.set_text(fct.readconf('s4','make -j1 ShaderCompileWorker'))
+
 #install depencies
 	def on_B_Install_Dep_clicked (self, button):
 		text = self.builder.get_object('E_Install_Dependencies')
@@ -169,12 +202,20 @@ class GUI:
 		wait = self.builder.get_object('wait_dialog')
 		version_number = self.builder.get_object('E_Install_number')
 		version_typ = self.builder.get_object('CB_Branch')
+		infolabel = self.builder.get_object('L_Install_Info')
 		#set some variables
 		branch = version_typ.get_active_text()
 		version_number = version_number.get_text()
-#TESTING
 		#show wait_dialog
 		wait.show_all()
+#fixing Linkingproblem on Arch
+		if fct.readconf('distribution', ' 4 ' ) == '0':
+			LinkArch = fct.readconf('steparch','mkdir ~/bin/ && cd ~/bin/ && ln -s /bin/ld.bfd ./ld.gold')
+			infolabel.set_text('please add "export PATH=$HOME/bin:$PATH" to your \n .bashrc or .zshrc in your home folder.')
+		else:
+			LinkArch = 'echo leaving ArchLinking out ... not on arch'
+		self.term.feed_child(fct.termcommand(LinkArch), fct.termlength(LinkArch))
+		
 		
 		#cd in directory
 		CDcommand = 'cd ' + str(fct.readconf('defloc','~/unrealengine'))
@@ -220,8 +261,90 @@ class GUI:
 			SLATEcommand = fct.readconf( 's2' , 'make SlateViewer')
 		else:
 			SLATEcommand = 'echo passing_slate!'
-		self.term.feed_child(fct.termcommand(UECDcommand), fct.termlength(UECDcommand))		
-#Eding "
+		self.term.feed_child(fct.termcommand(UECDcommand), fct.termlength(UECDcommand))	
+#linking clang and clang++ when on mint and linking slate
+#linking clang
+		if SlateCheck.get_active() == True:				
+			if fct.readconf('distribution', ' 4 ' ) == '2':
+				print("linking clang and slate")
+				SlateCommand = fct.readconf('stepmintslate','export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1 SlateViewer ')				
+				ClangCommand = fct.readconf('stepmint','sudo ln -s /usr/bin/clang-3.5 /usr/bin/clang && sudo ln -s /usr/bin/clang++-3.5 /usr/bin/clang++')
+				ClangCommand_Slate = './SlateViewer'
+			else:
+				print('not linking clang and slate')
+				ClangCommand = "echo passing_clang_link_for_mint"
+				SlateCommand = "echo passing_slate_link_for_mint"
+				ClangCommand_Slate = 'echo passing_first_slate_execute'
+				
+			self.term.feed_child(fct.termcommand(SlateCommand), fct.termlength(SlateCommand))	
+			self.term.feed_child(fct.termcommand(ClangCommand), fct.termlength(ClangCommand))
+			self.term.feed_child(fct.termcommand(ClangCommand_Slate), fct.termlength(ClangCommand_Slate))
+		else:
+			comment = 'passing linking of clang and slate'
+			self.term.feed_child(fct.termcommand(comment), fct.termlength(comment))	
+#Ending "Download"
+
+#Starting "Building"
+	def on_B_Install_Build_clicked (self, button):
+		ES3 = self.builder.get_object('E_Install_S3')
+		ES4 = self.builder.get_object('E_Install_S4')
+		Editing = self.builder.get_object('CB_Install_ChangeBuildSettings')
+		version_number = self.builder.get_object('E_Install_number')
+		version_typ = self.builder.get_object('CB_Branch')
+		#set some variables
+		branch = version_typ.get_active_text()
+		version_number = version_number.get_text()
+
+		#editing xml
+		#making path
+		if Editing.get_active() == True:
+			if branch == 'by_version':
+				EDITPath = 'gedit ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version_number) +  '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
+				print(EDITPath)
+			else:
+				EDITPath = 'gedit ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(branch) +  '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
+				print(EDITPath)
+			self.term.feed_child(fct.termcommand(EDITPath), fct.termlength(EDITPath))
+		else:
+			print('leaving xml editing out')
+		#getting the text and printing to terminal
+		Step3 = ES3.get_text()
+		Step4 = ES4.get_text()
+
+		self.term.feed_child(fct.termcommand(Step3), fct.termlength(Step3))	
+		self.term.feed_child(fct.termcommand(Step4), fct.termlength(Step4))	
+#link Editor on Mint
+		if fct.readconf('distribution', ' 4 ' ) == '2':
+			LinkEditorCommand = fct.readconf('stepminteditor','export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1 UE4Editor')
+		else:
+			LinkEditorCommand = 'echo leaving Editor linking out ... not on mint'
+		self.term.feed_child(fct.termcommand(LinkEditorCommand), fct.termlength(LinkEditorCommand))	
+
+		
+
+#Testing
+	def on_B_Install_Test_clicked (self, button):
+		#launching Starting Widget, and cding to directory
+		version_number = self.builder.get_object('E_Install_number')
+		version_typ = self.builder.get_object('CB_Branch')
+		#set some variables
+		branch = version_typ.get_active_text()
+		version_number = version_number.get_text()
+		Editor_WW = self.builder.get_object('Editor_Working')
+
+		#editing xml
+		#making path
+		if branch == 'by_version':
+			TestPath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version_number) +  '/Engine/Binaries/Linux && ./UE4Editor')
+		else:
+			TestPath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(branch) +  '/Engine/Binaries/Linux && ./UE4Editor')
+		Editor_WW.show_all()
+		self.Editor_terminal.feed_child(fct.termcommand(TestPath), fct.termlength(TestPath))
+
+		
+	
+
+
 		
 		
 
@@ -370,7 +493,7 @@ class GUI:
 		
 
 		#set Distro
-		dist = fct.readconf('distibution', '4')
+		dist = fct.readconf('distribution', '4')
 
 		print('dist = ' + dist)
 		
@@ -487,13 +610,13 @@ class GUI:
 		dID = Edistribution.get_active_text()
 
 		if dID == 'Arch Linux':
-			fct.newdi('distibution', str(0))
+			fct.newdi('distribution', str(0))
 		elif dID == 'Ubuntu':
-			fct.newdi('distibution', str(1))
+			fct.newdi('distribution', str(1))
 		elif dID == 'Mint':
-			fct.newdi('distibution', str(2))
+			fct.newdi('distribution', str(2))
 		else:
-			fct.newdi('distibution', str(3))
+			fct.newdi('distribution', str(3))
 
 		#dpendencies
 		#dependecies text vault:
