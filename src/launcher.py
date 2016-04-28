@@ -250,9 +250,11 @@ class GUI:
 		self.term.feed_child(fct.termcommand(Gitcommand), fct.termlength(Gitcommand))		
 		# after cloning
 		#cd into new unrealengine directory
+		print("cd in new directory")
 		UECDcommand = 'cd UnrealEngine' 
 		self.term.feed_child(fct.termcommand(UECDcommand), fct.termlength(UECDcommand))
 #Step 1
+		print("run setup")
 		#run step one commands
 		S1command = str(fct.readconf('s1','./Setup.sh && ./GenerateProjectFiles.sh'))
 		self.term.feed_child(fct.termcommand(S1command), fct.termlength(S1command))
