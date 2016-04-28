@@ -47,6 +47,8 @@ class GUI:
 		#Install dialog
 		Eloc = self.builder.get_object('E_Location')
 		Eloc.set_text(fct.readconf('defloc','~/unrealengine'))
+		global Uproject
+		Uproject = None
 #Init_Install________________________________________________________________________
 		#update version helper
 		versionhelper = self.builder.get_object('Version_Helper')
@@ -284,6 +286,8 @@ class GUI:
 		else:
 			comment = 'passing linking of clang and slate'
 			self.term.feed_child(fct.termcommand(comment), fct.termlength(comment))	
+
+		wait.hide()
 #Ending "Download"
 
 #Starting "Building"
@@ -301,10 +305,10 @@ class GUI:
 		#making path
 		if Editing.get_active() == True:
 			if branch == 'by_version':
-				EDITPath = 'gedit ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version_number) +  '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
+				EDITPath = 'gedit ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version_number) + '/UnrealEngine' + '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
 				print(EDITPath)
 			else:
-				EDITPath = 'gedit ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(branch) +  '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
+				EDITPath = 'gedit ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(branch) + '/UnrealEngine' +  '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
 				print(EDITPath)
 			self.term.feed_child(fct.termcommand(EDITPath), fct.termlength(EDITPath))
 		else:
@@ -313,8 +317,12 @@ class GUI:
 		Step3 = ES3.get_text()
 		Step4 = ES4.get_text()
 
-		self.term.feed_child(fct.termcommand(Step3), fct.termlength(Step3))	
+		print("beginning step 3")
+		self.term.feed_child(fct.termcommand(Step3), fct.termlength(Step3))
+		print('ending step 3')
+		print('beginning step 4')
 		self.term.feed_child(fct.termcommand(Step4), fct.termlength(Step4))	
+		print('ending step 4')
 #link Editor on Mint
 		if fct.readconf('distribution', ' 4 ' ) == '2':
 			LinkEditorCommand = fct.readconf('stepminteditor','export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1 UE4Editor')
@@ -335,19 +343,11 @@ class GUI:
 		Editor_WW = self.builder.get_object('Editor_Working')
 		#making path
 		if branch == 'by_version':
-			TestPath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version_number) +  '/Engine/Binaries/Linux && ./UE4Editor')
+			TestPath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version_number) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor')
 		else:
-			TestPath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(branch) +  '/Engine/Binaries/Linux && ./UE4Editor')
+			TestPath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor')
 		Editor_WW.show_all()
 		self.Editor_terminal.feed_child(fct.termcommand(TestPath), fct.termlength(TestPath))
-
-		
-	
-
-
-		
-		
-
 		
 #close waiting dialog
 	def on_B_install_Wait_Close_clicked (self, button):
@@ -378,12 +378,6 @@ class GUI:
 		insthelp = self.builder.get_object('Install_Help')
 		insthelp.hide()		
 
-
-
-
-
-
-	
 #AboutWindow________________________________________________________________
 	#open about on click
 	
@@ -414,10 +408,48 @@ class GUI:
 		print('folder = ' + str(currentFolder))
 		Image = self.builder.get_object('Libary_Image')
 		Image.set_from_file(currentFolder + '/Saved/AutoScreenshot.png')
+
 #Start of engine!!!
 	def on_Engine_Start_clicked (self, button):
-		subprocess.call('cd ' + fct.readconf('defloc' , '~/unrealengine') + ' && ./UE4Editor', shell=True)
+		global Uproject
+
+		EngineBranch = self.builder.get_object('CB_Start_Version')		
+		Engine = self.builder.get_object('E_Version_Start')
+		LaunchProject = self.builder.get_object('UP_Chooser')
+		enginwin = self.builder.get_object('Editor_Working')
+		#pass to terminal
+		Branch = EngineBranch.get_active_text()
+		version = Engine.get_text()
+		LP = LaunchProject.get_filename()
+		Project = Uproject
+
+		if LP == None:
+			if fct.readconf('primusrun' , '0') == '1':
+				if Branch == 'by_version':
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && optirun ./UE4Editor')
+				else:
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && optirun ./UE4Editor')
+			else:
+				if Branch == 'by_version':
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor')
+				else:
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor')				
+		else:
+			if fct.readconf('primusrun' , '0') == '1':	
+				if Branch == 'by_version':
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && optirun ./UE4Editor' + ' "' + str(Uproject) + '"')
+				else:
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && optirun ./UE4Editor' + ' "' + str(Uproject) + '"')
+			else:	
+				if Branch == 'by_version':
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"')
+				else:
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"')
+	
+		enginwin.show_all()
+		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
 		print('engine started!')
+		
 
 
 #Prefernces_________________________________________________________________
@@ -442,8 +474,9 @@ class GUI:
 		WinDep.hide()
 
 		#set all propertys
-			#get them
+		#get them
 		vulkan = self.builder.get_object('TB_Vulkan')
+		primus = self.builder.get_object('TB_Primus')
 		version = self.builder.get_object('E_Version')
 		defloc = self.builder.get_object('FCB_DefLocation')
 		defloclabel = self.builder.get_object('L_DefLoc')
@@ -454,6 +487,7 @@ class GUI:
 		#geting values 
 
 		Vvulkan = fct.readconf('vulkan' , '0')
+		Vprimus = fct.readconf('primusrun' , '0' )
 		Vversion = fct.readconf('version' , '4.10')
 		Vdefloc = fct.readconf('defloc' , '~/unrealengine_teddy')
 		Vdefengine = fct.readconf('defeng' , '4.10')
@@ -464,12 +498,18 @@ class GUI:
 
 
 		#set them_______________________________________________________________
-
+		#vulkan
 		if Vvulkan == "0" :
 			vulkan.set_active(False)
 		else:
 			vulkan.set_active(True)
 
+		#primusrun
+		if Vprimus == '0':
+			primus.set_active(False)
+		else:
+			primus.set_active(True)
+		
 		#set default version number
 		version.set_text(Vversion)
 		
@@ -544,6 +584,7 @@ class GUI:
 
 		#page 1
 		Evulkan = self.builder.get_object('TB_Vulkan')
+		Eprimus = self.builder.get_object('TB_Primus')
 		Eversion = self.builder.get_object('E_Version')
 		Edefloc = self.builder.get_object('FCB_DefLocation')
 		Edefloclabel = self.builder.get_object('L_DefLoc')
@@ -575,6 +616,12 @@ class GUI:
 			fct.newdi('vulkan', str(1))
 		else:
 			fct.newdi('vulkan', str(0))
+
+		#primus
+		if Eprimus.get_active() == True:
+			fct.newdi('primusrun' , '1')
+		else:
+			fct.newdi('primusrun' , '0')
 
 		#version
 		fct.newdi('version', str(Eversion.get_text()))
