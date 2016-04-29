@@ -402,6 +402,7 @@ class GUI:
 	def on_B_Engine_Working_Close_clicked (self, button):
 		Runwin = self.builder.get_object('Editor_Working')
 		Runwin.hide()
+		
 
 
 #Updating Project
