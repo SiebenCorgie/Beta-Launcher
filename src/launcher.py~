@@ -64,7 +64,7 @@ class GUI:
 		self.Editor_terminal.spawn_sync(
 			Vte.PtyFlags.DEFAULT,
 			os.environ['HOME'],
-			["/bin/zsh"],
+			["/bin/sh"],
 			[],
 			GLib.SpawnFlags.DO_NOT_REAP_CHILD,
 			None,
@@ -122,6 +122,7 @@ class GUI:
 		verhelper = self.builder.get_object('Version_Helper')
 		verhelper.hide()
 
+#Install_Dialog_________________________________________________________________		
 #show install dialog
 	def on_B_Install_clicked (self, button):
 		instwin = self.builder.get_object('Install_Dialog')
@@ -133,7 +134,7 @@ class GUI:
 		self.term.spawn_sync(
 			Vte.PtyFlags.DEFAULT,
 			os.environ['HOME'],
-			["/bin/zsh"],
+			["/bin/sh"],
 			[],
 			GLib.SpawnFlags.DO_NOT_REAP_CHILD,
 			None,
@@ -396,7 +397,14 @@ class GUI:
 		about.hide()
 #Libary_____________________________________________________________________
 #load new image on changed location
+#Closing Engine_Run_Dialog
 
+	def on_B_Engine_Working_Close_clicked (self, button):
+		Runwin = self.builder.get_object('Editor_Working')
+		Runwin.hide()
+
+
+#Updating Project
 	def on_UP_Chooser_file_set (self, filechooserbutton):
 		global Uproject
 
@@ -426,9 +434,9 @@ class GUI:
 		if LP == None:
 			if fct.readconf('primusrun' , '0') == '1':
 				if Branch == 'by_version':
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && primusrun ./UE4Editor')
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor')
 				else:
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && primusrun ./UE4Editor')
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor')
 			else:
 				if Branch == 'by_version':
 					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor')
@@ -437,9 +445,9 @@ class GUI:
 		else:
 			if fct.readconf('primusrun' , '0') == '1':	
 				if Branch == 'by_version':
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && primusrun ./UE4Editor' + ' "' + str(Uproject) + '"')
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor' + ' "' + str(Uproject) + '"')
 				else:
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && primusrun ./UE4Editor' + ' "' + str(Uproject) + '"')
+					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor' + ' "' + str(Uproject) + '"')
 			else:	
 				if Branch == 'by_version':
 					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"')
