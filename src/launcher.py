@@ -432,28 +432,63 @@ class GUI:
 		LP = LaunchProject.get_filename()
 		Project = Uproject
 
-		if LP == None:
-			if fct.readconf('primusrun' , '0') == '1':
-				if Branch == 'by_version':
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor -opengl4')
-				else:
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor -opengl4')
-			else:
-				if Branch == 'by_version':
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor -opengl4')
-				else:
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor -opengl4')				
+#making executing command
+
+		C1 = 'cd '
+		C2 = str(fct.readconf('defloc','~/unrealengine')) + '/'
+
+		#Engine type
+		if Branch == 'by_version':
+			C3 = str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux'
 		else:
-			if fct.readconf('primusrun' , '0') == '1':	
-				if Branch == 'by_version':
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
-				else:
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
-			else:	
-				if Branch == 'by_version':
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
-				else:
-					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
+			C3 = str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux'
+
+		#primusrun
+		if fct.readconf('primusrun' , '0') == '1':
+			C4 = ' && PRIMUS_SYNC=1 primusrun ./UE4Editor'
+		else:
+			C4 = ' && ./UE4Editor'
+
+		#LibaryEntry
+		if LP == None:
+			C5 = ' '
+		else:
+			C5 = ' "' + Uproject + '" '
+
+		#Opengl4 or vulkan
+		if fct.readconf('vulkan' , '1') == '1':
+			C6 = '-vulkan -nosplash -windowed'
+		else:
+			if fct.readconf('opengl' , '1') == '1':
+				C6 = '-opengl4'
+			else:
+				C6 = ' '
+
+		Startpath = C1 + C2 + C3 + C4 + C5 + C6
+			
+
+#		if LP == None:
+#			if fct.readconf('primusrun' , '0') == '1':
+#				if Branch == 'by_version':
+#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor -opengl4')
+#				else:
+#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor -opengl4')
+#			else:
+#				if Branch == 'by_version':
+#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor -opengl4')
+#				else:
+#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor -opengl4')				
+#		else:
+#			if fct.readconf('primusrun' , '0') == '1':	
+#				if Branch == 'by_version':
+#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
+#				else:
+#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
+#			else:	
+#				if Branch == 'by_version':
+#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
+#				else:
+#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
 	
 		enginwin.show_all()
 		print(Startpath)
@@ -487,6 +522,7 @@ class GUI:
 		#get them
 		vulkan = self.builder.get_object('TB_Vulkan')
 		primus = self.builder.get_object('TB_Primus')
+		opengl = self.builder.get_object('CB_Opengl')
 		version = self.builder.get_object('E_Version')
 		defloc = self.builder.get_object('FCB_DefLocation')
 		defloclabel = self.builder.get_object('L_DefLoc')
@@ -498,6 +534,7 @@ class GUI:
 
 		Vvulkan = fct.readconf('vulkan' , '0')
 		Vprimus = fct.readconf('primusrun' , '0' )
+		Vopengl = fct.readconf('opengl', '1')
 		Vversion = fct.readconf('version' , '4.10')
 		Vdefloc = fct.readconf('defloc' , '~/unrealengine_teddy')
 		Vdefengine = fct.readconf('defeng' , '4.10')
@@ -519,6 +556,12 @@ class GUI:
 			primus.set_active(False)
 		else:
 			primus.set_active(True)
+
+		#opengl4
+		if Vopengl == '0':
+			opengl.set_active(False)
+		else:
+			opengl.set_active(True)
 		
 		#set default version number
 		version.set_text(Vversion)
@@ -595,6 +638,7 @@ class GUI:
 		#page 1
 		Evulkan = self.builder.get_object('TB_Vulkan')
 		Eprimus = self.builder.get_object('TB_Primus')
+		Eopengl = self.builder.get_object('CB_Opengl')
 		Eversion = self.builder.get_object('E_Version')
 		Edefloc = self.builder.get_object('FCB_DefLocation')
 		Edefloclabel = self.builder.get_object('L_DefLoc')
@@ -632,6 +676,12 @@ class GUI:
 			fct.newdi('primusrun' , '1')
 		else:
 			fct.newdi('primusrun' , '0')
+
+		#opengl4
+		if Eopengl.get_active() == True:
+			fct.newdi('opengl', '1')
+		else:
+			fct.newdi('opengl','0')
 
 		#version
 		fct.newdi('version', str(Eversion.get_text()))
