@@ -1212,6 +1212,11 @@ selected "by_version" eg. 4.12</property>
       </object>
     </child>
   </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-missing-image</property>
+  </object>
   <object class="GtkListStore" id="liststore1"/>
   <object class="GtkMenu" id="menu2">
     <property name="visible">True</property>
@@ -1880,10 +1885,11 @@ provide number below.</property>
                             <property name="can_focus">False</property>
                             <child>
                               <object class="GtkButton" id="Engine_Start">
-                                <property name="label" translatable="yes">Start</property>
+                                <property name="label" translatable="yes">Start Engine</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
+                                <property name="tooltip_text" translatable="yes">Click To Start Engine With Given Paramters</property>
                                 <signal name="clicked" handler="on_Engine_Start_clicked" swapped="no"/>
                               </object>
                             </child>
@@ -2103,7 +2109,7 @@ provide number below.</property>
                   <object class="GtkLabel" id="label10">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Editor Default 
+                    <property name="label" translatable="yes">Editor Default  Editor
 Location</property>
                     <property name="justify">center</property>
                   </object>
@@ -2288,18 +2294,6 @@ Location</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToggleButton" id="TB_Web">
-                    <property name="label" translatable="yes">Streaming</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">2</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -2318,6 +2312,19 @@ Location</property>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="TB_Web">
+                    <property name="label" translatable="yes">On</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">2</property>
                   </packing>
                 </child>
               </object>

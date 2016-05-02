@@ -457,7 +457,7 @@ class GUI:
 
 		#Opengl4 or vulkan
 		if fct.readconf('vulkan' , '1') == '1':
-			C6 = '-vulkan'
+			C6 = '-vulkan -nosplash -windowed'
 		else:
 			if fct.readconf('opengl' , '1') == '1':
 				C6 = '-opengl4'

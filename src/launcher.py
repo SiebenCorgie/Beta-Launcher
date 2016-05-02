@@ -498,6 +498,15 @@ class GUI:
 
 
 #Prefernces_________________________________________________________________
+	#closing prefences via x button
+	def on_Win_Preferences_destroy (self, widget):
+		WinPref=self.builder.get_object('Win_Preferences')
+		WinPref.hide()
+		
+	#closing prefences via close button
+	def on_B_Pref_Close_clicked (self, button):
+		WinPref=self.builder.get_object('Win_Preferences')
+		WinPref.hide()
 
 	def on_B_Edit_Dependencies_clicked (self, button):
 		WinDep = self.builder.get_object('Dependencies_Dialog')
@@ -781,28 +790,14 @@ class GUI:
 	#open blog in browser
 		url = fct.readconf('blogurl' , 'https://www.unrealengine.com/blog')
 		os.system('xdg-open ' + url)
-		
-	
 
 	#close
 	def on_B_Quit_activate (self, menuitem):
 		Gtk.main_quit()
 
-	#closing prefences via x button
-	def on_Win_Preferences_destroy (self, widget):
-		WinPref=self.builder.get_object('Win_Preferences')
-		print('hidden')
-		WinPref.hide()
-		
-	#closing prefences via close button
-	def on_B_Pref_Close_clicked (self, button):
-		WinPref=self.builder.get_object('Win_Preferences')
-		WinPref.hide()
-		print('hidden')
 
 #quit program
 	def on_window_destroy(self, window):
-		print('quit!')
 		Gtk.main_quit()		
 
 
