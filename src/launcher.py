@@ -251,12 +251,14 @@ class GUI:
 		print(str('donwload command: ' + Gitcommand))
 		#print to terminal
 		self.term.feed_child(fct.termcommand(Gitcommand), fct.termlength(Gitcommand))		
+
+#Configuring
+	def on_B_Configure_clicked (self, button):
 		# after cloning
 		#cd into new unrealengine directory
 		print("cd in new directory")
 		UECDcommand = 'cd UnrealEngine' 
 		self.term.feed_child(fct.termcommand(UECDcommand), fct.termlength(UECDcommand))
-#Step 1
 		print("run setup")
 		#run step one commands
 		S1command = str(fct.readconf('s1','./Setup.sh && ./GenerateProjectFiles.sh'))
@@ -267,7 +269,7 @@ class GUI:
 		else:
 			SLATEcommand = 'echo passing_slate!'
 		self.term.feed_child(fct.termcommand(SLATEcommand), fct.termlength(SLATEcommand))	
-#linking clang and clang++ when on mint and linking slate
+#linking clang and clang++ and linking slate  when on mint 
 #linking clang
 		if SlateCheck.get_active() == True:				
 			if fct.readconf('distribution', ' 4 ' ) == '2':
@@ -465,31 +467,7 @@ class GUI:
 				C6 = ' '
 
 		Startpath = C1 + C2 + C3 + C4 + C5 + C6
-			
 
-#		if LP == None:
-#			if fct.readconf('primusrun' , '0') == '1':
-#				if Branch == 'by_version':
-#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor -opengl4')
-#				else:
-#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor -opengl4')
-#			else:
-#				if Branch == 'by_version':
-#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor -opengl4')
-#				else:
-#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor -opengl4')				
-#		else:
-#			if fct.readconf('primusrun' , '0') == '1':	
-#				if Branch == 'by_version':
-#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
-#				else:
-#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && PRIMUS_SYNC=1 primusrun ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
-#			else:	
-#				if Branch == 'by_version':
-#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
-#				else:
-#					Startpath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor' + ' "' + str(Uproject) + '"' + ' -opengl4')
-	
 		enginwin.show_all()
 		print(Startpath)
 		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
