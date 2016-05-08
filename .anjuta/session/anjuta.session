@@ -2,16 +2,16 @@
 Maximized=1
 Geometry=1920x1024+0+28
 
+[File Loader]
+Files=../../src/launcher.py#223%%%../../src/fct.py#29%%%../../src/launcher.ui
+
+[Document Manager]
+bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
+
 [Execution]
 Program uri=../../src/launcher.py
 Run in terminal=2
 Working directories=../../.
-
-[File Loader]
-Files=../../src/launcher.py#206%%%../../src/fct.py#38%%%../../src/launcher.ui
-
-[Document Manager]
-bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
 
 [Build]
 Configuration list=1:Default:%%%1:Debug:Debug%%%1:Profiling:Profiling%%%1:Optimized:Optimized
