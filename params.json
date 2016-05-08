@@ -1,0 +1,6 @@
+{
+  "name": "Beta-Launcher",
+  "tagline": "Free Open-Source launcher for Linux. Written in Python with GTK interface. The target distributions for now are: Ubuntu, Linux Mint and Arch Linux.",
+  "body": "#Github repository for Beta Launcher\r\n\r\nA small launcher project I started, to make compiling and using UE4 on Linux easier.\r\nHowever, at the moment the project only has a working configuration via a \".config\" file. And WebKit streaming of the Blog website and the help page.\r\nI am planing to make a version control for UE4 as well as an integration of the CGTrader marketplaces as an alternative for the UE4 marketplace.\r\nReason for the latter one is, that Linux people can't download anything from the UE4 marketplace at the time of writing this.\r\n\r\nPlease keep in mind that I learn Python since fall 2015, so the code will be far from perfect.\r\n\r\nIf you have questions feel free to contact me at siebencorgie@googlemail.com\r\n\r\n[further information:]\r\n\r\nDistribution I am writing on : Arch Linux\r\nStarted:  around Easter 2016\r\nsoftware needed to run: GTK 3.18+ , WebKit (PyWebKit), Python 3, Vte 2.91+ \r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
