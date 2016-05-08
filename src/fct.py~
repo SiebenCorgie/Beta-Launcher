@@ -91,3 +91,7 @@ def writefile():
 def termlength(command):
 	length = len(command) + 1
 	return length
+
+def termcommand(command):
+	final = command + '\n'
+	return final

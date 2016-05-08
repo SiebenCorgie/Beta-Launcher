@@ -17,7 +17,7 @@ def readdefaults():
 
 	newdict = {}
 	
-	get = open("/home/siebencorgie/.Beta_Luncher.conf", "r")
+	get = open("Beta_Launcher.conf", "r")
 
 	#first define global variables
 	
@@ -42,7 +42,7 @@ def readconf(option, default):
 	global deflistc
 	global startlist
 	
-	conf = open("/home/siebencorgie/.Beta_Luncher.conf", "r")
+	conf = open("Beta_Launcher.conf", "r")
 
 	#create data dictonary
 
@@ -79,7 +79,7 @@ def newdi(option, newinput):
 
 def writefile():
 	global newdict
-	confile = open("/home/siebencorgie/.Beta_Luncher.conf", "w")
+	confile = open("Beta_Launcher.conf", "w")
 
 
 	#write new dictonary to file
