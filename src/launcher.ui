@@ -4,7 +4,6 @@
   <requires lib="gtk+" version="3.16"/>
   <object class="GtkDialog" id="Dependencies_Dialog">
     <property name="can_focus">False</property>
-    <property name="type">popup</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="default_width">640</property>
@@ -173,6 +172,21 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
+          <object class="GtkScrolledWindow" id="VTE_Editor">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkHeaderBar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -188,21 +202,6 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkScrolledWindow" id="VTE_Editor">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="shadow_type">in</property>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
@@ -714,79 +713,6 @@ mostly ~ 3 Gb</property>
                     <property name="tab_fill">False</property>
                   </packing>
                 </child>
-                <child>
-                  <object class="GtkGrid">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">You are ready to test!</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkSeparator">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkGrid">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkButton" id="B_Install_Test">
-                            <property name="label" translatable="yes">Test!</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                            <signal name="clicked" handler="on_B_Install_Test_clicked" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">2</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="position">4</property>
-                  </packing>
-                </child>
-                <child type="tab">
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Testing</property>
-                  </object>
-                  <packing>
-                    <property name="position">4</property>
-                    <property name="tab_fill">False</property>
-                  </packing>
-                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -795,16 +721,29 @@ mostly ~ 3 Gb</property>
               </packing>
             </child>
             <child>
-              <object class="GtkScrolledWindow" id="VTE">
+              <object class="GtkExpander">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
                 <child>
-                  <placeholder/>
+                  <object class="GtkScrolledWindow" id="VTE">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="Terminal_Expander">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Terminal</property>
+                  </object>
                 </child>
               </object>
               <packing>
-                <property name="expand">True</property>
+                <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
@@ -1247,11 +1186,6 @@ selected "by_version" eg. 4.12</property>
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
   </object>
   <object class="GtkListStore" id="liststore1"/>
   <object class="GtkMenu" id="menu2">
@@ -1925,7 +1859,6 @@ provide number below.</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Click To Start Engine With Given Paramters</property>
                                 <signal name="clicked" handler="on_Engine_Start_clicked" swapped="no"/>
                               </object>
                             </child>
