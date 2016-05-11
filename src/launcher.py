@@ -78,36 +78,51 @@ class GUI:
 #HelpBrowser____________________________________________________________________
 
 #initialise help browser
-		helpurl = fct.readconf('defurl', 'https://docs.unrealengine.com/latest/INT/')
+		if fct.readconf('stream', '1') == '1':
+			helpurl = fct.readconf('defurl', 'https://docs.unrealengine.com/latest/INT/')
 
-		helpbrowser = WebKit.WebView()
+			helpbrowser = WebKit.WebView()
 # To disallow editing the webpage. 
-		helpbrowser.set_editable(False) 
+			helpbrowser.set_editable(False) 
 #load url and show window
-		helpbrowser.load_uri(helpurl)
-		sw = self.builder.get_object('Help_Browser')
-		sw.add(helpbrowser)
-		helpbrowser.show()
-		print('Opened')
+			helpbrowser.load_uri(helpurl)
+			sw = self.builder.get_object('Help_Browser')
+			sw.add(helpbrowser)
+			helpbrowser.show()
+			print('Opened help URL')
+		else:
+			print('Not Loading Internet URL (Learn Tab)')
 		
 #BlogBrowser____________________________________________________________________
 		
-
-		blogurl = fct.readconf('blogurl', 'https://www.unrealengine.com/blog')
+		if fct.readconf('stream','1') == '1':
+			blogurl = fct.readconf('blogurl', 'https://www.unrealengine.com/blog')
 
 #initialise blog browser
-		blogbrowser = WebKit.WebView()
+			blogbrowser = WebKit.WebView()
 		
 #disable editing
-		blogbrowser.set_editable(False)
+			blogbrowser.set_editable(False)
 		
 #load default URL
-		blogbrowser.load_uri(blogurl)
-		bsw = self.builder.get_object('Blog_Browser')
-		bsw.add(blogbrowser)
-		blogbrowser.show()
+			blogbrowser.load_uri(blogurl)
+			bsw = self.builder.get_object('Blog_Browser')
+			bsw.add(blogbrowser)
+			blogbrowser.show()
+		else:
+			print('Not Loading Internet URL (BLOG)')
 
-#Install____________________**********************______________________________		
+#Marketplace
+		if fct.readconf('stream','1') == '1':
+			mpurl = fct.readconf('mpurl','https://www.cgtrader.com/')
+			mpbrowser = WebKit.WebView()
+
+			mpbrowser.set_editable(False)
+			mpbrowser.load_uri(mpurl)
+			mpwin = self.builder.get_object('SW_Marketplace')
+			mpwin.add(mpbrowser)
+			mpbrowser.show()
+#Install========================================================================		
 #VersionHelper__________________________________________________________________
 	def on_E_VerHelper_clicked (self, button):
 		verhelper = self.builder.get_object('Version_Helper')
@@ -187,20 +202,14 @@ class GUI:
 	def on_B_Install_Dep_clicked (self, button):
 		text = self.builder.get_object('E_Install_Dependencies')
 		#printing wait window and reading terminal
-		wait = self.builder.get_object('wait_dialog')
 		command = text.get_text()
-		wait.show()
 		self.term.feed_child(fct.termcommand(command), fct.termlength(command))
-		#hide dialog after installing
-		wait.hide()
 
 #Download Engine and (optional) make SlateCheck
 	def on_B_Install_DownloadEngine_clicked (self, button):
 		#get all options
 		Link = self.builder.get_object('E_Install_GitHub')
 		S1 = self.builder.get_object('E_Install_Config')
-		Slate = self.builder.get_object('E_Install_SlateViewer')
-		SlateCheck = self.builder.get_object('CB_SlateCheck')
 		wait = self.builder.get_object('wait_dialog')
 		version_number = self.builder.get_object('E_Install_number')
 		version_typ = self.builder.get_object('CB_Branch')
@@ -224,9 +233,9 @@ class GUI:
 		self.term.feed_child(fct.termcommand(CDcommand), fct.termlength(CDcommand))
 		#delete old directory
 		if branch == 'by_version':
-			DelDircommand = 'rm -r ' + str(version_number)
+			DelDircommand = 'rm -rf ' + str(version_number)
 		else:
-			DelDircommand = 'rm -r ' + str(branch)
+			DelDircommand = 'rm -rf ' + str(branch)
 		self.term.feed_child(fct.termcommand(DelDircommand), fct.termlength(DelDircommand))
 		#make new directory
 		if branch == 'by_version':
@@ -255,6 +264,8 @@ class GUI:
 #Configuring
 	def on_B_Configure_clicked (self, button):
 		# after cloning
+		Slate = self.builder.get_object('E_Install_SlateViewer')
+		SlateCheck = self.builder.get_object('CB_SlateCheck')
 		#cd into new unrealengine directory
 		print("cd in new directory")
 		UECDcommand = 'cd UnrealEngine' 
@@ -287,10 +298,8 @@ class GUI:
 			self.term.feed_child(fct.termcommand(ClangCommand), fct.termlength(ClangCommand))
 			self.term.feed_child(fct.termcommand(ClangCommand_Slate), fct.termlength(ClangCommand_Slate))
 		else:
-			comment = 'passing linking of clang and slate'
+			comment = 'echo passing_linking_of_clang_and_slate_not_on_Mint'
 			self.term.feed_child(fct.termcommand(comment), fct.termlength(comment))	
-
-		wait.hide()
 #Ending "Download"
 
 #Starting "Building"
@@ -332,25 +341,6 @@ class GUI:
 		else:
 			LinkEditorCommand = 'echo leaving Editor linking out ... not on mint'
 		self.term.feed_child(fct.termcommand(LinkEditorCommand), fct.termlength(LinkEditorCommand))	
-
-		
-
-#Testing
-	def on_B_Install_Test_clicked (self, button):
-		#launching Starting Widget, and cding to directory
-		version_number = self.builder.get_object('E_Install_number')
-		version_typ = self.builder.get_object('CB_Branch')
-		#set some variables
-		branch = version_typ.get_active_text()
-		version_number = version_number.get_text()
-		Editor_WW = self.builder.get_object('Editor_Working')
-		#making path
-		if branch == 'by_version':
-			TestPath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version_number) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor')
-		else:
-			TestPath = 'cd ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(branch) + '/UnrealEngine' + '/Engine/Binaries/Linux && ./UE4Editor')
-		Editor_WW.show_all()
-		self.Editor_terminal.feed_child(fct.termcommand(TestPath), fct.termlength(TestPath))
 		
 #close waiting dialog
 	def on_B_install_Wait_Close_clicked (self, button):
@@ -517,6 +507,7 @@ class GUI:
 		defhelpurl = self.builder.get_object('E_Pref_HelpURL')
 		stream = self.builder.get_object('TB_Web')
 		blogurl = self.builder.get_object('E_Blog_Url')
+		mpurl = self.builder.get_object('E_MP_URL')
 		#geting values 
 
 		Vvulkan = fct.readconf('vulkan' , '0')
@@ -559,17 +550,20 @@ class GUI:
 		#set default engine
 		defengine.set_text(Vdefengine)
 
-		#set default help url
-		defhelpurl.set_text(Vdefhelpurl)
+
 
 		#set streaming property
 		if Vstream == '1':
 			stream.set_active(True)
 		else:
 			stream.set_active(False)
-
+			
+		#set default help url
+		defhelpurl.set_text(Vdefhelpurl)
 		#set blog url
 		blogurl.set_text(fct.readconf('blogurl', 'https://www.unrealengine.com/blog'))
+		#set marketplace URL
+		mpurl.set_text(fct.readconf('mpurl', 'https://www.cgtrader.com/'))
 		
 
 		#set Distro
@@ -633,6 +627,7 @@ class GUI:
 		Edefhelpurl = self.builder.get_object('E_Pref_HelpURL')
 		Eblogurl = self.builder.get_object('E_Blog_Url')
 		Estream = self.builder.get_object('TB_Web')
+		Empurl = self.builder.get_object('E_MP_URL')
 		#page 2
 		Edistribution = self.builder.get_object('CB_Distro')
 		#dialog
@@ -698,6 +693,8 @@ class GUI:
 
 		#blogurl
 		fct.newdi('blogurl' , Eblogurl.get_text())
+		#marketplace url
+		fct.newdi('mpurl' , Empurl.get_text())
 
 #page 3
 		#distro
