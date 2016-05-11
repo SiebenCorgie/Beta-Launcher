@@ -1,7 +1,16 @@
 #Github repository for Beta Launcher
 
 A small launcher project I started, to make compiling and using UE4 on Linux easier.
-However, at the moment the project only has a working configuration via a ".config" file. And WebKit streaming of the Blog website and the help page.
+Things done so far:
+
+-Preferences where you can edit nearly any aspect of the launcher
+-Installing via the wiki way in 3-4 Steps
+-Integration of UnrealWiki, Unreal-Blog and CGTrader-Marketplace (you can change the URLs in the preferences)
+-Project Launching
+-Option to launch via primusrun
+-Option to launch via openGL4
+-Option to launch via vulkan
+
 I am planing to make a version control for UE4 as well as an integration of the CGTrader marketplaces as an alternative for the UE4 marketplace.
 Reason for the latter one is, that Linux people can't download anything from the UE4 marketplace at the time of writing this.
 
