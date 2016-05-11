@@ -276,7 +276,9 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Please keep in mind that the
 installing process can take
-some while.</property>
+some time. You also need a Git-Hub
+account which is connected to Epics
+repository.</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -724,7 +726,7 @@ mostly ~ 3 Gb</property>
               <object class="GtkPaned">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="position">50</property>
+                <property name="position">200</property>
                 <property name="wide_handle">True</property>
                 <child>
                   <object class="GtkBox">
