@@ -4,7 +4,7 @@
     <dock name="__dock_1" floating="no" width="-1" height="-1" floatx="0" floaty="0" skip-taskbar="yes">
       <paned orientation="vertical" resize="yes" locked="no" iconified="no" closed="no" position="735">
         <paned orientation="horizontal" resize="yes" locked="no" iconified="no" closed="no" position="618">
-          <notebook orientation="vertical" resize="yes" locked="no" iconified="no" closed="no" page="7">
+          <notebook orientation="vertical" resize="yes" locked="no" iconified="no" closed="no" page="6">
             <item name="AnjutaFileManager" orientation="vertical" resize="yes" locked="no" iconified="no" closed="no"/>
             <item name="AnjutaProjectManager" orientation="vertical" resize="yes" locked="no" iconified="no" closed="no"/>
             <item name="AnjutaSymbolBrowser" orientation="horizontal" resize="yes" locked="no" iconified="no" closed="yes"/>

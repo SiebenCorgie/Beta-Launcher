@@ -770,6 +770,10 @@ class GUI:
 	def on_B_Quit_activate (self, menuitem):
 		Gtk.main_quit()
 
+	#open marketplace in browser
+	def on_B_Marketplace_Open_clicked (self, button):
+		os.system('xdg-open ' + fct.readconf('mpurl', 'https://google.com'))
+
 
 #quit program
 	def on_window_destroy(self, window):

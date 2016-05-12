@@ -8,7 +8,7 @@ Run in terminal=2
 Working directories=../../.
 
 [File Loader]
-Files=../../src/launcher.py#191%%%../../src/fct.py#29%%%../../src/launcher.ui
+Files=../../src/launcher.py#775%%%../../src/fct.py#29%%%../../src/launcher.ui
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
