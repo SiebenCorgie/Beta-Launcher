@@ -963,7 +963,7 @@ UnrealBuildTool (UBT), </property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">After building you are ready to test the engine from the
-"Libary" tab in the main window.</property>
+"Library" tab in the main window.</property>
                   </object>
                   <packing>
                     <property name="position">4</property>
@@ -1748,7 +1748,7 @@ provide number below.</property>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Libary</property>
+                    <property name="label" translatable="yes">Library</property>
                   </object>
                 </child>
               </object>
@@ -1760,7 +1760,7 @@ provide number below.</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Libary</property>
+                <property name="label" translatable="yes">Library</property>
                 <attributes>
                   <attribute name="scale" value="2"/>
                 </attributes>
