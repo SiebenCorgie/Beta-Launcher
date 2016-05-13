@@ -214,11 +214,12 @@ class GUI:
 		version_number = self.builder.get_object('E_Install_number')
 		version_typ = self.builder.get_object('CB_Branch')
 		infolabel = self.builder.get_object('L_Install_Info')
+		expander_Download = self.builder.get_object('Install_Exp_Download')
+		expander_Configure = self.builder.get_object('Install_Exp_Configure')
 		#set some variables
 		branch = version_typ.get_active_text()
 		version_number = version_number.get_text()
 		#show wait_dialog
-		wait.show_all()
 #fixing Linkingproblem on Arch
 		if fct.readconf('distribution', ' 4 ' ) == '0':
 			LinkArch = fct.readconf('steparch','mkdir ~/bin/ && cd ~/bin/ && ln -s /bin/ld.bfd ./ld.gold')
@@ -261,11 +262,16 @@ class GUI:
 		#print to terminal
 		self.term.feed_child(fct.termcommand(Gitcommand), fct.termlength(Gitcommand))		
 
+		expander_Download.set_expanded(False)
+		expander_Configure.set_expanded(True)
+
 #Configuring
 	def on_B_Configure_clicked (self, button):
 		# after cloning
 		Slate = self.builder.get_object('E_Install_SlateViewer')
 		SlateCheck = self.builder.get_object('CB_SlateCheck')
+		expander_Download = self.builder.get_object('Install_Exp_Download')
+		expander_Configure = self.builder.get_object('Install_Exp_Configure')
 		#cd into new unrealengine directory
 		print("cd in new directory")
 		UECDcommand = 'cd UnrealEngine' 
@@ -300,6 +306,9 @@ class GUI:
 		else:
 			comment = 'echo passing_linking_of_clang_and_slate_not_on_Mint'
 			self.term.feed_child(fct.termcommand(comment), fct.termlength(comment))	
+
+		expander_Download.set_expanded(True)
+		expander_Configure.set_expanded(False)
 #Ending "Download"
 
 #Starting "Building"
@@ -769,6 +778,10 @@ class GUI:
 	#close
 	def on_B_Quit_activate (self, menuitem):
 		Gtk.main_quit()
+
+	#open marketplace in browser
+	def on_B_Marketplace_Open_clicked (self, button):
+		os.system('xdg-open ' + fct.readconf('mpurl', 'https://google.com'))
 
 
 #quit program

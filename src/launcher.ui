@@ -388,20 +388,44 @@ repository.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="B_Install_Dep">
-                        <property name="label" translatable="yes">Install Dependencies!</property>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">You don’t need this step, because the installer
+should install all dependencies itself.
+However, if the building fails, please install the
+dependencies by your self.</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkExpander">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <signal name="clicked" handler="on_B_Install_Dep_clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkButton" id="B_Install_Dep">
+                            <property name="label" translatable="yes">Install Dependencies!</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_B_Install_Dep_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <child type="label">
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Install Dependencies!</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">2</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -534,32 +558,6 @@ Slate Viewer? (optional)</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="B_Install_DownloadEngine">
-                        <property name="label" translatable="yes">Download!</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <signal name="clicked" handler="on_B_Install_DownloadEngine_clicked" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">5</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="B_Configure">
-                        <property name="label" translatable="yes">Configure</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <signal name="clicked" handler="on_B_Configure_clicked" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">6</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -580,6 +578,59 @@ mostly ~ 3 Gb</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
+                        <property name="top_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkExpander" id="Install_Exp_Download">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="expanded">True</property>
+                        <child>
+                          <object class="GtkButton" id="B_Install_DownloadEngine">
+                            <property name="label" translatable="yes">Download!</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_B_Install_DownloadEngine_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <child type="label">
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Engine Download</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkExpander" id="Install_Exp_Configure">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <child>
+                          <object class="GtkButton" id="B_Configure">
+                            <property name="label" translatable="yes">Configure</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_B_Configure_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <child type="label">
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Engine Dependencies And Configuring</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
                         <property name="top_attach">6</property>
                       </packing>
                     </child>
