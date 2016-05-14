@@ -24,11 +24,12 @@ gi.require_version('Vte', '2.91')
 from gi.repository import Gtk, GdkPixbuf, Gdk, WebKit, Vte, GLib
 import os, sys, fct,subprocess, time
 
+#START__________________________________________________________________________
 
-#Comment the first line and uncomment the second before installing
-#or making the tarball (alternatively, use project variables)
-UI_FILE = "src/launcher.ui"
-#UI_FILE = "/usr/local/share/launcher/ui/launcher.ui"
+#get UI file location
+location = sys.argv[1]
+UI_FILE = location + "/src/launcher.ui"
+print("UI FILE LOCATION IS: " + UI_FILE)
 
 class GUI:
 	

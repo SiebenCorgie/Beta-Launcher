@@ -27,9 +27,15 @@ import os, sys, fct,subprocess, time
 
 #Comment the first line and uncomment the second before installing
 #or making the tarball (alternatively, use project variables)
-#UI_FILE = "src/launcher.ui"
+
+#get UI file location
+
+location = sys.argv[1]
+
+
+UI_FILE = location + "/src/launcher.ui"
+print("UI FILE LOCATION IS: " + UI_FILE)
 #UI_FILE = "/usr/local/share/launcher/ui/launcher.ui"
-UI_FILE = "src/launcher.ui"
 
 class GUI:
 	
