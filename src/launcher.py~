@@ -27,9 +27,9 @@ import os, sys, fct,subprocess, time
 
 #Comment the first line and uncomment the second before installing
 #or making the tarball (alternatively, use project variables)
-UI_FILE = "src/launcher.ui"
+#UI_FILE = "src/launcher.ui"
 #UI_FILE = "/usr/local/share/launcher/ui/launcher.ui"
-
+UI_FILE = "src/launcher.ui"
 
 class GUI:
 	
@@ -219,7 +219,6 @@ class GUI:
 		#set some variables
 		branch = version_typ.get_active_text()
 		version_number = version_number.get_text()
-		#show wait_dialog
 #fixing Linkingproblem on Arch
 		if fct.readconf('distribution', ' 4 ' ) == '0':
 			LinkArch = fct.readconf('steparch','mkdir ~/bin/ && cd ~/bin/ && ln -s /bin/ld.bfd ./ld.gold')

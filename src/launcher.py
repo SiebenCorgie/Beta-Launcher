@@ -30,7 +30,6 @@ import os, sys, fct,subprocess, time
 UI_FILE = "src/launcher.ui"
 #UI_FILE = "/usr/local/share/launcher/ui/launcher.ui"
 
-
 class GUI:
 	
 	def __init__(self):
