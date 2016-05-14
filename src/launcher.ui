@@ -1260,7 +1260,7 @@ selected "by_version" eg. 4.12</property>
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="box4">
+          <object class="GtkBox" id="MainAbout4">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
@@ -1870,7 +1870,7 @@ provide number below.</property>
                   </object>
                 </child>
                 <child type="label">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="MAIN_L30F">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Marketplace</property>
@@ -2077,17 +2077,17 @@ provide number below.</property>
     <property name="attached_to">window</property>
     <signal name="destroy" handler="on_Win_Preferences_destroy" swapped="no"/>
     <child>
-      <object class="GtkBox" id="box5">
+      <object class="GtkBox" id="PREF_B1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkBox" id="box6">
+          <object class="GtkBox" id="PREF_B2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkHeaderBar" id="headerbar1">
+              <object class="GtkHeaderBar" id="PREF_HB1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
@@ -2114,13 +2114,13 @@ provide number below.</property>
           </packing>
         </child>
         <child>
-          <object class="GtkNotebook" id="notebook1">
+          <object class="GtkNotebook" id="PREF_NB1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="tab_pos">left</property>
             <property name="scrollable">True</property>
             <child>
-              <object class="GtkGrid" id="grid2">
+              <object class="GtkGrid" id="PREF_G1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="row_spacing">10</property>
@@ -2731,7 +2731,7 @@ To Not Use "ld.gold"</property>
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel" id="label">
+              <object class="GtkLabel" id="label0">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Additional
