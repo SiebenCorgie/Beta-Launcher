@@ -19,7 +19,15 @@
 import gi.repository
 gi.require_version('WebKit', '3.0')
 gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')
+
+#try to import VTE 2.90 for older distros, else import v. 2.91
+
+try:
+	gi.require_version('Vte', '2.90')
+	VTEver = 290
+except:
+	gi.require_version('Vte', '2.91')
+	VTEver = 291
 
 from gi.repository import Gtk, GdkPixbuf, Gdk, WebKit, Vte, GLib
 import os, sys, fct,subprocess, time
@@ -60,16 +68,33 @@ class GUI:
 		EDITORVTE = self.builder.get_object('VTE_Editor')
 
 		self.Editor_terminal     = Vte.Terminal()
+#decide the vte version
 
-		self.Editor_terminal.spawn_sync(
-			Vte.PtyFlags.DEFAULT,
-			os.environ['HOME'],
-			["/bin/sh"],
-			[],
-			GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-			None,
-			None,
-			)
+		if VTEver == 290:
+			
+			self.Editor_terminal.fork_command_full(
+				Vte.PtyFlags.DEFAULT,
+				os.environ['HOME'],
+				["/bin/sh"],
+				[],
+				GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+				None,
+				None,
+				)
+			print("old VTE used! (v 2.90) *WINDOW_INIT*")
+		else:
+			
+			self.Editor_terminal.spawn_sync(
+				Vte.PtyFlags.DEFAULT,
+				os.environ['HOME'],
+				["/bin/sh"],
+				[],
+				GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+				None,
+				None,
+				)
+			print("New VTE Used () v. 2.91 *WINDOW_INIT*")
+		
 		EDITORVTE.add(self.Editor_terminal) 
 
 		Editor_WW.show_all
@@ -146,15 +171,33 @@ class GUI:
 
 		self.term     = Vte.Terminal()
 
-		self.term.spawn_sync(
-			Vte.PtyFlags.DEFAULT,
-			os.environ['HOME'],
-			["/bin/sh"],
-			[],
-			GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-			None,
-			None,
-			)
+#decide the vte version
+
+		if VTEver == 290:
+			
+			self.term.fork_command_full(
+				Vte.PtyFlags.DEFAULT,
+				os.environ['HOME'],
+				["/bin/sh"],
+				[],
+				GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+				None,
+				None,
+				)
+			print("old VTE used! (v 2.90) *WINDOW_INSTALLDIALOG*")
+		else:
+			
+			self.term.spawn_sync(
+				Vte.PtyFlags.DEFAULT,
+				os.environ['HOME'],
+				["/bin/sh"],
+				[],
+				GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+				None,
+				None,
+				)
+			print("New VTE Used (v. 2.91) *WINDOW_INSTALLDIALOG*")
+			
 		termwin.add(self.term)
 		instwin.show_all()
 #set texts______________________________________________________________________
