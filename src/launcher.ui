@@ -167,7 +167,7 @@
     <property name="default_height">400</property>
     <property name="deletable">False</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="EDITOR_B1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
@@ -187,7 +187,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkHeaderBar">
+          <object class="GtkHeaderBar" id="EDITOR_HB1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -219,12 +219,12 @@
     <property name="urgency_hint">True</property>
     <property name="deletable">False</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="INSTALL_B1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkHeaderBar">
+          <object class="GtkHeaderBar" id="INSTALL_HB1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="title">Install Assistent</property>
@@ -258,7 +258,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkBox" id="INSTALL_B2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
@@ -267,11 +267,11 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <child>
-                  <object class="GtkGrid">
+                  <object class="GtkGrid" id="INSTALL_G1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L11">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Please keep in mind that the
@@ -286,7 +286,7 @@ repository.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="INSTALL_S1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -296,7 +296,7 @@ repository.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="INSTALL_S12">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -306,7 +306,7 @@ repository.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L12">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Install Directory :</property>
@@ -332,7 +332,7 @@ repository.</property>
                   </object>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALL_L1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Info</property>
@@ -342,11 +342,11 @@ repository.</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkGrid">
+                  <object class="GtkGrid" id="INSTALL_G2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L21">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Dependencies install command:</property>
@@ -368,7 +368,7 @@ repository.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="INSTALL_S21">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -378,7 +378,7 @@ repository.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="INSTALL_S22">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -388,7 +388,7 @@ repository.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L22">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">You don’t need this step, because the installer
@@ -402,7 +402,7 @@ dependencies by your self.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkExpander">
+                      <object class="GtkExpander" id="INSTALL_EX">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <child>
@@ -415,7 +415,7 @@ dependencies by your self.</property>
                           </object>
                         </child>
                         <child type="label">
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="INSTALL_L23">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">Install Dependencies!</property>
@@ -433,7 +433,7 @@ dependencies by your self.</property>
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALL_L2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Dependencies</property>
@@ -444,13 +444,13 @@ dependencies by your self.</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkGrid">
+                  <object class="GtkGrid" id="INSTALL_G3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="column_spacing">10</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L31">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Github Link:</property>
@@ -461,7 +461,7 @@ dependencies by your self.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L32">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Configuring Command 1#</property>
@@ -492,7 +492,7 @@ dependencies by your self.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L33">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Compile Slate Viewer</property>
@@ -513,7 +513,7 @@ dependencies by your self.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L34">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Do you want to compile
@@ -538,7 +538,7 @@ Slate Viewer? (optional)</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="INSTALL_S31">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -548,7 +548,7 @@ Slate Viewer? (optional)</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="INSTALL_S32">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -558,7 +558,7 @@ Slate Viewer? (optional)</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L35">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Download the engine from Github
@@ -570,7 +570,7 @@ Slate Viewer? (optional)</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L36">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Download thirdparty dependencies
@@ -596,7 +596,7 @@ mostly ~ 3 Gb</property>
                           </object>
                         </child>
                         <child type="label">
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="INSTALL_L37">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">Engine Download</property>
@@ -622,7 +622,7 @@ mostly ~ 3 Gb</property>
                           </object>
                         </child>
                         <child type="label">
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="INSTALL_L38">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">Engine Dependencies And Configuring</property>
@@ -640,7 +640,7 @@ mostly ~ 3 Gb</property>
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALL_L3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Download</property>
@@ -651,12 +651,12 @@ mostly ~ 3 Gb</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkGrid">
+                  <object class="GtkGrid" id="INSTALL_G4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L41">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Change BuildConfiguration.xml ?</property>
@@ -680,7 +680,7 @@ mostly ~ 3 Gb</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_42">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Building Command</property>
@@ -701,7 +701,7 @@ mostly ~ 3 Gb</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_L43">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Building ShaderCompileWorker</property>
@@ -756,7 +756,7 @@ mostly ~ 3 Gb</property>
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALL_L4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Building</property>
@@ -774,18 +774,18 @@ mostly ~ 3 Gb</property>
               </packing>
             </child>
             <child>
-              <object class="GtkPaned">
+              <object class="GtkPaned" id="INSTALL_Paned">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="position">200</property>
                 <property name="wide_handle">True</property>
                 <child>
-                  <object class="GtkBox">
+                  <object class="GtkBox" id="INSTALL_B3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="INSTALL_LB3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Please be patient and
@@ -799,7 +799,7 @@ if needed</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinner">
+                      <object class="GtkSpinner" id="INSTALL_Spinn">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="active">True</property>
@@ -848,7 +848,7 @@ if needed</property>
           </packing>
         </child>
         <child>
-          <object class="GtkHeaderBar">
+          <object class="GtkHeaderBar" id="INSTALL_HB2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -879,12 +879,12 @@ if needed</property>
     <property name="default_height">400</property>
     <property name="deletable">False</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="INSTALLHELP_B1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkHeaderBar">
+          <object class="GtkHeaderBar" id="INSTALLHELP_HB1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -904,16 +904,16 @@ if needed</property>
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkBox" id="INSTALLHELP_B2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkNotebook">
+              <object class="GtkNotebook" id="INSTALLHELP_NB1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">The installer works in 4-5 steps. 
@@ -923,7 +923,7 @@ you will have to keep in mind, that the installation procedure will take some ti
                   </object>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Info</property>
@@ -933,7 +933,7 @@ you will have to keep in mind, that the installation procedure will take some ti
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">The second part will download the dependencies needed to
@@ -947,7 +947,7 @@ installing those packages.
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Dependencies</property>
@@ -958,7 +958,7 @@ installing those packages.
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_5">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">The Third part 
@@ -975,7 +975,7 @@ third-party applications) and executing “GenerateProjectFiles.sh”.</property
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_6">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Download</property>
@@ -986,7 +986,7 @@ third-party applications) and executing “GenerateProjectFiles.sh”.</property
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_7">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">The 5th step will build the editor and its tools. This is the most time 
@@ -999,7 +999,7 @@ UnrealBuildTool (UBT), </property>
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_8">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Building</property>
@@ -1010,7 +1010,7 @@ UnrealBuildTool (UBT), </property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_9">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">After building you are ready to test the engine from the
@@ -1021,7 +1021,7 @@ UnrealBuildTool (UBT), </property>
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="INSTALLHELP_10">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Testing</property>
@@ -1039,7 +1039,7 @@ UnrealBuildTool (UBT), </property>
               </packing>
             </child>
             <child>
-              <object class="GtkSeparator">
+              <object class="GtkSeparator" id="INSTALLHELP_S1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
               </object>
@@ -1050,7 +1050,7 @@ UnrealBuildTool (UBT), </property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="INSTALLHELP_11">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">The Launcher uses the installation way of the Unreal-Wiki. If you want to
@@ -1071,7 +1071,7 @@ know more about the building, please visit the wiki by clicking in on the
           </packing>
         </child>
         <child>
-          <object class="GtkHeaderBar">
+          <object class="GtkHeaderBar" id="INSTALLHELP_HB2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -1098,12 +1098,12 @@ know more about the building, please visit the wiki by clicking in on the
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="VERSIONHELPER_B1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkHeaderBar">
+          <object class="GtkHeaderBar" id="VERSIONHELPER_HB1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="title">Version Helper</property>
@@ -1118,12 +1118,12 @@ know more about the building, please visit the wiki by clicking in on the
           </packing>
         </child>
         <child>
-          <object class="GtkGrid">
+          <object class="GtkGrid" id="VERSIONHELPER_G1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="column_homogeneous">True</property>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="VERSIONHELPER_L1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Version</property>
@@ -1134,7 +1134,7 @@ know more about the building, please visit the wiki by clicking in on the
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="VERSIONHELPER_L2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Number Of Number Branch</property>
@@ -1191,7 +1191,7 @@ selected "by_version" eg. 4.12</property>
           </packing>
         </child>
         <child>
-          <object class="GtkHeaderBar">
+          <object class="GtkHeaderBar" id="VERSIONHELPER_HB2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -1405,34 +1405,34 @@ selected "by_version" eg. 4.12</property>
           </packing>
         </child>
         <child>
-          <object class="GtkNotebook">
+          <object class="GtkNotebook" id="MAIN_NB1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="tab_pos">left</property>
             <child>
-              <object class="GtkFrame">
+              <object class="GtkFrame" id="MAIN_FR1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">none</property>
                 <child>
-                  <object class="GtkAlignment">
+                  <object class="GtkAlignment" id="MAIN_GTKA1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkBox" id="MAIN_B1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkBox" id="MAIN_B2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="orientation">vertical</property>
                             <property name="spacing">9</property>
                             <child>
-                              <object class="GtkBox">
+                              <object class="GtkBox" id="MAIN_B3">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="orientation">vertical</property>
@@ -1467,7 +1467,7 @@ selected "by_version" eg. 4.12</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkGrid">
+                              <object class="GtkGrid" id="MAIN_G1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="column_homogeneous">True</property>
@@ -1538,7 +1538,7 @@ selected "by_version" eg. 4.12</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHeaderBar">
+                          <object class="GtkHeaderBar" id="MAIN_HB1">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
@@ -1562,7 +1562,7 @@ selected "by_version" eg. 4.12</property>
                   </object>
                 </child>
                 <child type="label">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="MAIN_L11">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Installing dialog</property>
@@ -1571,7 +1571,7 @@ selected "by_version" eg. 4.12</property>
               </object>
             </child>
             <child type="tab">
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="MAIN_L1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Install</property>
@@ -1584,38 +1584,38 @@ selected "by_version" eg. 4.12</property>
               </packing>
             </child>
             <child>
-              <object class="GtkFrame">
+              <object class="GtkFrame" id="MAIN_FR2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">none</property>
                 <child>
-                  <object class="GtkAlignment">
+                  <object class="GtkAlignment" id="MAIN_GTKS2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkAlignment">
+                      <object class="GtkAlignment" id="MAIN_GTKA3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkBox" id="MAIN_B21">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkBox">
+                              <object class="GtkBox" id="MAIN_B22">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkGrid">
+                                  <object class="GtkGrid" id="MAIN_G21">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="column_homogeneous">True</property>
                                     <child>
-                                      <object class="GtkLabel">
+                                      <object class="GtkLabel" id="MAIN_L211">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="label" translatable="yes">Chose .uproject</property>
@@ -1645,7 +1645,7 @@ selected "by_version" eg. 4.12</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkGrid">
+                                  <object class="GtkGrid" id="MAIN_G22">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="column_homogeneous">True</property>
@@ -1680,11 +1680,11 @@ selected "by_version" eg. 4.12</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkGrid">
+                                  <object class="GtkGrid" id="MAIN_G23">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <child>
-                                      <object class="GtkLabel">
+                                      <object class="GtkLabel" id="MAIN_L231">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="label" translatable="yes">Engine Version</property>
@@ -1702,7 +1702,7 @@ selected "by_version" eg. 4.12</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSeparator">
+                                  <object class="GtkSeparator" id="MAIN_S231">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                   </object>
@@ -1726,7 +1726,7 @@ selected "by_version" eg. 4.12</property>
                                       <item translatable="yes">promoted</item>
                                     </items>
                                     <child internal-child="entry">
-                                      <object class="GtkEntry">
+                                      <object class="GtkEntry" id="MAIN_ECB1">
                                         <property name="can_focus">True</property>
                                       </object>
                                     </child>
@@ -1738,7 +1738,7 @@ selected "by_version" eg. 4.12</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkLabel" id="MAIN_L241">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">If you use "by Version" please 
@@ -1770,7 +1770,7 @@ provide number below.</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHeaderBar">
+                              <object class="GtkHeaderBar" id="MAIN_HB2">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <child>
@@ -1796,7 +1796,7 @@ provide number below.</property>
                   </object>
                 </child>
                 <child type="label">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="MAIN_L20">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Library</property>
@@ -1808,7 +1808,7 @@ provide number below.</property>
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="MAIN_L2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Library</property>
@@ -1822,13 +1822,13 @@ provide number below.</property>
               </packing>
             </child>
             <child>
-              <object class="GtkFrame">
+              <object class="GtkFrame" id="MAIN_FR3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">none</property>
                 <child>
-                  <object class="GtkBox">
+                  <object class="GtkBox" id="MAIN_B31">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="orientation">vertical</property>
@@ -1848,7 +1848,7 @@ provide number below.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHeaderBar">
+                      <object class="GtkHeaderBar" id="MAIN_HB3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
@@ -1882,7 +1882,7 @@ provide number below.</property>
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="MAIN_L3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Marketplace</property>
@@ -1896,18 +1896,18 @@ provide number below.</property>
               </packing>
             </child>
             <child>
-              <object class="GtkFrame">
+              <object class="GtkFrame" id="MAIN_FR4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">none</property>
                 <child>
-                  <object class="GtkAlignment">
+                  <object class="GtkAlignment" id="MAIN_GTKA41">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkBox" id="MAIN_B41">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
@@ -1927,7 +1927,7 @@ provide number below.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHeaderBar">
+                          <object class="GtkHeaderBar" id="MAIN_HB4">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
@@ -1951,7 +1951,7 @@ provide number below.</property>
                   </object>
                 </child>
                 <child type="label">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="MAIN_L41">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Unreal Blog</property>
@@ -1963,7 +1963,7 @@ provide number below.</property>
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="MAIN_L4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Blog</property>
@@ -1977,18 +1977,18 @@ provide number below.</property>
               </packing>
             </child>
             <child>
-              <object class="GtkFrame">
+              <object class="GtkFrame" id="MAIN_FR5">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">none</property>
                 <child>
-                  <object class="GtkAlignment">
+                  <object class="GtkAlignment" id="MAIN_GTKA5">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkBox" id="MAIN_B51">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
@@ -2008,7 +2008,7 @@ provide number below.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHeaderBar">
+                          <object class="GtkHeaderBar" id="MAIN_HB5">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
@@ -2032,7 +2032,7 @@ provide number below.</property>
                   </object>
                 </child>
                 <child type="label">
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="MAIN_L51">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Help</property>
@@ -2044,7 +2044,7 @@ provide number below.</property>
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="MAIN_L5">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Help</property>
@@ -2202,7 +2202,7 @@ Location</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="PREF_L11">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Enable Primusrun</property>
@@ -2213,7 +2213,7 @@ Location</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="PREF_L12">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">OpenGL 4</property>
@@ -2340,7 +2340,7 @@ Location</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="PREF_L21">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Default Blog URL</property>
@@ -2374,7 +2374,7 @@ Location</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="PREF_L22">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Default Marketplace URL</property>
