@@ -29,9 +29,13 @@ except:
 	gi.require_version('Vte', '2.91')
 	VTEver = 291
 
-from gi.repository import Gtk, GdkPixbuf, Gdk, WebKit, Vte, GLib
+from gi.repository import Gtk, GdkPixbuf, Gdk, Vte, GLib
 import os, sys, fct,subprocess, time
 
+if fct.readconf('stream', '1') == '1':
+	from gi.repository import WebKit
+else:
+	print("Not Importing Webkit!")
 #START__________________________________________________________________________
 
 #get UI file location
@@ -147,6 +151,8 @@ class GUI:
 			mpwin = self.builder.get_object('SW_Marketplace')
 			mpwin.add(mpbrowser)
 			mpbrowser.show()
+		else:
+			print("Not Loading Internet URL (MARKETPLACE)")
 #Install========================================================================		
 #VersionHelper__________________________________________________________________
 	def on_E_VerHelper_clicked (self, button):
