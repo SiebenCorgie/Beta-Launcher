@@ -405,8 +405,8 @@ class GUI:
 		wait.hide()		
 
 			
-#cancle install
-	def on_B_Install_Cancle_clicked (self, button):
+#cancel install
+	def on_B_Install_Cancel_clicked (self, button):
 		instwin = self.builder.get_object('Install_Dialog')
 		notebook = self.builder.get_object('install_note')
 #reseting view
