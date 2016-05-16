@@ -3,33 +3,20 @@
 
 
 #read default values on startup for later use
-#test commi
+
+import configparser
+defaultsConfig = configparser.ConfigParser()
+customConfig = configparser.ConfigParser()
 
 def readdefaults():
 
-	#make global variables
+	global defaultsConfig
+	defaultsConfig.read('defaults.conf')
 	
-	global startlist
-	global deflistc
-	global newdict
-
-	#create new dict for later use
-
-	newdict = {}
 	
-	get = open("Beta_Launcher.conf", "r")
+	global customConfig
+	customConfig.read('settings.conf')
 
-	#first define global variables
-	
-	startlist = []
-	deflistc = 0
-
-	for line in get:
-		line = line.strip()
-		startlist.append(str(line))
-		deflistc = deflistc + 1
-
-	get.close
 #_______________________________________________________________________________
 
 def name():
@@ -37,31 +24,15 @@ def name():
 	return name 
 #_______________________________________________________________________________
 
-def readconf(option, default):
-
-	global deflistc
-	global startlist
+def readconf(option):
 	
-	conf = open("Beta_Launcher.conf", "r")
-
-	#create data dictonary
-
-	fconf={}
-
-	for line in conf:
-		line = line.strip()
-		#split at space
-		kv = line.split(" = ")
-		fconf[kv[0]] = kv[1]
-		#break when ending
-		#get option value
-		ret = fconf.get(option, default)
-
-		ret = str(ret)
-		
-	conf.close
+	global defaultsConfig
+	global customConfig
 	
-	return ret
+	if not option in customConfig['main']:
+		return defaultsConfig['main'][option]
+	else:
+		return customConfig['main'][option]
 
 #_____________________________________________________________________________
 #create new list which gets apended to file
@@ -69,22 +40,21 @@ def readconf(option, default):
 
 def newdi(option, newinput):
 
-	global newdict
+	global customConfig
 
 	#create new dict entry
 
-	newdict[option] = str(newinput)
+	customConfig['main'][option]=str(newinput)
 	
 
 
 def writefile():
-	global newdict
-	confile = open("Beta_Launcher.conf", "w")
+	global customConfig
+	
+	confile = open("settings.conf", "w")
 
+	customConfig.write(confile)
 
-	#write new dictonary to file
-	for lines in newdict:
-		confile.write('{} = {}\n'.format(lines, newdict[lines]))
 
 	confile.close()
 
