@@ -230,12 +230,12 @@
             <property name="title">Install Assistent</property>
             <property name="subtitle">Beta Launcher</property>
             <child>
-              <object class="GtkButton" id="B_Install_Cancle">
-                <property name="label" translatable="yes">Cancle</property>
+              <object class="GtkButton" id="B_Install_Cancel">
+                <property name="label" translatable="yes">Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_B_Install_Cancle_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_B_Install_Cancel_clicked" swapped="no"/>
               </object>
             </child>
             <child>
