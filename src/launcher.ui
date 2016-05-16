@@ -1618,7 +1618,7 @@ selected "by_version" eg. 4.12</property>
                                       <object class="GtkLabel" id="MAIN_L211">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Chose .uproject</property>
+                                        <property name="label" translatable="yes">Choose .uproject</property>
                                       </object>
                                       <packing>
                                         <property name="left_attach">0</property>
@@ -1629,7 +1629,7 @@ selected "by_version" eg. 4.12</property>
                                       <object class="GtkFileChooserButton" id="UP_Chooser">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="title" translatable="yes">Chooserr ur projecfile</property>
+                                        <property name="title" translatable="yes">Choose  .uproject</property>
                                         <signal name="file-set" handler="on_UP_Chooser_file_set" swapped="no"/>
                                       </object>
                                       <packing>
