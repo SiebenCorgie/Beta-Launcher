@@ -1,1 +1,2 @@
-No news ATM!
+Writing a NEW Launching file for /bin to Launch launcher.py.
+The paths in fct.py should now be absolute (/opt/Beta-Launcher/)
