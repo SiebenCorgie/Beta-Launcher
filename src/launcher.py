@@ -32,7 +32,10 @@ except:
 from gi.repository import Gtk, GdkPixbuf, Gdk, Vte, GLib
 import os, sys, fct,subprocess, time
 
-if fct.readconf('stream', '1') == '1':
+#updating startup values:
+fct.readdefaults()
+
+if fct.readconf('stream') == '1':
 	from gi.repository import WebKit
 else:
 	print("Not Importing Webkit!")
@@ -54,11 +57,10 @@ class GUI:
 		window = self.builder.get_object('window')
 #show main window
 		window.show_all()
-#updating startup values:
-		fct.readdefaults()
+
 		#Install dialog
 		Eloc = self.builder.get_object('E_Location')
-		Eloc.set_text(fct.readconf('defloc','~/unrealengine'))
+		Eloc.set_text(fct.readconf('defloc'))
 		global Uproject
 		Uproject = None
 #Init_Install________________________________________________________________________
@@ -107,8 +109,8 @@ class GUI:
 #HelpBrowser____________________________________________________________________
 
 #initialise help browser
-		if fct.readconf('stream', '1') == '1':
-			helpurl = fct.readconf('defurl', 'https://docs.unrealengine.com/latest/INT/')
+		if fct.readconf('stream') == '1':
+			helpurl = fct.readconf('defurl')
 
 			helpbrowser = WebKit.WebView()
 # To disallow editing the webpage. 
@@ -124,8 +126,8 @@ class GUI:
 		
 #BlogBrowser____________________________________________________________________
 		
-		if fct.readconf('stream','1') == '1':
-			blogurl = fct.readconf('blogurl', 'https://www.unrealengine.com/blog')
+		if fct.readconf('stream') == '1':
+			blogurl = fct.readconf('blogurl')
 
 #initialise blog browser
 			blogbrowser = WebKit.WebView()
@@ -142,8 +144,8 @@ class GUI:
 			print('Not Loading Internet URL (BLOG)')
 
 #Marketplace
-		if fct.readconf('stream','1') == '1':
-			mpurl = fct.readconf('mpurl','https://www.cgtrader.com/')
+		if fct.readconf('stream') == '1':
+			mpurl = fct.readconf('mpurl')
 			mpbrowser = WebKit.WebView()
 
 			mpbrowser.set_editable(False)
@@ -210,18 +212,18 @@ class GUI:
 
 #default location
 		defaultlocation =  self.builder.get_object('E_Install_DefLoc')
-		defaultlocation.set_text(fct.readconf('defloc','~/unrealengine'))	
+		defaultlocation.set_text(fct.readconf('defloc'))	
 
 #Dependecies
 		deps = self.builder.get_object('E_Install_Dependencies')
-		distroversion = fct.readconf('distribution' , '0')
+		distroversion = fct.readconf('distribution')
 		print("distro = " + str(distroversion))
 		if distroversion == '0':
-			deps.set_text(str(fct.readconf('deparch', 'no Arch dependencies!')))
+			deps.set_text(str(fct.readconf('deparch')))
 		elif distroversion == '1':
-			deps.set_text(str(fct.readconf('depubuntu', 'no Ubuntu dependencies!')))	
+			deps.set_text(str(fct.readconf('depubuntu')))	
 		elif distroversion == '2':
-			deps.set_text(str(fct.readconf('depmint', 'no Mint dependencies!')))
+			deps.set_text(str(fct.readconf('depmint')))
 		else:
 			deps.set_text('Unknown distribution,please check settings!')
 
@@ -231,21 +233,21 @@ class GUI:
 		EditSlate = self.builder.get_object('E_Install_SlateViewer')
 		SlateCheck = self.builder.get_object('CB_SlateCheck')
 		#set texts
-		EditGit.set_text(str(fct.readconf('giturl' , 'no GitHub URL Found!')))
-		EditConfig.set_text(str(fct.readconf('s1','./Setup.sh && ./GenerateProjectFiles.sh')))
-		EditSlate.set_text(str(fct.readconf('s2','make SlateViewer')))
+		EditGit.set_text(str(fct.readconf('giturl')))
+		EditConfig.set_text(str(fct.readconf('s1')))
+		EditSlate.set_text(str(fct.readconf('s2')))
 
 #set text in "Build"
 		ES3 = self.builder.get_object('E_Install_S3')
 		ES4 = self.builder.get_object('E_Install_S4')
 		infolabel = self.builder.get_object('L_Install_Info')
-		if fct.readconf('distribution', ' 4 ' ) == '0':
+		if fct.readconf('distribution' ) == '0':
 			infolabel.set_text('  Please add "export PATH=$HOME/bin:$PATH" to your \n  .bashrc or .zshrc in your home folder before \n  continuing.\n')
 		else:
 			print("leaving arch info out")
 
-		ES3.set_text(fct.readconf('s3','make UE4Editor UE4Game UnrealPak CrashReportClient ShaderCompileWorker UnrealLightmass'))
-		ES4.set_text(fct.readconf('s4','make -j1 ShaderCompileWorker'))
+		ES3.set_text(fct.readconf('s3'))
+		ES4.set_text(fct.readconf('s4'))
 
 #install depencies
 	def on_B_Install_Dep_clicked (self, button):
@@ -269,8 +271,8 @@ class GUI:
 		branch = version_typ.get_active_text()
 		version_number = version_number.get_text()
 #fixing Linkingproblem on Arch
-		if fct.readconf('distribution', ' 4 ' ) == '0':
-			LinkArch = fct.readconf('steparch','mkdir ~/bin/ && cd ~/bin/ && ln -s /bin/ld.bfd ./ld.gold')
+		if fct.readconf('distribution' ) == '0':
+			LinkArch = fct.readconf('steparch')
 			infolabel.set_text('please add "export PATH=$HOME/bin:$PATH" to your \n .bashrc or .zshrc in your home folder.')
 		else:
 			LinkArch = 'echo leaving ArchLinking out ... not on arch'
@@ -278,7 +280,7 @@ class GUI:
 		
 		
 		#cd in directory
-		CDcommand = 'cd ' + str(fct.readconf('defloc','~/unrealengine'))
+		CDcommand = 'cd ' + str(fct.readconf('defloc'))
 		self.term.feed_child(fct.termcommand(CDcommand), fct.termlength(CDcommand))
 		#delete old directory
 		if branch == 'by_version':
@@ -326,21 +328,21 @@ class GUI:
 		self.term.feed_child(fct.termcommand(UECDcommand), fct.termlength(UECDcommand))
 		print("run setup")
 		#run step one commands
-		S1command = str(fct.readconf('s1','./Setup.sh && ./GenerateProjectFiles.sh'))
+		S1command = str(fct.readconf('s1'))
 		self.term.feed_child(fct.termcommand(S1command), fct.termlength(S1command))
 #make slate if ticked "yes"
 		if SlateCheck.get_active() == True:
-			SLATEcommand = fct.readconf( 's2' , 'make SlateViewer')
+			SLATEcommand = fct.readconf( 's2' )
 		else:
 			SLATEcommand = 'echo passing_slate!'
 		self.term.feed_child(fct.termcommand(SLATEcommand), fct.termlength(SLATEcommand))	
 #linking clang and clang++ and linking slate  when on mint 
 #linking clang
 		if SlateCheck.get_active() == True:				
-			if fct.readconf('distribution', ' 4 ' ) == '2':
+			if fct.readconf('distribution') == '2':
 				print("linking clang and slate")
-				SlateCommand = fct.readconf('stepmintslate','export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1 SlateViewer ')				
-				ClangCommand = fct.readconf('stepmint','sudo ln -s /usr/bin/clang-3.5 /usr/bin/clang && sudo ln -s /usr/bin/clang++-3.5 /usr/bin/clang++')
+				SlateCommand = fct.readconf('stepmintslate')				
+				ClangCommand = fct.readconf('stepmint')
 				ClangCommand_Slate = './SlateViewer'
 			else:
 				print('not linking clang and slate')
@@ -374,10 +376,10 @@ class GUI:
 		#making path
 		if Editing.get_active() == True:
 			if branch == 'by_version':
-				EDITPath = 'gedit ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(version_number) + '/UnrealEngine' + '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
+				EDITPath = 'gedit ' + str(fct.readconf('defloc') + '/' + str(version_number) + '/UnrealEngine' + '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
 				print(EDITPath)
 			else:
-				EDITPath = 'gedit ' + str(fct.readconf('defloc','~/unrealengine') + '/' + str(branch) + '/UnrealEngine' +  '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
+				EDITPath = 'gedit ' + str(fct.readconf('defloc') + '/' + str(branch) + '/UnrealEngine' +  '/Engine/Saved/UnrealBuildTool/BuildConfiguration.xml')
 				print(EDITPath)
 			self.term.feed_child(fct.termcommand(EDITPath), fct.termlength(EDITPath))
 		else:
@@ -393,8 +395,8 @@ class GUI:
 		self.term.feed_child(fct.termcommand(Step4), fct.termlength(Step4))	
 		print('ending step 4')
 #link Editor on Mint
-		if fct.readconf('distribution', ' 4 ' ) == '2':
-			LinkEditorCommand = fct.readconf('stepminteditor','export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1 UE4Editor')
+		if fct.readconf('distribution') == '2':
+			LinkEditorCommand = fct.readconf('stepminteditor')
 		else:
 			LinkEditorCommand = 'echo leaving Editor linking out ... not on mint'
 		self.term.feed_child(fct.termcommand(LinkEditorCommand), fct.termlength(LinkEditorCommand))	
@@ -484,7 +486,7 @@ class GUI:
 #making executing command
 
 		C1 = 'cd '
-		C2 = str(fct.readconf('defloc','~/unrealengine')) + '/'
+		C2 = str(fct.readconf('defloc')) + '/'
 
 		#Engine type
 		if Branch == 'by_version':
@@ -493,7 +495,7 @@ class GUI:
 			C3 = str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux'
 
 		#primusrun
-		if fct.readconf('primusrun' , '0') == '1':
+		if fct.readconf('primusrun' ) == '1':
 			C4 = ' && PRIMUS_SYNC=1 primusrun ./UE4Editor'
 		else:
 			C4 = ' && ./UE4Editor'
@@ -505,10 +507,10 @@ class GUI:
 			C5 = ' "' + Uproject + '" '
 
 		#Opengl4 or vulkan
-		if fct.readconf('vulkan' , '1') == '1':
+		if fct.readconf('vulkan') == '1':
 			C6 = '-vulkan -nosplash -windowed'
 		else:
-			if fct.readconf('opengl' , '1') == '1':
+			if fct.readconf('opengl') == '1':
 				C6 = '-opengl4'
 			else:
 				C6 = ' '
@@ -567,14 +569,14 @@ class GUI:
 		mpurl = self.builder.get_object('E_MP_URL')
 		#geting values 
 
-		Vvulkan = fct.readconf('vulkan' , '0')
-		Vprimus = fct.readconf('primusrun' , '0' )
-		Vopengl = fct.readconf('opengl', '1')
-		Vversion = fct.readconf('version' , '4.10')
-		Vdefloc = fct.readconf('defloc' , '~/unrealengine_teddy')
-		Vdefengine = fct.readconf('defeng' , '4.10')
-		Vdefhelpurl = fct.readconf('defurl' , 'https://docs.unrealengine.com/latest/INT/')
-		Vstream = fct.readconf('stream' , '0')
+		Vvulkan = fct.readconf('vulkan' )
+		Vprimus = fct.readconf('primusrun' )
+		Vopengl = fct.readconf('opengl')
+		Vversion = fct.readconf('version')
+		Vdefloc = fct.readconf('defloc')
+		Vdefengine = fct.readconf('defeng')
+		Vdefhelpurl = fct.readconf('defurl')
+		Vstream = fct.readconf('stream')
 
 
 
@@ -618,13 +620,13 @@ class GUI:
 		#set default help url
 		defhelpurl.set_text(Vdefhelpurl)
 		#set blog url
-		blogurl.set_text(fct.readconf('blogurl', 'https://www.unrealengine.com/blog'))
+		blogurl.set_text(fct.readconf('blogurl'))
 		#set marketplace URL
-		mpurl.set_text(fct.readconf('mpurl', 'https://www.cgtrader.com/'))
+		mpurl.set_text(fct.readconf('mpurl'))
 		
 
 		#set Distro
-		dist = fct.readconf('distribution', '4')
+		dist = fct.readconf('distribution')
 
 		print('dist = ' + dist)
 		
@@ -636,9 +638,9 @@ class GUI:
 		dependencies_Ubuntu = self.builder.get_object('E_Dep_Ubuntu')
 		dependencies_Mint = self.builder.get_object('E_Dep_Mint')
 
-		dependencies_Arch.set_text(fct.readconf('deparch', 'sudo pacman -S mono clang35 dos2unix cmake'))
-		dependencies_Ubuntu.set_text(fct.readconf('depubuntu', 'sudo apt-get install build-essential mono-gmcs mono-xbuild mono-dmcs libmono-corlib4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-web-extensions4.0-cil libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil cmake dos2unix clang-3.5 libfreetype6-dev libgtk-3-dev libmono-microsoft-build-tasks-v4.0-4.0-cil xdg-user-dirs'))
-		dependencies_Mint.set_text(fct.readconf('depmint', 'sudo apt-get install git build-essential clang-3.5 libglew-dev libcheese7 libcheese-gtk23 libclutter-gst-2.0-0 libcogl15 libclutter-gtk-1.0-0 libclutter-1.0-0  xserver-xorg-input-all'))
+		dependencies_Arch.set_text(fct.readconf('deparch'))
+		dependencies_Ubuntu.set_text(fct.readconf('depubuntu'))
+		dependencies_Mint.set_text(fct.readconf('depmint'))
 		
 		#set GitURL and step commands
 		git = self.builder.get_object('E_GitURL')
@@ -647,11 +649,11 @@ class GUI:
 		s3 = self.builder.get_object('E_S3')
 		s4 = self.builder.get_object('E_S4')
 
-		git.set_text(fct.readconf('giturl', 'echo unknown step'))
-		s1.set_text(fct.readconf('s1', 'echo unknown step'))
-		s2.set_text(fct.readconf('s2', 'echo unknown step'))
-		s3.set_text(fct.readconf('s3', 'echo unknown step'))
-		s4.set_text(fct.readconf('s4', 'echo unknown step'))
+		git.set_text(fct.readconf('giturl'))
+		s1.set_text(fct.readconf('s1'))
+		s2.set_text(fct.readconf('s2'))
+		s3.set_text(fct.readconf('s3'))
+		s4.set_text(fct.readconf('s4'))
 
 		#additional steps arch and mint
 		sar = self.builder.get_object('E_Pref_Arch_Com')
@@ -659,10 +661,10 @@ class GUI:
 		sm2 = self.builder.get_object('E_Pref_mint_SV')
 		sm3 = self.builder.get_object('E_Pref_mint_ED')
 		
-		sar.set_text(fct.readconf('steparch', 'echo unknown step'))
-		sm1.set_text(fct.readconf('stepmint', 'echo unknown step'))
-		sm2.set_text(fct.readconf('stepmintslate', 'echo unknown step'))
-		sm3.set_text(fct.readconf('stepminteditor', 'echo unknown step'))
+		sar.set_text(fct.readconf('steparch'))
+		sm1.set_text(fct.readconf('stepmint'))
+		sm2.set_text(fct.readconf('stepmintslate'))
+		sm3.set_text(fct.readconf('stepminteditor'))
 
 
 		print('prefences updated!')
@@ -728,7 +730,7 @@ class GUI:
 		#default location
 		
 		if Edefloc.get_filename() == None:
-			fct.newdi('defloc', fct.readconf('defloc' , '~/unrealengine'))
+			fct.newdi('defloc', fct.readconf('defloc'))
 		else:
 			fct.newdi('defloc',Edefloc.get_filename())
 
@@ -814,13 +816,13 @@ class GUI:
 	def on_B_Help_InBrowser_clicked (self, button):
 
 		#get property
-		path = fct.readconf('defurl' , 'https://docs.unrealengine.com/latest/INT/')
+		path = fct.readconf('defurl')
 		os.system("xdg-open " + path)
 
 	#open blog url in brower
 	def on_B_Blog_Browser_clicked (self, button):
 	#open blog in browser
-		url = fct.readconf('blogurl' , 'https://www.unrealengine.com/blog')
+		url = fct.readconf('blogurl')
 		os.system('xdg-open ' + url)
 
 	#close
