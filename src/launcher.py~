@@ -46,7 +46,7 @@ class GUI:
 	def __init__(self):
 
 		self.builder = Gtk.Builder()
-		self.builder.add_from_file("/usr/share/Beta-Launcher/src/launcher.ui")
+		self.builder.add_from_file("")
 		self.builder.connect_signals(self)
 
 		window = self.builder.get_object('window')
