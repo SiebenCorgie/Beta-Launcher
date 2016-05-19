@@ -13,6 +13,7 @@ sudo mkdir Beta-Launcher
 cd Beta-Launcher
 sudo cp /usr/share/Beta-Launcher/settings.conf /etc/Beta-Launcher
 sudo cp /usr/share/Beta-Launcher/defaults.conf /etc/Beta-Launcher
+sudo cp /usr/share/Beta-Launcher/Beta-Launcher.png /usr/share/pixmaps/Beta-Launcher.png
 echo Copied_All_Conf_Files
 sudo chmod 666 settings.conf
 sudo chmod +r defaults.conf
