@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /usr/share/
 echo moving_to_/usr/share	
-sudo git clone -b installable https://github.com/SiebenCorgie/Beta-Launcher.git
+sudo git clone https://github.com/SiebenCorgie/Beta-Launcher.git
 cd Beta-Launcher
 echo moved_to_it
 sudo cp /usr/share/Beta-Launcher/Beta-Launcher /bin
