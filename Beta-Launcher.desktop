@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=Beta-Launcher
 Comment=Application for installing, manageing and starting Unrealengine 4
@@ -8,4 +9,4 @@ Type=Application
 Categories=Graphics;FileTransfer;Graphics;
 MimeType=x-scheme-handler/steam;
 
-Name[en_US]=UnrealEngine
+Name[en_US]=Beta-Launcher
