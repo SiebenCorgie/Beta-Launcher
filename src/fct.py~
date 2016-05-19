@@ -11,11 +11,11 @@ customConfig = configparser.ConfigParser()
 def readdefaults():
 
 	global defaultsConfig
-	defaultsConfig.read('/etc/Beta-Launcher/defaults.conf')
+	defaultsConfig.read('defaults.conf')
 	
 	
 	global customConfig
-	customConfig.read('/etc/Beta-Launcher/settings.conf')
+	customConfig.read('settings.conf')
 
 #_______________________________________________________________________________
 
@@ -51,7 +51,7 @@ def newdi(option, newinput):
 def writefile():
 	global customConfig
 	
-	confile = open("/etc/Beta-Launcher/settings.conf", "w")
+	confile = open("settings.conf", "w")
 
 	customConfig.write(confile)
 

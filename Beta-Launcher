@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /opt/Beta-Launcher/src
+cd /usr/share/Beta-Launcher/src
 python3 launcher.py
 
 
