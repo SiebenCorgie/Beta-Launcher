@@ -1,2 +1,4 @@
-Writing a NEW Launching file for /bin to Launch launcher.py.
-The paths in fct.py should now be absolute (/opt/Beta-Launcher/)
+UPDATE 1# (version 0.1)
+You can install all files via the Install.sh and remove the with Remove.sh.
+
+

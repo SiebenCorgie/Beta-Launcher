@@ -8,20 +8,39 @@ import configparser
 defaultsConfig = configparser.ConfigParser()
 customConfig = configparser.ConfigParser()
 
+#set the return value to 0 to make it behave like in installed mode or to 1 to start from anjuta
+
+def anjuta():
+	VALUE = False
+	return VALUE
+
 def readdefaults():
 
-	global defaultsConfig
-	defaultsConfig.read('/etc/Beta-Launcher/defaults.conf')
-	
-	
-	global customConfig
-	customConfig.read('/etc/Beta-Launcher/settings.conf')
+	if anjuta() == True:
+		
+		global defaultsConfig
+		defaultsConfig.read('defaults.conf')
+		
+		
+		global customConfig
+		customConfig.read('settings.conf')		
+	else:
+		
+		global defaultsConfig
+		defaultsConfig.read('/etc/Beta-Launcher/defaults.conf')
+		
+		
+		global customConfig
+		customConfig.read('/etc/Beta-Launcher/settings.conf')
 
 #_______________________________________________________________________________
 
 def name():
 	name = "Beta Launcher"
 	return name 
+
+def version():
+	version = 0.1
 #_______________________________________________________________________________
 
 def readconf(option):
@@ -51,7 +70,10 @@ def newdi(option, newinput):
 def writefile():
 	global customConfig
 	
-	confile = open("/etc/Beta-Launcher/settings.conf", "w")
+	if anjuta() == True:
+		confile = open("settings.conf", "w")
+	else:
+		confile = open("/etc/Beta-Launcher/settings.conf", "w")
 
 	customConfig.write(confile)
 

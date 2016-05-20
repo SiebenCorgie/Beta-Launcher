@@ -16,6 +16,7 @@
 #
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import gi.repository
 gi.require_version('WebKit', '3.0')
 gi.require_version('Gtk', '3.0')
@@ -32,6 +33,14 @@ except:
 from gi.repository import Gtk, GdkPixbuf, Gdk, Vte, GLib
 import os, sys, fct,subprocess, time
 
+#set some paths
+if fct.anjuta() == True:
+	UIFILE = 'src/launcher.ui'
+	PIXMAP = 'src/pixmaps/Beta_Launcher_Circle_Dark.png'
+else:
+	UIFILE = "/usr/share/Beta-Launcher/src/launcher.ui"
+	PIXMAP = '/usr/share/Beta-Launcher/src/pixmaps/Beta_Launcher_Circle_Dark.png'
+
 #updating startup values:
 fct.readdefaults()
 
@@ -39,14 +48,15 @@ if fct.readconf('stream') == '1':
 	from gi.repository import WebKit
 else:
 	print("Not Importing Webkit!")
-#START__________________________________________________________________________
+
+#START_GUI__________________________________________________________________________
 
 class GUI:
 	
 	def __init__(self):
 
 		self.builder = Gtk.Builder()
-		self.builder.add_from_file("")
+		self.builder.add_from_file(UIFILE)
 		self.builder.connect_signals(self)
 
 		window = self.builder.get_object('window')
@@ -150,6 +160,9 @@ class GUI:
 			mpbrowser.show()
 		else:
 			print("Not Loading Internet URL (MARKETPLACE)")
+#UpdateSymbol
+		Symbol = self.builder.get_object('MAIN_Launcher_Symbol')
+		Symbol.set_from_file(PIXMAP)
 #Install========================================================================		
 #VersionHelper__________________________________________________________________
 	def on_E_VerHelper_clicked (self, button):
