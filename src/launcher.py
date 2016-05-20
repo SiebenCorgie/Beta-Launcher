@@ -43,7 +43,6 @@ else:
 
 #updating startup values:
 fct.readdefaults()
-
 if fct.readconf('stream') == '1':
 	from gi.repository import WebKit
 else:
@@ -438,22 +437,7 @@ class GUI:
 		insthelp = self.builder.get_object('Install_Help')
 		insthelp.hide()		
 
-#AboutWindow________________________________________________________________
-	#open about on click
-	
-	def on_B_about_activate (self, menuitem):
-		about = self.builder.get_object('aboutdialog')
-		#get name
-		name=fct.name()
-		about.set_program_name(name)
-		about.get_program_name()
-		about.show()
 
-	#close about	
-	def on_B_About_Close_clicked (self, button):
-		
-		about = self.builder.get_object('aboutdialog')
-		about.hide()
 #Libary_____________________________________________________________________
 #load new image on changed location
 #Closing Engine_Run_Dialog
@@ -816,7 +800,22 @@ class GUI:
 		prefs.hide()
 #end of preferences ________________________________________________________		
 
+#AboutWindow________________________________________________________________
+	#open about on click
+	
+	def on_B_about_activate (self, menuitem):
+		about = self.builder.get_object('aboutdialog')
+		#get name
+		name=fct.name()
+		about.set_program_name(name)
+		about.get_program_name()
+		about.show_all()
 
+	#close about	
+	def on_B_About_Close_clicked (self, button):
+		
+		about = self.builder.get_object('aboutdialog')
+		about.hide()
 
 #Other_______________________________________________________________________
 	#helpclick

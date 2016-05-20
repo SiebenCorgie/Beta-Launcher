@@ -8,10 +8,10 @@ import configparser
 defaultsConfig = configparser.ConfigParser()
 customConfig = configparser.ConfigParser()
 
-#set the return value to 0 to make it behave like in installed mode or to 1 to start from anjuta
+#set the return value to False to make it behave like in installed mode or to True to start from anjuta
 
 def anjuta():
-	VALUE = False
+	VALUE = True
 	return VALUE
 
 def readdefaults():
@@ -20,7 +20,6 @@ def readdefaults():
 		
 		global defaultsConfig
 		defaultsConfig.read('defaults.conf')
-		
 		
 		global customConfig
 		customConfig.read('settings.conf')		
@@ -40,7 +39,7 @@ def name():
 	return name 
 
 def version():
-	version = 0.1
+	version = 'version 0.1'
 #_______________________________________________________________________________
 
 def readconf(option):

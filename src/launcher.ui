@@ -1215,18 +1215,20 @@ selected "by_version" eg. 4.12</property>
   </object>
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">About</property>
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
     <property name="program_name">Beta Launcher</property>
-    <property name="version">v. 0.1</property>
+    <property name="version">version 0.1</property>
     <property name="copyright" translatable="yes">Launcher: @siebencorgie</property>
     <property name="comments" translatable="yes">Program meant to be used on Arch Linux, Linux Mint or Ubuntu. It functions as an open-source launcher for Unreal Engine 4.</property>
     <property name="website">https://forums.unrealengine.com/showthread.php?110795-Beta-Launcher-for-Linux&amp;p=531117#post531117</property>
-    <property name="website_label" translatable="yes">BlogPost</property>
+    <property name="website_label" translatable="yes">Forum Post</property>
     <property name="authors">siebencorgie
 keziolio</property>
     <property name="artists">siebencorgie</property>
-    <property name="logo_icon_name">image-missing</property>
+    <property name="logo_icon_name">preferences-desktop</property>
     <property name="license_type">gpl-3-0</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="aboutdialog-vbox1">
