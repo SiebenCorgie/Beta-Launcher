@@ -11,7 +11,7 @@ customConfig = configparser.ConfigParser()
 #set the return value to False to make it behave like in installed mode or to True to start from anjuta
 
 def anjuta():
-	VALUE = True
+	VALUE = False
 	return VALUE
 
 def readdefaults():
