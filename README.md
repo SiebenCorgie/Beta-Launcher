@@ -37,9 +37,10 @@ Things I want to do in the future
 
 *Install Dependencies:*
 
-Ubuntu/Mint: `sudo apt-get install libgtk-3-dev python-webkit python-vte git libwebkitgtk-3.0-dev libvte-2.91-dev`
+Ubuntu/Mint: download .deb from here [link](https://drive.google.com/open?id=0B5zx3D2UpcZhS1V2dWxNS241bmM) double klick the file!
 
-Arch: `sudo pacman -S pywebkitgtk webkitgtk pygtk vte3 vte-common git`
+Arch: *there is currently no easy way for installing, but it will be ready till the end of version-0.2. Please use version 0.1 or master branch instead, the
+launcher is the same.*
 
 *Run Install.sh*
 
