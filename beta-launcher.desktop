@@ -2,11 +2,10 @@
 [Desktop Entry]
 Name=Beta-Launcher
 Comment=Application for installing, manageing and starting Unrealengine 4
-Exec=Beta-Launcher
-Icon=Beta-Launcher
+Exec=beta-launcher
+Icon=beta-launcher
 Terminal=false
 Type=Application
 Categories=Graphics;FileTransfer;Graphics;
-MimeType=x-scheme-handler/steam;
 
 Name[en_US]=Beta-Launcher

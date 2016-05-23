@@ -26,11 +26,11 @@ def readdefaults():
 	else:
 		
 		global defaultsConfig
-		defaultsConfig.read('/etc/Beta-Launcher/defaults.conf')
+		defaultsConfig.read('/etc/beta-launcher/defaults.conf')
 		
 		
 		global customConfig
-		customConfig.read('/etc/Beta-Launcher/settings.conf')
+		customConfig.read('/etc/beta-launcher/settings.conf')
 
 #_______________________________________________________________________________
 
@@ -72,7 +72,7 @@ def writefile():
 	if anjuta() == True:
 		confile = open("settings.conf", "w")
 	else:
-		confile = open("/etc/Beta-Launcher/settings.conf", "w")
+		confile = open("/etc/beta-launcher/settings.conf", "w")
 
 	customConfig.write(confile)
 
