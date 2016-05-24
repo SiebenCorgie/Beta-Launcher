@@ -42,14 +42,6 @@ Ubuntu/Mint: download .deb from here [link](https://drive.google.com/open?id=0B5
 Arch: *there is currently no easy way for installing, but it will be ready till the end of version-0.2. Please use version 0.1 or master branch instead, the
 launcher is the same.*
 
-*Run Install.sh*
-
-`chmod +x ./Install.sh && ./Install.sh`
-
-**Removing of the launcher**
-
-`chmod +x ./Remove.sh && ./Remove.sh`
-
 for more Information, please visit the [forum-post](https://forums.unrealengine.com/showthread.php?110795-Beta-Launcher-for-Linux&p=532928#post532928) on the Unreal forum!
 
 
