@@ -38,8 +38,8 @@ if fct.anjuta() == True:
 	UIFILE = 'src/launcher.ui'
 	PIXMAP = 'src/pixmaps/MainSymbol.png'
 else:
-	UIFILE = "/usr/share/Beta-Launcher/src/launcher.ui"
-	PIXMAP = '/usr/share/Beta-Launcher/src/pixmaps/MainSymbol.png'
+	UIFILE = "/usr/share/beta-launcher/src/launcher.ui"
+	PIXMAP = '/usr/share/beta-launcher/src/pixmaps/MainSymbol.png'
 
 #updating startup values:
 fct.readdefaults()

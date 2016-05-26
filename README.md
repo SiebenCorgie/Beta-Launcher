@@ -1,5 +1,5 @@
 #Github repository for Beta Launcher
-## version 0.1 ##
+## version 0.2 BETA ##
 
 A small launcher project I started, to make compiling and using UE4 on Linux easier.
 Things done so far:
@@ -37,17 +37,10 @@ Things I want to do in the future
 
 *Install Dependencies:*
 
-Ubuntu/Mint: `sudo apt-get install libgtk-3-dev python-webkit python-vte git libwebkitgtk-3.0-dev libvte-2.91-dev`
+Ubuntu/Mint: download .deb from here [link](https://drive.google.com/open?id=0B5zx3D2UpcZhS1V2dWxNS241bmM) double klick the file!
 
-Arch: `sudo pacman -S pywebkitgtk webkitgtk pygtk vte3 vte-common git`
-
-*Run Install.sh*
-
-`chmod +x ./Install.sh && ./Install.sh`
-
-**Removing of the launcher**
-
-`chmod +x ./Remove.sh && ./Remove.sh`
+Arch: *there is currently no easy way for installing, but it will be ready till the end of version-0.2. Please use version 0.1 or master branch instead, the
+launcher is the same.*
 
 for more Information, please visit the [forum-post](https://forums.unrealengine.com/showthread.php?110795-Beta-Launcher-for-Linux&p=532928#post532928) on the Unreal forum!
 
