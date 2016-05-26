@@ -1,0 +1,12 @@
+Package: beta-launcher
+Version: 0.2
+Section: graphics
+Priority: optional
+Installed-Size: 1049
+Source: beta-launcher
+Maintainer: siebencorgie <officialsiebencorgie@gmail.com>
+Homepage: <https://github.com/SiebenCorgie/Beta-Launcher>
+Architecture: all
+Depends: libgtk-3-dev, python-webkit, python-vte, git
+Description: Incofficial launcher for UE4 on Linux
+ A small launcher program which will manage you installation of UE4 on Linux, give you acces to documentations and so on...

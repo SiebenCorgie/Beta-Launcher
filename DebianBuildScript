@@ -1,0 +1,71 @@
+#!/bin/bash
+
+#Script to make an new debian package of the beta-launcher
+
+#setting some variables
+PKGNAME=beta-launcher-0.2-1
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+#creating the building environment
+echo "started building the building environment"
+git clone https://github.com/SiebenCorgie/Beta-Launcher.git
+echo "cloned backage"
+echo "starting to make the fakeroot structure"
+mkdir $PKGNAME
+cd $PKGNAME
+mkdir DEBIAN
+mkdir etc
+cd etc
+mkdir beta-launcher
+cd ..
+mkdir usr
+cd usr
+mkdir bin
+mkdir share
+cd share
+mkdir beta-launcher
+mkdir applications
+mkdir pixmaps
+cd ..
+cd ..
+cd ..
+echo "Ended makeing the building environment"
+
+#starting the copying
+echo "starting to copy all files"
+cp -rf Beta-Launcher/* $DIR/$PKGNAME/usr/share/beta-launcher
+echo "removing unwanted files from github"
+cd $DIR/$PKGNAME/usr/share/beta-launcher
+rm *.tar.xz
+rm *.deb
+rm PKGBUILD
+echo "unwanted files removed!"
+
+#copying the correct files to theit folders
+mv $DIR/$PKGNAME/usr/share/beta-launcher/beta-launcher $DIR/$PKGNAME/usr/bin/
+mv $DIR/$PKGNAME/usr/share/beta-launcher/defaults.conf $DIR/$PKGNAME/etc/beta-launcher/
+mv $DIR/$PKGNAME/usr/share/beta-launcher/settings.conf $DIR/$PKGNAME/etc/beta-launcher/
+mv $DIR/$PKGNAME/usr/share/beta-launcher/beta-launcher.desktop $DIR/$PKGNAME/usr/share/applications/
+mv $DIR/$PKGNAME/usr/share/beta-launcher/src/pixmaps/beta-launcher.png $DIR/$PKGNAME/usr/share/pixmaps
+cd ..
+cd ..
+cd ..
+echo "making new rights for defualts.conf"
+cd $DIR/$PKGNAME/etc/beta-launcher/
+chmod 666 settings.conf
+
+echo "copying the controll files of the environment to DEBIAN"
+cp $DIR/compat $DIR/$PKGNAME/DEBIAN/
+cp $DIR/control $DIR/$PKGNAME/DEBIAN/
+cp $DIR/copyright $DIR/$PKGNAME/DEBIAN/
+cp $DIR/docs $DIR/$PKGNAME/DEBIAN/
+cd $DIR/
+
+#starting the .deb building
+echo "building .deb"
+
+fakeroot dpkg-deb --build $PKGNAME/
+
+echo "****END****"
+
+

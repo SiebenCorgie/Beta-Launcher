@@ -1,5 +1,0 @@
-#!/bin/bash
-cd /usr/share/beta-launcher/src
-python3 launcher.py
-
-
