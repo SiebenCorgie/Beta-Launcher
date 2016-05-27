@@ -342,6 +342,121 @@ repository.</property>
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkGrid" id="VERSIONHELPER_G1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="column_homogeneous">True</property>
+                    <child>
+                      <object class="GtkLabel" id="VERSIONHELPER_L1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Version</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="E_Install_number">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="text" translatable="yes">4.11</property>
+                        <property name="overwrite_mode">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBoxText" id="CB_Branch">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="active">0</property>
+                        <property name="has_entry">True</property>
+                        <property name="active_id">0</property>
+                        <items>
+                          <item translatable="yes">release</item>
+                          <item translatable="yes">by_version</item>
+                          <item translatable="yes">dev-vr-editor</item>
+                          <item translatable="yes">master</item>
+                          <item translatable="yes">promoted</item>
+                        </items>
+                        <child internal-child="entry">
+                          <object class="GtkEntry">
+                            <property name="can_focus">True</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="VERSIONHELPER_L2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Number Of Number Branch</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="PreInstall_InfoLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Please select the version
+you want to install !</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel" id="Install_PreInstall">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Preinstalling</property>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                    <property name="tab_fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkGrid" id="INSTALL_G2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -429,7 +544,7 @@ dependencies by your self.</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
                 <child type="tab">
@@ -439,7 +554,7 @@ dependencies by your self.</property>
                     <property name="label" translatable="yes">Dependencies</property>
                   </object>
                   <packing>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                     <property name="tab_fill">False</property>
                   </packing>
                 </child>
@@ -636,7 +751,7 @@ mostly ~ 3 Gb</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
                 <child type="tab">
@@ -646,7 +761,7 @@ mostly ~ 3 Gb</property>
                     <property name="label" translatable="yes">Download</property>
                   </object>
                   <packing>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                     <property name="tab_fill">False</property>
                   </packing>
                 </child>
@@ -752,7 +867,7 @@ mostly ~ 3 Gb</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="position">3</property>
+                    <property name="position">4</property>
                   </packing>
                 </child>
                 <child type="tab">
@@ -762,7 +877,7 @@ mostly ~ 3 Gb</property>
                     <property name="label" translatable="yes">Building</property>
                   </object>
                   <packing>
-                    <property name="position">3</property>
+                    <property name="position">4</property>
                     <property name="tab_fill">False</property>
                   </packing>
                 </child>
@@ -1118,77 +1233,7 @@ know more about the building, please visit the wiki by clicking in on the
           </packing>
         </child>
         <child>
-          <object class="GtkGrid" id="VERSIONHELPER_G1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="column_homogeneous">True</property>
-            <child>
-              <object class="GtkLabel" id="VERSIONHELPER_L1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Version</property>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="VERSIONHELPER_L2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Number Of Number Branch</property>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="E_Install_number">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="text" translatable="yes">4.11</property>
-                <property name="overwrite_mode">True</property>
-                <property name="primary_icon_tooltip_text" translatable="yes">please provide an engine version if you
-selected "by_version" eg. 4.12</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBoxText" id="CB_Branch">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="active">0</property>
-                <property name="has_entry">True</property>
-                <property name="active_id">0</property>
-                <items>
-                  <item translatable="yes">release</item>
-                  <item translatable="yes">by_version</item>
-                  <item translatable="yes">dev-vr-editor</item>
-                  <item translatable="yes">master</item>
-                  <item translatable="yes">promoted</item>
-                </items>
-                <child internal-child="entry">
-                  <object class="GtkEntry" id="CB_Install_Version">
-                    <property name="can_focus">False</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
           <object class="GtkHeaderBar" id="VERSIONHELPER_HB2">
@@ -1484,30 +1529,6 @@ keziolio</property>
                                 <property name="can_focus">False</property>
                                 <property name="column_homogeneous">True</property>
                                 <child>
-                                  <object class="GtkLabel" id="E_Download">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Version To Download</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">0</property>
-                                    <property name="top_attach">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkButton" id="E_VerHelper">
-                                    <property name="label" translatable="yes">Version Helper</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <signal name="clicked" handler="on_E_VerHelper_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="top_attach">1</property>
-                                  </packing>
-                                </child>
-                                <child>
                                   <object class="GtkLabel" id="E_Loc_Des">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
@@ -1528,6 +1549,12 @@ keziolio</property>
                                     <property name="left_attach">1</property>
                                     <property name="top_attach">2</property>
                                   </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                                 <child>
                                   <placeholder/>

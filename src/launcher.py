@@ -68,15 +68,10 @@ class GUI:
 		global Uproject
 		Uproject = None
 #Init_Install________________________________________________________________________
-		#update version helper
-		versionhelper = self.builder.get_object('Version_Helper')
-		versionhelper.show_all()
-		versionhelper.hide()
 #Init_Editor_Window
 		Editor_WW = self.builder.get_object('Editor_Working')
 #init Editor VTE
 		EDITORVTE = self.builder.get_object('VTE_Editor')
-
 		self.Editor_terminal     = Vte.Terminal()
 #decide the vte version
 

@@ -38,8 +38,8 @@ if fct.anjuta() == True:
 	UIFILE = 'src/launcher.ui'
 	PIXMAP = 'src/pixmaps/MainSymbol.png'
 else:
-	UIFILE = "/usr/share/Beta-Launcher/src/launcher.ui"
-	PIXMAP = '/usr/share/Beta-Launcher/src/pixmaps/MainSymbol.png'
+	UIFILE = "/usr/share/beta-launcher/src/launcher.ui"
+	PIXMAP = '/usr/share/beta-launcher/src/pixmaps/MainSymbol.png'
 
 #updating startup values:
 fct.readdefaults()
@@ -807,11 +807,8 @@ class GUI:
 		about = self.builder.get_object('aboutdialog')
 		#get name
 		name=fct.name()
-		Pversion =fct.version()
 		about.set_program_name(name)
 		about.get_program_name()
-		about.set_version(Pversion)
-		about.get_version()
 		about.show_all()
 
 	#close about	
