@@ -2,6 +2,8 @@
 #functions for luncher main
 
 
+import subprocess
+
 #read default values on startup for later use
 
 import configparser
@@ -86,3 +88,28 @@ def termlength(command):
 def termcommand(command):
 	final = command + '\n'
 	return final
+
+#makeList from folder 
+def get_folder_content():
+	final = []
+	#call subprocess
+	callcommand = 'ls ' + readconf('defloc')
+	subprocess.call(callcommand , shell=True)
+	out = subprocess.check_output(callcommand, shell=True)
+	#split list
+	contentlist = out.split()
+	item = 0
+	for Byteitem in contentlist:
+		#convert to string and add to final list
+		bytestring = contentlist[item]
+		Endstring = bytestring.decode('utf-8')
+		final.append(Endstring)
+		item = item+1
+		if item == Byteitem:
+			break
+	return final
+
+
+
+
+	

@@ -31,7 +31,7 @@ except:
 	VTEver = 291
 
 from gi.repository import Gtk, GdkPixbuf, Gdk, Vte, GLib
-import os, sys, fct,subprocess, time
+import os, sys, fct, subprocess, time
 
 #set some paths
 if fct.anjuta() == True:
@@ -48,7 +48,7 @@ if fct.readconf('stream') == '1':
 else:
 	print("Not Importing Webkit!")
 
-#START_GUI__________________________________________________________________________
+#START_GUI______________________________________________________________________
 
 class GUI:
 	
@@ -60,21 +60,18 @@ class GUI:
 
 		window = self.builder.get_object('window')
 #show main window
+
 		window.show_all()
 
-		#Install dialog
-		Eloc = self.builder.get_object('E_Location')
-		Eloc.set_text(fct.readconf('defloc'))
 		global Uproject
 		Uproject = None
-#Init_Install________________________________________________________________________
+#Init_Install___________________________________________________________________
 #Init_Editor_Window
 		Editor_WW = self.builder.get_object('Editor_Working')
 #init Editor VTE
 		EDITORVTE = self.builder.get_object('VTE_Editor')
 		self.Editor_terminal     = Vte.Terminal()
 #decide the vte version
-
 		if VTEver == 290:
 			
 			self.Editor_terminal.fork_command_full(
@@ -157,6 +154,15 @@ class GUI:
 #UpdateSymbol
 		Symbol = self.builder.get_object('MAIN_Launcher_Symbol')
 		Symbol.set_from_file(PIXMAP)
+
+#add text to textbuffer
+		vTextbuffer = self.builder.get_object('VersionTextBuffer')
+		BufferTextList = fct.get_folder_content()
+		items = len(BufferTextList)
+		finaltext = ''
+		for itemcount in range(items):
+			finaltext = finaltext + str('Unreal Branch: ' + str(BufferTextList[itemcount]) + '\n' )
+		vTextbuffer.set_text(finaltext)
 #Install========================================================================		
 #VersionHelper__________________________________________________________________
 	def on_E_VerHelper_clicked (self, button):
@@ -435,8 +441,8 @@ class GUI:
 
 #Libary_____________________________________________________________________
 #load new image on changed location
-#Closing Engine_Run_Dialog
 
+#Closing Engine_Run_Dialog
 	def on_B_Engine_Working_Close_clicked (self, button):
 		Runwin = self.builder.get_object('Editor_Working')
 		Runwin.hide()
@@ -455,6 +461,8 @@ class GUI:
 		print('folder = ' + str(currentFolder))
 		Image = self.builder.get_object('Libary_Image')
 		Image.set_from_file(currentFolder + '/Saved/AutoScreenshot.png')
+		ProjectName = self.builder.get_object('E_ProjectName')
+		ProjectName.set_text(str(Path.get_preview_filename))
 
 #Start of engine!!!
 	def on_Engine_Start_clicked (self, button):
