@@ -1229,156 +1229,6 @@ know more about the building, please visit the wiki by clicking in on the
   <object class="GtkTextBuffer" id="VersionTextBuffer">
     <property name="tag_table">VersionTextLabel</property>
   </object>
-  <object class="GtkListStore" id="VersionView">
-    <columns>
-      <!-- column-name gchar1 -->
-      <column type="gchar"/>
-    </columns>
-  </object>
-  <object class="GtkWindow" id="Version_Helper">
-    <property name="can_focus">False</property>
-    <property name="window_position">center</property>
-    <property name="type_hint">dialog</property>
-    <child>
-      <object class="GtkBox" id="VERSIONHELPER_B1">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkHeaderBar" id="VERSIONHELPER_HB1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="title">Version Helper</property>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <object class="GtkHeaderBar" id="VERSIONHELPER_HB2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkButton" id="B_Verhelper_Close">
-                <property name="label" translatable="yes">Close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_B_Verhelper_Close_clicked" swapped="no"/>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkMenu">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
-  <object class="GtkAboutDialog" id="aboutdialog">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">About</property>
-    <property name="window_position">center</property>
-    <property name="type_hint">dialog</property>
-    <property name="deletable">False</property>
-    <property name="program_name">Beta Launcher</property>
-    <property name="version">version 0.3</property>
-    <property name="copyright" translatable="yes">Launcher: @siebencorgie</property>
-    <property name="comments" translatable="yes">Program meant to be used on Arch Linux, Linux Mint or Ubuntu. It functions as an open-source launcher for Unreal Engine 4.</property>
-    <property name="website">https://forums.unrealengine.com/showthread.php?110795-Beta-Launcher-for-Linux&amp;p=531117#post531117</property>
-    <property name="website_label" translatable="yes">ForumPost</property>
-    <property name="authors">siebencorgie
-keziolio</property>
-    <property name="artists">siebencorgie</property>
-    <property name="logo_icon_name">preferences-desktop</property>
-    <property name="license_type">gpl-3-0</property>
-    <child internal-child="vbox">
-      <object class="GtkBox" id="aboutdialog-vbox1">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
-        <property name="baseline_position">top</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="aboutdialog-action_area1">
-            <property name="can_focus">False</property>
-            <property name="layout_style">center</property>
-            <child>
-              <object class="GtkButton" id="B_About_Close">
-                <property name="label" translatable="yes">Close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_B_About_Close_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox" id="MainAbout4">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkListStore" id="liststore1"/>
-  <object class="GtkMenu" id="menu2">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
-  <object class="GtkMenu" id="menu3">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
-  <object class="GtkMenu" id="menu4">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
-  <object class="GtkMenu" id="menu5">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
-  <object class="GtkMenu" id="menu6">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
   <object class="GtkWindow" id="window">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -1678,6 +1528,33 @@ keziolio</property>
                                       </packing>
                                     </child>
                                     <child>
+                                      <object class="GtkScrolledWindow" id="ProjectWindow">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkViewport" id="ProjectViewport">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <child>
+                                              <object class="GtkGrid">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
                                       <object class="GtkGrid" id="MAIN_G23">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
@@ -1696,7 +1573,7 @@ keziolio</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">2</property>
+                                        <property name="position">3</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -1707,7 +1584,7 @@ keziolio</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">3</property>
+                                        <property name="position">4</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -1732,7 +1609,7 @@ keziolio</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">4</property>
+                                        <property name="position">5</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -1745,7 +1622,7 @@ provide number below.</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">5</property>
+                                        <property name="position">6</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -1757,7 +1634,7 @@ provide number below.</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">6</property>
+                                        <property name="position">7</property>
                                       </packing>
                                     </child>
                                   </object>
@@ -2821,5 +2698,155 @@ Steps</property>
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkListStore" id="VersionView">
+    <columns>
+      <!-- column-name gchar1 -->
+      <column type="gchar"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="Version_Helper">
+    <property name="can_focus">False</property>
+    <property name="window_position">center</property>
+    <property name="type_hint">dialog</property>
+    <child>
+      <object class="GtkBox" id="VERSIONHELPER_B1">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkHeaderBar" id="VERSIONHELPER_HB1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="title">Version Helper</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <object class="GtkHeaderBar" id="VERSIONHELPER_HB2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="B_Verhelper_Close">
+                <property name="label" translatable="yes">Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_B_Verhelper_Close_clicked" swapped="no"/>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkMenu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+  <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">About</property>
+    <property name="window_position">center</property>
+    <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
+    <property name="program_name">Beta Launcher</property>
+    <property name="version">version 0.3</property>
+    <property name="copyright" translatable="yes">Launcher: @siebencorgie</property>
+    <property name="comments" translatable="yes">Program meant to be used on Arch Linux, Linux Mint or Ubuntu. It functions as an open-source launcher for Unreal Engine 4.</property>
+    <property name="website">https://forums.unrealengine.com/showthread.php?110795-Beta-Launcher-for-Linux&amp;p=531117#post531117</property>
+    <property name="website_label" translatable="yes">ForumPost</property>
+    <property name="authors">siebencorgie
+keziolio</property>
+    <property name="artists">siebencorgie</property>
+    <property name="logo_icon_name">preferences-desktop</property>
+    <property name="license_type">gpl-3-0</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="aboutdialog-vbox1">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
+        <property name="baseline_position">top</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="aboutdialog-action_area1">
+            <property name="can_focus">False</property>
+            <property name="layout_style">center</property>
+            <child>
+              <object class="GtkButton" id="B_About_Close">
+                <property name="label" translatable="yes">Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_B_About_Close_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="MainAbout4">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListStore" id="liststore1"/>
+  <object class="GtkMenu" id="menu2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+  <object class="GtkMenu" id="menu3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+  <object class="GtkMenu" id="menu4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+  <object class="GtkMenu" id="menu5">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+  <object class="GtkMenu" id="menu6">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
   </object>
 </interface>

@@ -157,12 +157,14 @@ class GUI:
 
 #add text to textbuffer
 		vTextbuffer = self.builder.get_object('VersionTextBuffer')
-		BufferTextList = fct.get_folder_content()
+		BufferTextList = fct.get_folder_content(str(fct.readconf('defloc')))
 		items = len(BufferTextList)
 		finaltext = ''
 		for itemcount in range(items):
 			finaltext = finaltext + str('Unreal Branch: ' + str(BufferTextList[itemcount]) + '\n' )
 		vTextbuffer.set_text(finaltext)
+
+#make the library list
 #Install========================================================================		
 #VersionHelper__________________________________________________________________
 	def on_E_VerHelper_clicked (self, button):

@@ -90,10 +90,10 @@ def termcommand(command):
 	return final
 
 #makeList from folder 
-def get_folder_content():
+def get_folder_content(location):
 	final = []
 	#call subprocess
-	callcommand = 'ls ' + readconf('defloc')
+	callcommand = 'ls ' + location
 	subprocess.call(callcommand , shell=True)
 	out = subprocess.check_output(callcommand, shell=True)
 	#split list

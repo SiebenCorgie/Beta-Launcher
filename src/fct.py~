@@ -98,11 +98,15 @@ def get_folder_content():
 	out = subprocess.check_output(callcommand, shell=True)
 	#split list
 	contentlist = out.split()
-	for item in contentlist:
+	item = 0
+	for Byteitem in contentlist:
 		#convert to string and add to final list
 		bytestring = contentlist[item]
 		Endstring = bytestring.decode('utf-8')
 		final.append(Endstring)
+		item = item+1
+		if item == Byteitem:
+			break
 	return final
 
 

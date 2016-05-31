@@ -157,11 +157,11 @@ class GUI:
 
 #add text to textbuffer
 		vTextbuffer = self.builder.get_object('VersionTextBuffer')
-		BufferTextList = fct.get_folder_content()
+		BufferTextList = fct.get_folder_content(str(fct.readconf('defloc')))
 		items = len(BufferTextList)
-		finaltext = 'TITEL \n'
+		finaltext = ''
 		for itemcount in range(items):
-			finaltext = finaltext + str('NewEntry: ' + str(BufferTextList[itemcount]) + '\n' )
+			finaltext = finaltext + str('Unreal Branch: ' + str(BufferTextList[itemcount]) + '\n' )
 		vTextbuffer.set_text(finaltext)
 #Install========================================================================		
 #VersionHelper__________________________________________________________________
