@@ -48,6 +48,7 @@ if fct.readconf('stream') == '1':
 else:
 	print("Not Importing Webkit!")
 
+#ENDED BEVORE RUNNING===========================================================
 #START_GUI______________________________________________________________________
 
 class GUI:
@@ -65,12 +66,15 @@ class GUI:
 
 		global Uproject
 		Uproject = None
+		
 #Init_Install___________________________________________________________________
 #Init_Editor_Window
 		Editor_WW = self.builder.get_object('Editor_Working')
+		
 #init Editor VTE
 		EDITORVTE = self.builder.get_object('VTE_Editor')
 		self.Editor_terminal     = Vte.Terminal()
+
 #decide the vte version
 		if VTEver == 290:
 			
@@ -164,22 +168,25 @@ class GUI:
 			finaltext = finaltext + str('Unreal Branch: ' + str(BufferTextList[itemcount]) + '\n' )
 		vTextbuffer.set_text(finaltext)
 
-#make the library list
+#ShowStartup on first start
+		if fct.readconf('firststart') == '1':
+			startwin = self.builder.get_object('FirstStartupMessage')
+			startwin.show_all()
+			fct.newdi('firststart', '0')
+		else:
+			print('not showing firststart')
+
+#make the library list__________________________________________________________
+
+		LibraryMain = self.builder.get_('Library_Main_Box')
+		#to be used
+		#libraryitems = len(List_Library)
+		for libraryitemcount in range(items):
+			LibraryMain.
+			
+
+#ENDED INITIALISING
 #Install========================================================================		
-#VersionHelper__________________________________________________________________
-	def on_E_VerHelper_clicked (self, button):
-		verhelper = self.builder.get_object('Version_Helper')
-		verhelper.show()
-
-	def on_B_Install_Help_OpenWiki_clicked (self, button):
-		os.system('xdg-open https://wiki.unrealengine.com/Building_On_Linux')
-
-
-
-	def on_B_Verhelper_Close_clicked (self, button):
-		verhelper = self.builder.get_object('Version_Helper')
-		verhelper.hide()
-
 #Install_Dialog_________________________________________________________________		
 #show install dialog
 	def on_B_Install_clicked (self, button):
@@ -564,6 +571,9 @@ class GUI:
 		stream = self.builder.get_object('TB_Web')
 		blogurl = self.builder.get_object('E_Blog_Url')
 		mpurl = self.builder.get_object('E_MP_URL')
+
+		projectlocation = self.builder.get_object('E_PREF_DefProj_Loc')
+		startup = self.builder.get_object('Pref_CB_SSUA')
 		#geting values 
 
 		Vvulkan = fct.readconf('vulkan' )
@@ -574,6 +584,8 @@ class GUI:
 		Vdefengine = fct.readconf('defeng')
 		Vdefhelpurl = fct.readconf('defurl')
 		Vstream = fct.readconf('stream')
+		V_Projectloc = fct.readconf('proloc')
+		V_startup = fct.readconf('firststart')
 
 
 
@@ -601,7 +613,7 @@ class GUI:
 		version.set_text(Vversion)
 		
 		#set default location
-		defloclabel.set_text("default location is: " + Vdefloc)
+		defloclabel.set_text("Default Location Is:\n" + Vdefloc)
 
 		#set default engine
 		defengine.set_text(Vdefengine)
@@ -620,7 +632,16 @@ class GUI:
 		blogurl.set_text(fct.readconf('blogurl'))
 		#set marketplace URL
 		mpurl.set_text(fct.readconf('mpurl'))
+
+		#default project location
+		projectlocation.set_text('Default Location Is:\n' + V_Projectloc)
 		
+		
+		#show startup again?
+		if V_startup == '0':
+			startup.set_active(False)
+		else:
+			startup.set_active(True)
 
 		#set Distro
 		dist = fct.readconf('distribution')
@@ -684,6 +705,8 @@ class GUI:
 		Eblogurl = self.builder.get_object('E_Blog_Url')
 		Estream = self.builder.get_object('TB_Web')
 		Empurl = self.builder.get_object('E_MP_URL')
+		E_proloc = self.builder.get_object('CB_PREF_DefProjLoc')
+		E_startup = self.builder.get_object('Pref_CB_SSUA')
 		#page 2
 		Edistribution = self.builder.get_object('CB_Distro')
 		#dialog
@@ -751,6 +774,18 @@ class GUI:
 		fct.newdi('blogurl' , Eblogurl.get_text())
 		#marketplace url
 		fct.newdi('mpurl' , Empurl.get_text())
+
+		#projectlocation
+		if E_proloc.get_filename() == None:
+			print('passing new entry for default project location')
+		else:
+			fct.newdi('proloc' , E_proloc.get_filename())
+
+		#startup
+		if E_startup.get_active() == True:
+			fct.newdi('firststart' , '1')
+		else:
+			fct.newdi('firststart' , '0')
 
 #page 3
 		#distro
@@ -823,11 +858,13 @@ class GUI:
 		about.hide()
 
 #Other_______________________________________________________________________
-	#helpclick
+#close startup window
+	def on_B_FirstStartup_Close_clicked (self, button):
+		startwin = self.builder.get_object('FirstStartupMessage')
+		startwin.hide()
 
+#helpclick
 	def on_B_Help_InBrowser_clicked (self, button):
-
-		#get property
 		path = fct.readconf('defurl')
 		os.system("xdg-open " + path)
 
@@ -835,6 +872,10 @@ class GUI:
 	def on_B_Blog_Browser_clicked (self, button):
 	#open blog in browser
 		url = fct.readconf('blogurl')
+		os.system('xdg-open ' + url)
+	#show building wiki
+	def on_B_Install_Help_OpenWiki_clicked(seld, button):
+		url = 'https://wiki.unrealengine.com/Building_On_Linux'
 		os.system('xdg-open ' + url)
 
 	#close

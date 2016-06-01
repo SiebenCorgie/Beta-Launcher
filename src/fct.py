@@ -91,22 +91,26 @@ def termcommand(command):
 
 #makeList from folder 
 def get_folder_content(location):
-	final = []
-	#call subprocess
-	callcommand = 'ls ' + location
-	subprocess.call(callcommand , shell=True)
-	out = subprocess.check_output(callcommand, shell=True)
-	#split list
-	contentlist = out.split()
-	item = 0
-	for Byteitem in contentlist:
-		#convert to string and add to final list
-		bytestring = contentlist[item]
-		Endstring = bytestring.decode('utf-8')
-		final.append(Endstring)
-		item = item+1
-		if item == Byteitem:
-			break
+
+	try:
+		final = []
+		#call subprocess
+		callcommand = 'ls ' + location
+		subprocess.call(callcommand , shell=True)
+		out = subprocess.check_output(callcommand, shell=True)
+		#split list
+		contentlist = out.split()
+		item = 0
+		for Byteitem in contentlist:
+			#convert to string and add to final list
+			bytestring = contentlist[item]
+			Endstring = bytestring.decode('utf-8')
+			final.append(Endstring)
+			item = item+1
+			if item == Byteitem:
+				break
+	except:
+		final = ['location' , 'not' , 'found']
 	return final
 
 

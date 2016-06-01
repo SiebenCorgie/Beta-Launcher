@@ -209,6 +209,76 @@
       </object>
     </child>
   </object>
+  <object class="GtkWindow" id="FirstStartupMessage">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">First Start!</property>
+    <property name="window_position">center</property>
+    <property name="type_hint">dialog</property>
+    <child>
+      <object class="GtkBox" id="FirstStartup_Box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="L_Startup">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Beta Launcher</property>
+            <attributes>
+              <attribute name="scale" value="3"/>
+              <attribute name="underline" value="True"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Bevore starting to work with the launcher review
+the Prefrences, set under file -&gt; preferences. The most
+importand settings are the default project location, 
+the default engine location and the distribution you 
+are working on.
+Thank you for your Interest!</property>
+            <property name="justify">center</property>
+            <attributes>
+              <attribute name="weight" value="medium"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHeaderBar" id="VERSIONHELPER_HB2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="B_FirstStartup_Close">
+                <property name="label" translatable="yes">Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_B_FirstStartup_Close_clicked" swapped="no"/>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="Install_Dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Installing...</property>
@@ -1537,9 +1607,10 @@ know more about the building, please visit the wiki by clicking in on the
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <child>
-                                              <object class="GtkGrid">
+                                              <object class="GtkBox" id="Library_Main_Box">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
+                                                <property name="orientation">vertical</property>
                                                 <child>
                                                   <placeholder/>
                                                 </child>
@@ -2319,6 +2390,36 @@ Location</property>
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkLabel" id="L_ReshowStartup?">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Show Startup Message Again?</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="Pref_CB_SSUA">
+                    <property name="label" translatable="yes">Show Again</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
                   <placeholder/>
                 </child>
               </object>
@@ -2704,56 +2805,6 @@ Steps</property>
       <!-- column-name gchar1 -->
       <column type="gchar"/>
     </columns>
-  </object>
-  <object class="GtkWindow" id="Version_Helper">
-    <property name="can_focus">False</property>
-    <property name="window_position">center</property>
-    <property name="type_hint">dialog</property>
-    <child>
-      <object class="GtkBox" id="VERSIONHELPER_B1">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkHeaderBar" id="VERSIONHELPER_HB1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="title">Version Helper</property>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <object class="GtkHeaderBar" id="VERSIONHELPER_HB2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkButton" id="B_Verhelper_Close">
-                <property name="label" translatable="yes">Close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_B_Verhelper_Close_clicked" swapped="no"/>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
   </object>
   <object class="GtkMenu">
     <property name="visible">True</property>
