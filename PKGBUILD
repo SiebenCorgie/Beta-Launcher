@@ -11,7 +11,7 @@ backup=("etc/beta-launcher/defaults.conf" "etc/beta-launcher/settings.conf")
 options=()
 install=
 changelog="ChangeLog"
-source=("git+https://github.com/SiebenCorgie/Beta-Launcher.git#branch=version-0.2")
+source=("git+https://github.com/SiebenCorgie/Beta-Launcher.git#branch=master")
 md5sums=("SKIP")
 
 package() {
