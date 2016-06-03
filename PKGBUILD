@@ -1,6 +1,6 @@
 # Maintainer: Your Name officialsiebencorgie@gmail.com>
 pkgname=beta-launcher
-pkgver=0.2_1
+pkgver=0.3
 pkgrel=1
 pkgdesc="Launcher programm to manage and install UE4 on Linux"
 arch=("any")

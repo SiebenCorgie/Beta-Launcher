@@ -31,7 +31,8 @@ except:
 	VTEver = 291
 
 from gi.repository import Gtk, GdkPixbuf, Gdk, Vte, GLib
-import os, sys, fct,subprocess, time
+from gi.repository.GdkPixbuf import Pixbuf
+import os, sys, fct, subprocess, time
 
 #set some paths
 if fct.anjuta() == True:
@@ -48,7 +49,8 @@ if fct.readconf('stream') == '1':
 else:
 	print("Not Importing Webkit!")
 
-#START_GUI__________________________________________________________________________
+#ENDED BEVORE RUNNING===========================================================
+#START_GUI______________________________________________________________________
 
 class GUI:
 	
@@ -60,21 +62,20 @@ class GUI:
 
 		window = self.builder.get_object('window')
 #show main window
+
 		window.show_all()
 
-		#Install dialog
-		Eloc = self.builder.get_object('E_Location')
-		Eloc.set_text(fct.readconf('defloc'))
 		global Uproject
 		Uproject = None
-#Init_Install________________________________________________________________________
-#Init_Editor_Window
-		Editor_WW = self.builder.get_object('Editor_Working')
+		global ProjectList
+		ProjectList = None
+		
+#Init_Install___________________________________________________________________
 #init Editor VTE
 		EDITORVTE = self.builder.get_object('VTE_Editor')
 		self.Editor_terminal     = Vte.Terminal()
-#decide the vte version
 
+#decide the vte version
 		if VTEver == 290:
 			
 			self.Editor_terminal.fork_command_full(
@@ -101,9 +102,7 @@ class GUI:
 			print("New VTE Used () v. 2.91 *WINDOW_INIT*")
 		
 		EDITORVTE.add(self.Editor_terminal) 
-
-		Editor_WW.show_all
-		Editor_WW.hide()
+		EDITORVTE.show_all()
 
 #HelpBrowser____________________________________________________________________
 
@@ -154,24 +153,52 @@ class GUI:
 			mpbrowser.show()
 		else:
 			print("Not Loading Internet URL (MARKETPLACE)")
+#MAININTERFACE__________________________________________________________________
+
 #UpdateSymbol
 		Symbol = self.builder.get_object('MAIN_Launcher_Symbol')
 		Symbol.set_from_file(PIXMAP)
+
+#add text to textbuffer
+		vTextbuffer = self.builder.get_object('VersionTextBuffer')
+		BufferTextList = fct.get_folder_content(str(fct.readconf('defloc')))
+		items = len(BufferTextList)
+		finaltext = ''
+		for itemcount in range(items):
+			finaltext = finaltext + str('Unreal Branch: ' + str(BufferTextList[itemcount]) + '\n' )
+		vTextbuffer.set_text(finaltext)
+
+#ShowStartup on first start
+		if fct.readconf('firststart') == '1':
+			startwin = self.builder.get_object('FirstStartupMessage')
+			startwin.show_all()
+			fct.newdi('firststart', '0')
+		else:
+			print('not showing firststart')
+
+#make the library list__________________________________________________________
+
+		#make the iconview plus liststore
+
+		ProjectList = fct.get_folder_content(fct.readconf('proloc'))
+		projectstore = Gtk.ListStore(GdkPixbuf.Pixbuf, str)
+		
+		LibraryView = self.builder.get_object('LibraryIconView')
+		LibraryView.set_model(projectstore)
+		LibraryView.set_pixbuf_column(0)
+		LibraryView.set_text_column(1)
+
+		#create the etrys
+		for i in range(len(ProjectList)):
+			try:
+				pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(str(str(fct.readconf('proloc') + '/' + str(ProjectList[i]) + '/Saved/AutoScreenshot.png')), 64, 64)
+			except:
+				pixbuf = Gtk.IconTheme.get_default().load_icon('dialog-error', 64, 0)
+			projectstore.append([pixbuf , ProjectList[i]])
+			
+
+#ENDED INITIALISING
 #Install========================================================================		
-#VersionHelper__________________________________________________________________
-	def on_E_VerHelper_clicked (self, button):
-		verhelper = self.builder.get_object('Version_Helper')
-		verhelper.show()
-
-	def on_B_Install_Help_OpenWiki_clicked (self, button):
-		os.system('xdg-open https://wiki.unrealengine.com/Building_On_Linux')
-
-
-
-	def on_B_Verhelper_Close_clicked (self, button):
-		verhelper = self.builder.get_object('Version_Helper')
-		verhelper.hide()
-
 #Install_Dialog_________________________________________________________________		
 #show install dialog
 	def on_B_Install_clicked (self, button):
@@ -434,29 +461,57 @@ class GUI:
 
 
 #Libary_____________________________________________________________________
-#load new image on changed location
-#Closing Engine_Run_Dialog
 
-	def on_B_Engine_Working_Close_clicked (self, button):
-		Runwin = self.builder.get_object('Editor_Working')
-		Runwin.hide()
-		
-
-
-#Updating Project
-	def on_UP_Chooser_file_set (self, filechooserbutton):
+#Start of engine with project 
+	def on_LibraryIconView_item_activated (self, iconview, treepath):
 		global Uproject
+		#get the project
+		SelectedItem = ProjectList[treepath.get_indices()[0]]
+		#get all widgets needed
+		EngineBranch = self.builder.get_object('CB_Start_Version')		
+		Engine = self.builder.get_object('E_Version_Start')
+		enginwin = self.builder.get_object('Editor_Working')
+#pass to terminal
+		Branch = EngineBranch.get_active_text()
+		version = fct.readconf('version')
+		Uproject = fct.readconf('proloc') + '/' + SelectedItem + '/' + SelectedItem + '.uproject'
 
-		Path = self.builder.get_object('UP_Chooser')
-		
-		Uproject = Path.get_filename()
-		print(str(Uproject))
-		currentFolder = Path.get_current_folder()
-		print('folder = ' + str(currentFolder))
-		Image = self.builder.get_object('Libary_Image')
-		Image.set_from_file(currentFolder + '/Saved/AutoScreenshot.png')
+	#making executing command
+		C1 = 'cd '
+		C2 = str(fct.readconf('defloc')) + '/'
 
-#Start of engine!!!
+		#Engine type
+		if Branch == 'by_version':
+			C3 = str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux &&'
+		else:
+			C3 = str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux &&'
+
+		#primusrun
+		if fct.readconf('primusrun' ) == '1':
+			C4 = ' PRIMUS_SYNC=1 primusrun ./UE4Editor'
+		else:
+			C4 = ' ./UE4Editor'
+
+		#LibaryEntry
+		C5 = ' "' + Uproject + '" '
+
+		#Opengl4 or vulkan
+		if fct.readconf('vulkan') == '1':
+			C6 = '-vulkan -nosplash -windowed'
+		else:
+			if fct.readconf('opengl') == '1':
+				C6 = '-opengl4'
+			else:
+				C6 = ' '
+
+		Startpath = C1 + C2 + C3 + C4 + C5 + C6
+
+		#enginwin.show_all()
+		print(Startpath)
+		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
+		print('engine started!')
+
+#Start of engine without project 
 	def on_Engine_Start_clicked (self, button):
 		global Uproject
 
@@ -467,11 +522,8 @@ class GUI:
 		#pass to terminal
 		Branch = EngineBranch.get_active_text()
 		version = Engine.get_text()
-		LP = LaunchProject.get_filename()
-		Project = Uproject
 
 #making executing command
-
 		C1 = 'cd '
 		C2 = str(fct.readconf('defloc')) + '/'
 
@@ -487,11 +539,7 @@ class GUI:
 		else:
 			C4 = ' && ./UE4Editor'
 
-		#LibaryEntry
-		if LP == None:
-			C5 = ' '
-		else:
-			C5 = ' "' + Uproject + '" '
+		C5 = ' '
 
 		#Opengl4 or vulkan
 		if fct.readconf('vulkan') == '1':
@@ -504,13 +552,16 @@ class GUI:
 
 		Startpath = C1 + C2 + C3 + C4 + C5 + C6
 
-		enginwin.show_all()
+		#enginwin.show_all()
 		print(Startpath)
 		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
 		print('engine started!')
-		
 
-
+#Closing Engine_Run_Dialog
+	def on_B_Engine_Working_Close_clicked (self, button):
+		Runwin = self.builder.get_object('Editor_Working')
+		Runwin.hide()
+#===============================================================================
 #Prefernces_________________________________________________________________
 	#closing prefences via x button
 	def on_Win_Preferences_destroy (self, widget):
@@ -554,6 +605,9 @@ class GUI:
 		stream = self.builder.get_object('TB_Web')
 		blogurl = self.builder.get_object('E_Blog_Url')
 		mpurl = self.builder.get_object('E_MP_URL')
+
+		projectlocation = self.builder.get_object('E_PREF_DefProj_Loc')
+		startup = self.builder.get_object('Pref_CB_SSUA')
 		#geting values 
 
 		Vvulkan = fct.readconf('vulkan' )
@@ -564,6 +618,8 @@ class GUI:
 		Vdefengine = fct.readconf('defeng')
 		Vdefhelpurl = fct.readconf('defurl')
 		Vstream = fct.readconf('stream')
+		V_Projectloc = fct.readconf('proloc')
+		V_startup = fct.readconf('firststart')
 
 
 
@@ -591,7 +647,7 @@ class GUI:
 		version.set_text(Vversion)
 		
 		#set default location
-		defloclabel.set_text("default location is: " + Vdefloc)
+		defloclabel.set_text("Default Location Is:\n" + Vdefloc)
 
 		#set default engine
 		defengine.set_text(Vdefengine)
@@ -610,7 +666,16 @@ class GUI:
 		blogurl.set_text(fct.readconf('blogurl'))
 		#set marketplace URL
 		mpurl.set_text(fct.readconf('mpurl'))
+
+		#default project location
+		projectlocation.set_text('Default Location Is:\n' + V_Projectloc)
 		
+		
+		#show startup again?
+		if V_startup == '0':
+			startup.set_active(False)
+		else:
+			startup.set_active(True)
 
 		#set Distro
 		dist = fct.readconf('distribution')
@@ -674,6 +739,8 @@ class GUI:
 		Eblogurl = self.builder.get_object('E_Blog_Url')
 		Estream = self.builder.get_object('TB_Web')
 		Empurl = self.builder.get_object('E_MP_URL')
+		E_proloc = self.builder.get_object('CB_PREF_DefProjLoc')
+		E_startup = self.builder.get_object('Pref_CB_SSUA')
 		#page 2
 		Edistribution = self.builder.get_object('CB_Distro')
 		#dialog
@@ -741,6 +808,18 @@ class GUI:
 		fct.newdi('blogurl' , Eblogurl.get_text())
 		#marketplace url
 		fct.newdi('mpurl' , Empurl.get_text())
+
+		#projectlocation
+		if E_proloc.get_filename() == None:
+			print('passing new entry for default project location')
+		else:
+			fct.newdi('proloc' , E_proloc.get_filename())
+
+		#startup
+		if E_startup.get_active() == True:
+			fct.newdi('firststart' , '1')
+		else:
+			fct.newdi('firststart' , '0')
 
 #page 3
 		#distro
@@ -813,11 +892,13 @@ class GUI:
 		about.hide()
 
 #Other_______________________________________________________________________
-	#helpclick
+#close startup window
+	def on_B_FirstStartup_Close_clicked (self, button):
+		startwin = self.builder.get_object('FirstStartupMessage')
+		startwin.hide()
 
+#helpclick
 	def on_B_Help_InBrowser_clicked (self, button):
-
-		#get property
 		path = fct.readconf('defurl')
 		os.system("xdg-open " + path)
 
@@ -825,6 +906,10 @@ class GUI:
 	def on_B_Blog_Browser_clicked (self, button):
 	#open blog in browser
 		url = fct.readconf('blogurl')
+		os.system('xdg-open ' + url)
+	#show building wiki
+	def on_B_Install_Help_OpenWiki_clicked(seld, button):
+		url = 'https://wiki.unrealengine.com/Building_On_Linux'
 		os.system('xdg-open ' + url)
 
 	#close
