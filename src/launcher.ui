@@ -1681,11 +1681,9 @@ keziolio</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="MAIN_L241">
+                                      <object class="GtkSeparator">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">If you use "by Version" please 
-provide number below.</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
