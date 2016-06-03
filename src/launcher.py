@@ -31,6 +31,7 @@ except:
 	VTEver = 291
 
 from gi.repository import Gtk, GdkPixbuf, Gdk, Vte, GLib
+from gi.repository.GdkPixbuf import Pixbuf
 import os, sys, fct, subprocess, time
 
 #set some paths
@@ -66,6 +67,8 @@ class GUI:
 
 		global Uproject
 		Uproject = None
+		global ProjectList
+		ProjectList = None
 		
 #Init_Install___________________________________________________________________
 #Init_Editor_Window
@@ -155,6 +158,7 @@ class GUI:
 			mpbrowser.show()
 		else:
 			print("Not Loading Internet URL (MARKETPLACE)")
+
 #UpdateSymbol
 		Symbol = self.builder.get_object('MAIN_Launcher_Symbol')
 		Symbol.set_from_file(PIXMAP)
@@ -178,11 +182,20 @@ class GUI:
 
 #make the library list__________________________________________________________
 
-		LibraryMain = self.builder.get_('Library_Main_Box')
-		#to be used
-		#libraryitems = len(List_Library)
-		for libraryitemcount in range(items):
-			LibraryMain.
+		#make the iconview plus liststore
+
+		ProjectList = fct.get_folder_content(fct.readconf('proloc'))
+		projectstore = Gtk.ListStore(GdkPixbuf.Pixbuf, str)
+		
+		LibraryView = self.builder.get_object('LibraryIconView')
+		LibraryView.set_model(projectstore)
+		LibraryView.set_pixbuf_column(0)
+		LibraryView.set_text_column(1)
+
+		#create the etrys
+		for i in range(len(ProjectList)):
+			pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(str(str(fct.readconf('proloc') + '/' + str(ProjectList[i]) + '/Saved/AutoScreenshot.png')), 64, 64)
+			projectstore.append([pixbuf , ProjectList[i]])
 			
 
 #ENDED INITIALISING

@@ -1607,20 +1607,17 @@ know more about the building, please visit the wiki by clicking in on the
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <child>
-                                              <object class="GtkBox" id="Library_Main_Box">
+                                              <object class="GtkIconView" id="LibraryIconView">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
-                                                <property name="orientation">vertical</property>
-                                                <child>
-                                                  <placeholder/>
-                                                </child>
+                                                <property name="can_focus">True</property>
+                                                <property name="margin">6</property>
                                               </object>
                                             </child>
                                           </object>
                                         </child>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">2</property>
                                       </packing>
@@ -2412,12 +2409,6 @@ Location</property>
                     <property name="left_attach">1</property>
                     <property name="top_attach">7</property>
                   </packing>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
                 </child>
                 <child>
                   <placeholder/>
