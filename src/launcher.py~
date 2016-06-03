@@ -194,7 +194,10 @@ class GUI:
 
 		#create the etrys
 		for i in range(len(ProjectList)):
-			pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(str(str(fct.readconf('proloc') + '/' + str(ProjectList[i]) + '/Saved/AutoScreenshot.png')), 64, 64)
+			try:
+				pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(str(str(fct.readconf('proloc') + '/' + str(ProjectList[i]) + '/Saved/AutoScreenshot.png')), 64, 64)
+			except:
+				pixbuf = Gtk.IconTheme.get_default().load_icon('dialog-error', 64, 0)
 			projectstore.append([pixbuf , ProjectList[i]])
 			
 
@@ -463,24 +466,21 @@ class GUI:
 
 #Libary_____________________________________________________________________
 
-#load project on icon click
+#Start of engine with project 
 	def on_LibraryIconView_item_activated (self, iconview, treepath):
-
 		global Uproject
-		
+		#get the project
 		SelectedItem = ProjectList[treepath.get_indices()[0]]
-		
-
+		#get all widgets needed
 		EngineBranch = self.builder.get_object('CB_Start_Version')		
 		Engine = self.builder.get_object('E_Version_Start')
 		enginwin = self.builder.get_object('Editor_Working')
-		#pass to terminal
+#pass to terminal
 		Branch = EngineBranch.get_active_text()
 		version = Engine.get_text()
 		Uproject = fct.readconf('proloc') + '/' + SelectedItem + '/' + SelectedItem + '.uproject'
 
-#making executing command
-
+	#making executing command
 		C1 = 'cd '
 		C2 = str(fct.readconf('defloc')) + '/'
 
@@ -515,13 +515,7 @@ class GUI:
 		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
 		print('engine started!')
 
-#Closing Engine_Run_Dialog
-	def on_B_Engine_Working_Close_clicked (self, button):
-		Runwin = self.builder.get_object('Editor_Working')
-		Runwin.hide()
-
-
-#Start of engine!!!
+#Start of engine without project 
 	def on_Engine_Start_clicked (self, button):
 		global Uproject
 
@@ -534,7 +528,6 @@ class GUI:
 		version = Engine.get_text()
 
 #making executing command
-
 		C1 = 'cd '
 		C2 = str(fct.readconf('defloc')) + '/'
 
@@ -567,8 +560,11 @@ class GUI:
 		print(Startpath)
 		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
 		print('engine started!')
-		
 
+#Closing Engine_Run_Dialog
+	def on_B_Engine_Working_Close_clicked (self, button):
+		Runwin = self.builder.get_object('Editor_Working')
+		Runwin.hide()
 #===============================================================================
 #Prefernces_________________________________________________________________
 	#closing prefences via x button

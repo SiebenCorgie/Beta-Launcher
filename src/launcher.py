@@ -158,7 +158,11 @@ class GUI:
 			mpbrowser.show()
 		else:
 			print("Not Loading Internet URL (MARKETPLACE)")
+#MAININTERFACE__________________________________________________________________
 
+#Update the default version view
+		defaultversion = self.builder.get_object('E_Version_Start')
+		defaultversion.set_text(fct.readconf('version'))
 #UpdateSymbol
 		Symbol = self.builder.get_object('MAIN_Launcher_Symbol')
 		Symbol.set_from_file(PIXMAP)
@@ -194,7 +198,10 @@ class GUI:
 
 		#create the etrys
 		for i in range(len(ProjectList)):
-			pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(str(str(fct.readconf('proloc') + '/' + str(ProjectList[i]) + '/Saved/AutoScreenshot.png')), 64, 64)
+			try:
+				pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(str(str(fct.readconf('proloc') + '/' + str(ProjectList[i]) + '/Saved/AutoScreenshot.png')), 64, 64)
+			except:
+				pixbuf = Gtk.IconTheme.get_default().load_icon('dialog-error', 64, 0)
 			projectstore.append([pixbuf , ProjectList[i]])
 			
 
