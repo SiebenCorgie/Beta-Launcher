@@ -431,7 +431,7 @@ repository.</property>
                       <object class="GtkComboBoxText" id="CB_Branch">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="active">0</property>
+                        <property name="active">1</property>
                         <property name="has_entry">True</property>
                         <property name="active_id">0</property>
                         <items>
@@ -442,7 +442,7 @@ repository.</property>
                           <item translatable="yes">promoted</item>
                         </items>
                         <child internal-child="entry">
-                          <object class="GtkEntry">
+                          <object class="GtkEntry" id="CB_Branch_entry">
                             <property name="can_focus">True</property>
                           </object>
                         </child>
@@ -476,7 +476,7 @@ you want to install !</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="PreInstall_Sep1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -486,7 +486,7 @@ you want to install !</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="PreInstall_Sep2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
