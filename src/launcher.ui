@@ -1528,11 +1528,10 @@ keziolio</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <child>
-                          <object class="GtkTextView" id="VersionTextView">
+                          <object class="GtkLabel" id="VersionTextBuffer">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="justification">center</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">label</property>
                           </object>
                         </child>
                         <child type="label">
