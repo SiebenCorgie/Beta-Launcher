@@ -71,9 +71,6 @@ class GUI:
 		ProjectList = None
 		
 #Init_Install___________________________________________________________________
-#Init_Editor_Window
-		Editor_WW = self.builder.get_object('Editor_Working')
-		
 #init Editor VTE
 		EDITORVTE = self.builder.get_object('VTE_Editor')
 		self.Editor_terminal     = Vte.Terminal()
@@ -105,9 +102,7 @@ class GUI:
 			print("New VTE Used () v. 2.91 *WINDOW_INIT*")
 		
 		EDITORVTE.add(self.Editor_terminal) 
-
-		Editor_WW.show_all
-		Editor_WW.hide()
+		EDITORVTE.show_all()
 
 #HelpBrowser____________________________________________________________________
 
@@ -160,9 +155,6 @@ class GUI:
 			print("Not Loading Internet URL (MARKETPLACE)")
 #MAININTERFACE__________________________________________________________________
 
-#Update the default version view
-		defaultversion = self.builder.get_object('E_Version_Start')
-		defaultversion.set_text(fct.readconf('version'))
 #UpdateSymbol
 		Symbol = self.builder.get_object('MAIN_Launcher_Symbol')
 		Symbol.set_from_file(PIXMAP)
@@ -481,7 +473,7 @@ class GUI:
 		enginwin = self.builder.get_object('Editor_Working')
 #pass to terminal
 		Branch = EngineBranch.get_active_text()
-		version = Engine.get_text()
+		version = fct.readconf('version')
 		Uproject = fct.readconf('proloc') + '/' + SelectedItem + '/' + SelectedItem + '.uproject'
 
 	#making executing command
@@ -514,7 +506,7 @@ class GUI:
 
 		Startpath = C1 + C2 + C3 + C4 + C5 + C6
 
-		enginwin.show_all()
+		#enginwin.show_all()
 		print(Startpath)
 		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
 		print('engine started!')
@@ -560,7 +552,7 @@ class GUI:
 
 		Startpath = C1 + C2 + C3 + C4 + C5 + C6
 
-		enginwin.show_all()
+		#enginwin.show_all()
 		print(Startpath)
 		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
 		print('engine started!')

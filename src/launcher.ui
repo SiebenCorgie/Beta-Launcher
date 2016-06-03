@@ -172,19 +172,7 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkScrolledWindow" id="VTE_Editor">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="shadow_type">in</property>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
           <object class="GtkHeaderBar" id="EDITOR_HB1">
@@ -1528,20 +1516,15 @@ know more about the building, please visit the wiki by clicking in on the
                                     <property name="can_focus">False</property>
                                     <property name="orientation">vertical</property>
                                     <child>
-                                      <placeholder/>
-                                    </child>
-                                    <child>
-                                      <placeholder/>
-                                    </child>
-                                    <child>
                                       <object class="GtkScrolledWindow" id="ProjectWindow">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="shadow_type">in</property>
+                                        <property name="shadow_type">out</property>
                                         <child>
                                           <object class="GtkViewport" id="ProjectViewport">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
+                                            <property name="shadow_type">out</property>
                                             <child>
                                               <object class="GtkIconView" id="LibraryIconView">
                                                 <property name="visible">True</property>
@@ -1556,7 +1539,7 @@ know more about the building, please visit the wiki by clicking in on the
                                       <packing>
                                         <property name="expand">True</property>
                                         <property name="fill">True</property>
-                                        <property name="position">2</property>
+                                        <property name="position">0</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -1578,18 +1561,7 @@ know more about the building, please visit the wiki by clicking in on the
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">3</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkSeparator" id="MAIN_S231">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">4</property>
+                                        <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -1614,7 +1586,7 @@ know more about the building, please visit the wiki by clicking in on the
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">5</property>
+                                        <property name="position">2</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -1627,14 +1599,41 @@ provide number below.</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">6</property>
+                                        <property name="position">3</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkEntry" id="E_Version_Start">
+                                      <object class="GtkExpander" id="EngineExpander">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="text" translatable="yes">4.11</property>
+                                        <child>
+                                          <object class="GtkScrolledWindow" id="VTE_Editor">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child type="label">
+                                          <object class="GtkLabel" id="LABEL_Terminal">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="label" translatable="yes">EngineTerminal</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">4</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSeparator" id="MAIN_S231">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
