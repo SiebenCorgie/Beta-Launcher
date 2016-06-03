@@ -462,66 +462,39 @@ class GUI:
 
 
 #Libary_____________________________________________________________________
-#load new image on changed location
 
-#Closing Engine_Run_Dialog
-	def on_B_Engine_Working_Close_clicked (self, button):
-		Runwin = self.builder.get_object('Editor_Working')
-		Runwin.hide()
-		
-
-
-#Updating Project
-	def on_UP_Chooser_file_set (self, filechooserbutton):
+#Start of engine with project 
+	def on_LibraryIconView_item_activated (self, iconview, treepath):
 		global Uproject
-
-		Path = self.builder.get_object('UP_Chooser')
-		
-		Uproject = Path.get_filename()
-		print(str(Uproject))
-		currentFolder = Path.get_current_folder()
-		print('folder = ' + str(currentFolder))
-		Image = self.builder.get_object('Libary_Image')
-		Image.set_from_file(currentFolder + '/Saved/AutoScreenshot.png')
-		ProjectName = self.builder.get_object('E_ProjectName')
-		ProjectName.set_text(str(Path.get_preview_filename))
-
-#Start of engine!!!
-	def on_Engine_Start_clicked (self, button):
-		global Uproject
-
+		#get the project
+		SelectedItem = ProjectList[treepath.get_indices()[0]]
+		#get all widgets needed
 		EngineBranch = self.builder.get_object('CB_Start_Version')		
 		Engine = self.builder.get_object('E_Version_Start')
-		LaunchProject = self.builder.get_object('UP_Chooser')
 		enginwin = self.builder.get_object('Editor_Working')
-		#pass to terminal
+#pass to terminal
 		Branch = EngineBranch.get_active_text()
 		version = Engine.get_text()
-		LP = LaunchProject.get_filename()
-		Project = Uproject
+		Uproject = fct.readconf('proloc') + '/' + SelectedItem + '/' + SelectedItem + '.uproject'
 
-#making executing command
-
+	#making executing command
 		C1 = 'cd '
 		C2 = str(fct.readconf('defloc')) + '/'
 
 		#Engine type
 		if Branch == 'by_version':
-			C3 = str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux'
+			C3 = str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux &&'
 		else:
-			C3 = str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux'
+			C3 = str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux &&'
 
 		#primusrun
 		if fct.readconf('primusrun' ) == '1':
-			C4 = ' && PRIMUS_SYNC=1 primusrun ./UE4Editor'
+			C4 = ' PRIMUS_SYNC=1 primusrun ./UE4Editor'
 		else:
-			C4 = ' && ./UE4Editor'
+			C4 = ' ./UE4Editor'
 
 		#LibaryEntry
-		if LP == None:
-			C5 = ' '
-		else:
-			C5 = ' "' + Uproject + '" '
+		C5 = ' "' + Uproject + '" '
 
 		#Opengl4 or vulkan
 		if fct.readconf('vulkan') == '1':
@@ -538,9 +511,58 @@ class GUI:
 		print(Startpath)
 		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
 		print('engine started!')
-		
 
+#Start of engine without project 
+	def on_Engine_Start_clicked (self, button):
+		global Uproject
 
+		EngineBranch = self.builder.get_object('CB_Start_Version')		
+		Engine = self.builder.get_object('E_Version_Start')
+		LaunchProject = self.builder.get_object('UP_Chooser')
+		enginwin = self.builder.get_object('Editor_Working')
+		#pass to terminal
+		Branch = EngineBranch.get_active_text()
+		version = Engine.get_text()
+
+#making executing command
+		C1 = 'cd '
+		C2 = str(fct.readconf('defloc')) + '/'
+
+		#Engine type
+		if Branch == 'by_version':
+			C3 = str(version) + '/UnrealEngine' + '/Engine/Binaries/Linux'
+		else:
+			C3 = str(Branch) + '/UnrealEngine' + '/Engine/Binaries/Linux'
+
+		#primusrun
+		if fct.readconf('primusrun' ) == '1':
+			C4 = ' && PRIMUS_SYNC=1 primusrun ./UE4Editor'
+		else:
+			C4 = ' && ./UE4Editor'
+
+		C5 = ' '
+
+		#Opengl4 or vulkan
+		if fct.readconf('vulkan') == '1':
+			C6 = '-vulkan -nosplash -windowed'
+		else:
+			if fct.readconf('opengl') == '1':
+				C6 = '-opengl4'
+			else:
+				C6 = ' '
+
+		Startpath = C1 + C2 + C3 + C4 + C5 + C6
+
+		enginwin.show_all()
+		print(Startpath)
+		self.Editor_terminal.feed_child(fct.termcommand(Startpath), fct.termlength(Startpath))
+		print('engine started!')
+
+#Closing Engine_Run_Dialog
+	def on_B_Engine_Working_Close_clicked (self, button):
+		Runwin = self.builder.get_object('Editor_Working')
+		Runwin.hide()
+#===============================================================================
 #Prefernces_________________________________________________________________
 	#closing prefences via x button
 	def on_Win_Preferences_destroy (self, widget):
