@@ -37,10 +37,9 @@ Things I want to do in the future
 
 *Install Dependencies:*
 
-Ubuntu/Mint: download .deb from here [link](https://drive.google.com/open?id=0B5zx3D2UpcZhS1V2dWxNS241bmM) double klick the file!
+Ubuntu/Mint: download .deb from the master branch and double klick the file!
 
-Arch: *there is currently no easy way for installing, but it will be ready till the end of version-0.2. Please use version 0.1 or master branch instead, the
-launcher is the same.*
+Arch: Download the .tar.xz file from the master branch and install it via packman with `sudo pacman -U *filename*`
 
 for more Information, please visit the [forum-post](https://forums.unrealengine.com/showthread.php?110795-Beta-Launcher-for-Linux&p=532928#post532928) on the Unreal forum!
 
