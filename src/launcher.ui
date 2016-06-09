@@ -1292,7 +1292,7 @@ know more about the building, please visit the wiki by clicking in on the
                 <property name="has_entry">True</property>
                 <property name="active_id">0</property>
                 <child internal-child="entry">
-                  <object class="GtkEntry">
+                  <object class="GtkEntry" id="Adder_OriginID">
                     <property name="can_focus">False</property>
                   </object>
                 </child>
@@ -1310,7 +1310,7 @@ know more about the building, please visit the wiki by clicking in on the
                 <property name="has_entry">True</property>
                 <property name="active_id">0</property>
                 <child internal-child="entry">
-                  <object class="GtkEntry">
+                  <object class="GtkEntry" id="Adder_TargetID">
                     <property name="can_focus">False</property>
                   </object>
                 </child>
