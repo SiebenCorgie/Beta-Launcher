@@ -159,44 +159,6 @@
       </object>
     </child>
   </object>
-  <object class="GtkWindow" id="Editor_Working">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Editor is Working!</property>
-    <property name="window_position">center</property>
-    <property name="default_width">600</property>
-    <property name="default_height">400</property>
-    <property name="deletable">False</property>
-    <child>
-      <object class="GtkBox" id="EDITOR_B1">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <object class="GtkHeaderBar" id="EDITOR_HB1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkButton" id="B_Engine_Working_Close">
-                <property name="label" translatable="yes">Close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_B_Engine_Working_Close_clicked" swapped="no"/>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
   <object class="GtkWindow" id="FirstStartupMessage">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">First Start!</property>
@@ -1283,6 +1245,124 @@ know more about the building, please visit the wiki by clicking in on the
       </object>
     </child>
   </object>
+  <object class="GtkWindow" id="ProjectAdder">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Add content to Project</property>
+    <property name="window_position">center</property>
+    <property name="default_width">600</property>
+    <property name="default_height">400</property>
+    <property name="deletable">False</property>
+    <child>
+      <object class="GtkBox" id="Adder_Masterbox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkGrid" id="Adder_Grid_main">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="column_homogeneous">True</property>
+            <child>
+              <object class="GtkLabel" id="Adder_L_Add">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Content Origin</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Adder_L_ToBeAdded">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Project Target</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="Adder_CB_Add">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active">0</property>
+                <property name="has_entry">True</property>
+                <property name="active_id">0</property>
+                <child internal-child="entry">
+                  <object class="GtkEntry">
+                    <property name="can_focus">False</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="Adder_CB_ToBeAdded">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active">0</property>
+                <property name="has_entry">True</property>
+                <property name="active_id">0</property>
+                <child internal-child="entry">
+                  <object class="GtkEntry">
+                    <property name="can_focus">False</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHeaderBar" id="Adder_HeaderBar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">20</property>
+            <child>
+              <object class="GtkButton" id="B_Adder_Close">
+                <property name="label" translatable="yes">Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_B_Adder_Close_activate" swapped="no"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="Adder_B_Add">
+                <property name="label" translatable="yes">Add</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_Adder_B_Add_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkTextTagTable" id="VersionTextLabel"/>
   <object class="GtkListStore" id="VersionView">
     <columns>
@@ -1461,6 +1541,31 @@ keziolio</property>
                 </child>
               </object>
             </child>
+            <child>
+              <object class="GtkMenuItem" id="_Tools">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Collection of small tools!</property>
+                <property name="label" translatable="yes">Tools</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="_AddPreset">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Start a small tool to add preset content to an existing Project</property>
+                        <property name="label" translatable="yes">Add preset to project</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on__AddPreset_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -1563,6 +1668,53 @@ keziolio</property>
                       </packing>
                     </child>
                     <child>
+                      <object class="GtkGrid" id="MAIN_G23">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <object class="GtkLabel" id="MAIN_L231">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Engine Version</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBoxText" id="CB_Start_Version">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="active">1</property>
+                        <property name="has_entry">True</property>
+                        <items>
+                          <item translatable="yes">release</item>
+                          <item translatable="yes">by_version</item>
+                          <item translatable="yes">dev-vr-editor</item>
+                          <item translatable="yes">master</item>
+                          <item translatable="yes">promoted</item>
+                        </items>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="MAIN_ECB1">
+                            <property name="can_focus">True</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkSeparator" id="INSTALL_SEP_INST1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -1570,7 +1722,7 @@ keziolio</property>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">3</property>
+                        <property name="position">5</property>
                       </packing>
                     </child>
                   </object>
@@ -1631,53 +1783,6 @@ keziolio</property>
                                         <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkGrid" id="MAIN_G23">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <child>
-                                          <object class="GtkLabel" id="MAIN_L231">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Engine Version</property>
-                                          </object>
-                                          <packing>
-                                            <property name="left_attach">0</property>
-                                            <property name="top_attach">0</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkComboBoxText" id="CB_Start_Version">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="active">1</property>
-                                        <property name="has_entry">True</property>
-                                        <items>
-                                          <item translatable="yes">release</item>
-                                          <item translatable="yes">by_version</item>
-                                          <item translatable="yes">dev-vr-editor</item>
-                                          <item translatable="yes">master</item>
-                                          <item translatable="yes">promoted</item>
-                                        </items>
-                                        <child internal-child="entry">
-                                          <object class="GtkEntry" id="MAIN_ECB1">
-                                            <property name="can_focus">True</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">2</property>
                                       </packing>
                                     </child>
                                     <child>

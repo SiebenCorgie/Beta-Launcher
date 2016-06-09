@@ -13,7 +13,7 @@ customConfig = configparser.ConfigParser()
 #set the return value to False to make it behave like in installed mode or to True to start from anjuta
 
 def anjuta():
-	VALUE = False
+	VALUE = True
 	return VALUE
 
 def readdefaults():
@@ -113,6 +113,12 @@ def get_folder_content(location):
 		final = ['location' , 'not' , 'found']
 	return final
 
+#execute a command
+def execute_command(execommand , output):
+	subprocess.call(execommand , shell=True)
+	if output == True:
+		return subprocess.check_output(execommand, shell=True)
+	
 
 
 

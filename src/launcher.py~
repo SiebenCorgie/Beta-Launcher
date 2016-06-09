@@ -155,9 +155,6 @@ class GUI:
 			print("Not Loading Internet URL (MARKETPLACE)")
 #MAININTERFACE__________________________________________________________________
 
-#Update the default version view
-		defaultversion = self.builder.get_object('E_Version_Start')
-		defaultversion.set_text(fct.readconf('version'))
 #UpdateSymbol
 		Symbol = self.builder.get_object('MAIN_Launcher_Symbol')
 		Symbol.set_from_file(PIXMAP)
@@ -524,7 +521,7 @@ class GUI:
 		enginwin = self.builder.get_object('Editor_Working')
 		#pass to terminal
 		Branch = EngineBranch.get_active_text()
-		version = Engine.get_text()
+		version = fct.readconf('version')
 
 #making executing command
 		C1 = 'cd '
@@ -893,6 +890,45 @@ class GUI:
 		
 		about = self.builder.get_object('aboutdialog')
 		about.hide()
+
+#AddToProject________________________________________________________________
+	def on__AddPreset_activate (self, menuitem):
+		Adder = self.builder.get_object('ProjectAdder')
+		Adder.show_all()
+
+		Grid = self.builder.get_object('Adder_Grid_main')
+		Box_Add = self.builder.get_object('Adder_CB_Add')
+		Box_ToBeAdded = self.builder.get_object('Adder_CB_ToBeAdded')
+		#make the project liststore
+		projectListStore = Gtk.ListStore(int , str)
+
+		projectlist = fct.get_folder_content(fct.readconf('proloc'))
+		for item in range(len(projectlist)):
+			Box_Add.append_text(projectlist[item])
+			Box_ToBeAdded.append_text(projectlist[item])
+
+#Adding
+
+	def on_Adder_B_Add_clicked (self, button):
+		Box_Add = self.builder.get_object('Adder_CB_Add')
+		Box_ToBeAdded = self.builder.get_object('Adder_CB_ToBeAdded')
+
+		SourceProject = Box_Add.get_active_text()
+		TargetProject = Box_ToBeAdded.get_active_text()
+#making the path and final executing commands
+		SourceProject = fct.readconf('proloc') + '/' + SourceProject + '/Content'
+		print(SourceProject)
+
+		TargetProject = fct.readconf('proloc') + '/' + TargetProject + '/Content'
+		print(TargetProject)
+
+		#execute final command
+		fct.execute_command(str('cp -r ' + SourceProject + ' ' + TargetProject), False)
+#closeAdder
+	def on_B_Adder_Close_activate (self, button):
+		Adder = self.builder.get_object('ProjectAdder')
+		Adder.hide()
+
 
 #Other_______________________________________________________________________
 #close startup window
