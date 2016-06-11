@@ -2,12 +2,329 @@
 <!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
+  <object class="GtkFileFilter" id="BackupFileFilter">
+    <mime-types>
+      <mime-type>application/x-gzip</mime-type>
+    </mime-types>
+  </object>
+  <object class="GtkApplicationWindow" id="BackupManager">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Backup Manager</property>
+    <property name="resizable">False</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
+    <child>
+      <object class="GtkBox" id="BUM_MASTER">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkBox" id="BUM_Main_Box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">10</property>
+            <child>
+              <object class="GtkLabel" id="L_BUM_TITLE_BU">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Create Backup</property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="BUM_BACKUP_Grid">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="row_spacing">10</property>
+                <property name="column_spacing">30</property>
+                <property name="column_homogeneous">True</property>
+                <child>
+                  <object class="GtkLabel" id="L_BUM_1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Project To Backup</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="L_BUM_2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Location To Backup To</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFileChooserButton" id="BUM_BU_Target_CB">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="action">select-folder</property>
+                    <property name="title" translatable="yes">Target Of Created Archive</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBoxText" id="BUM_BU_Source_Project">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="active">0</property>
+                    <property name="has_entry">True</property>
+                    <property name="active_id">0</property>
+                    <child internal-child="entry">
+                      <object class="GtkEntry" id="BUM_BU_SOURCE_L">
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="BUM_B_Backup">
+                    <property name="label" translatable="yes">Create Backup</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_BUM_B_Backup_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="L_BUM_BU_NOTIFY">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparator" id="BUM_BU_SEP_1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparator" id="BUM_BU_SEP_2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLevelBar" id="BUM_BU_LevelBar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator" id="BUM_MAIN_SEP">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="L_BUM_TITLE_REST">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Restore Backup</property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="BUM_REST_G1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="row_spacing">10</property>
+                <property name="column_spacing">30</property>
+                <property name="column_homogeneous">True</property>
+                <child>
+                  <object class="GtkLabel" id="L_BUM_REST_1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Archive File To Restore</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="L_BUM_REST_2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Delete Local Version?</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="BUM_REST_CB_Delete">
+                    <property name="label" translatable="yes">Delete</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFileChooserButton" id="BUM_Rest_FC">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="create_folders">False</property>
+                    <property name="filter">BackupFileFilter</property>
+                    <property name="title" translatable="yes">Choose The File To Restore</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="BUM_REST_B_Restore">
+                    <property name="label" translatable="yes">Restore Backup</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_BUM_REST_B_Restore_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLevelBar" id="BUM_REST_Progressbar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="BUM_REST_InfoLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHeaderBar" id="BUM_HeaderBar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="BUM_B_CLOSE">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <property name="always_show_image">True</property>
+                <signal name="clicked" handler="on_BUM_B_CLOSE_clicked" swapped="no"/>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkDialog" id="Dependencies_Dialog">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Dependencie Editing</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="default_width">640</property>
     <property name="default_height">260</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
     <child internal-child="vbox">
@@ -22,7 +339,19 @@
               <placeholder/>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="B_Dep_Close">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_B_Dep_Close_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -37,32 +366,11 @@
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkHeaderBar" id="DEPD_HB">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="title">Dependencies Editing</property>
-                <child>
-                  <object class="GtkButton" id="B_Dep_Close">
-                    <property name="label" translatable="yes">Close</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <signal name="clicked" handler="on_B_Dep_Close_clicked" swapped="no"/>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkBox" id="DEPD_B3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
-                <property name="spacing">3</property>
+                <property name="spacing">10</property>
                 <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkLabel" id="DEPD_L1">
@@ -146,7 +454,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">1</property>
               </packing>
             </child>
           </object>
@@ -163,6 +471,7 @@
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">First Start!</property>
     <property name="window_position">center</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
     <property name="type_hint">dialog</property>
     <child>
       <object class="GtkBox" id="FirstStartup_Box">
@@ -212,10 +521,11 @@ Thank you for your Interest!</property>
             <property name="can_focus">False</property>
             <child>
               <object class="GtkButton" id="B_FirstStartup_Close">
-                <property name="label" translatable="yes">Close</property>
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_B_FirstStartup_Close_clicked" swapped="no"/>
               </object>
             </child>
@@ -235,6 +545,7 @@ Thank you for your Interest!</property>
     <property name="window_position">center</property>
     <property name="default_width">800</property>
     <property name="default_height">480</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
     <property name="type_hint">dialog</property>
     <property name="urgency_hint">True</property>
     <property name="deletable">False</property>
@@ -251,19 +562,21 @@ Thank you for your Interest!</property>
             <property name="subtitle">Beta Launcher</property>
             <child>
               <object class="GtkButton" id="B_Install_Cancel">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_B_Install_Cancel_clicked" swapped="no"/>
               </object>
             </child>
             <child>
               <object class="GtkButton" id="B_Install_Help">
-                <property name="label" translatable="yes">Help</property>
+                <property name="label">gtk-help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_B_Install_Help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -290,6 +603,8 @@ Thank you for your Interest!</property>
                   <object class="GtkGrid" id="INSTALL_G1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="row_spacing">10</property>
+                    <property name="column_spacing">30</property>
                     <child>
                       <object class="GtkLabel" id="INSTALL_L11">
                         <property name="visible">True</property>
@@ -365,6 +680,8 @@ repository.</property>
                   <object class="GtkGrid" id="VERSIONHELPER_G1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="row_spacing">10</property>
+                    <property name="column_spacing">30</property>
                     <property name="column_homogeneous">True</property>
                     <child>
                       <object class="GtkLabel" id="VERSIONHELPER_L1">
@@ -480,6 +797,8 @@ you want to install !</property>
                   <object class="GtkGrid" id="INSTALL_G2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="row_spacing">10</property>
+                    <property name="column_spacing">30</property>
                     <property name="column_homogeneous">True</property>
                     <child>
                       <object class="GtkLabel" id="INSTALL_L21">
@@ -599,7 +918,8 @@ dependencies manual</property>
                   <object class="GtkGrid" id="INSTALL_G3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="column_spacing">10</property>
+                    <property name="row_spacing">10</property>
+                    <property name="column_spacing">30</property>
                     <property name="column_homogeneous">True</property>
                     <child>
                       <object class="GtkLabel" id="INSTALL_L31">
@@ -806,6 +1126,8 @@ mostly ~ 3 Gb</property>
                   <object class="GtkGrid" id="INSTALL_G4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="row_spacing">10</property>
+                    <property name="column_spacing">30</property>
                     <property name="column_homogeneous">True</property>
                     <child>
                       <object class="GtkLabel" id="INSTALL_L41">
@@ -1005,10 +1327,11 @@ if needed</property>
             <property name="can_focus">False</property>
             <child>
               <object class="GtkButton" id="B_Install_Next">
-                <property name="label" translatable="yes">Next</property>
+                <property name="label">gtk-media-next</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_B_Install_Next_clicked" swapped="no"/>
               </object>
             </child>
@@ -1029,6 +1352,7 @@ if needed</property>
     <property name="window_position">center</property>
     <property name="default_width">600</property>
     <property name="default_height">400</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
     <property name="deletable">False</property>
     <child>
       <object class="GtkBox" id="INSTALLHELP_B1">
@@ -1251,6 +1575,7 @@ know more about the building, please visit the wiki by clicking in on the
     <property name="window_position">center</property>
     <property name="default_width">600</property>
     <property name="default_height">400</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
     <property name="deletable">False</property>
     <child>
       <object class="GtkBox" id="Adder_Masterbox">
@@ -1261,6 +1586,8 @@ know more about the building, please visit the wiki by clicking in on the
           <object class="GtkGrid" id="Adder_Grid_main">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="row_spacing">10</property>
+            <property name="column_spacing">30</property>
             <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkLabel" id="Adder_L_Add">
@@ -1320,6 +1647,27 @@ know more about the building, please visit the wiki by clicking in on the
                 <property name="top_attach">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkLabel" id="Adder_Progress_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Progress</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLevelBar" id="Adder_Progress">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -1334,19 +1682,23 @@ know more about the building, please visit the wiki by clicking in on the
             <property name="spacing">20</property>
             <child>
               <object class="GtkButton" id="B_Adder_Close">
-                <property name="label" translatable="yes">Close</property>
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_B_Adder_Close_activate" swapped="no"/>
               </object>
             </child>
             <child>
               <object class="GtkButton" id="Adder_B_Add">
-                <property name="label" translatable="yes">Add</property>
+                <property name="label">gtk-add</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_Adder_B_Add_clicked" swapped="no"/>
               </object>
               <packing>
@@ -1374,6 +1726,7 @@ know more about the building, please visit the wiki by clicking in on the
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">About</property>
     <property name="window_position">center</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
     <property name="program_name">Beta Launcher</property>
@@ -1399,10 +1752,12 @@ keziolio</property>
             <property name="layout_style">center</property>
             <child>
               <object class="GtkButton" id="B_About_Close">
-                <property name="label" translatable="yes">Close</property>
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_B_About_Close_clicked" swapped="no"/>
               </object>
               <packing>
@@ -1467,6 +1822,7 @@ keziolio</property>
     <property name="window_position">center</property>
     <property name="default_width">1280</property>
     <property name="default_height">720</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
     <signal name="destroy" handler="on_window_destroy" swapped="no"/>
     <child>
       <object class="GtkBox" id="box1">
@@ -1562,6 +1918,16 @@ keziolio</property>
                         <signal name="activate" handler="on__AddPreset_activate" swapped="no"/>
                       </object>
                     </child>
+                    <child>
+                      <object class="GtkMenuItem" id="Tool_B_BackUp">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Click to open a backup and restore manager for your projects!</property>
+                        <property name="label" translatable="yes">Backup And Restore Project</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_Tool_B_BackUp_activate" swapped="no"/>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -1608,6 +1974,7 @@ keziolio</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
+                <property name="spacing">10</property>
                 <child>
                   <object class="GtkBox" id="INSTALLBOX">
                     <property name="visible">True</property>
@@ -2160,6 +2527,7 @@ keziolio</property>
     <property name="title" translatable="yes">Preference</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
+    <property name="icon">/usr/share/pixmaps/beta-launcher.png</property>
     <property name="deletable">False</property>
     <property name="gravity">center</property>
     <property name="attached_to">window</property>
@@ -2174,26 +2542,6 @@ keziolio</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkHeaderBar" id="PREF_HB1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <child>
-                  <object class="GtkButton" id="B_Pref_Close">
-                    <property name="label" translatable="yes">Close</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <signal name="clicked" handler="on_B_Pref_Close_clicked" swapped="no"/>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -2369,6 +2717,8 @@ Location</property>
               <object class="GtkGrid" id="grid3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="row_spacing">10</property>
+                <property name="column_spacing">30</property>
                 <property name="column_homogeneous">True</property>
                 <child>
                   <object class="GtkLabel" id="label12">
@@ -2563,7 +2913,7 @@ Location</property>
               <object class="GtkGrid" id="grid5">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="row_spacing">12</property>
+                <property name="row_spacing">10</property>
                 <property name="column_spacing">30</property>
                 <property name="column_homogeneous">True</property>
                 <child>
@@ -2903,6 +3253,15 @@ Steps</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
+              <object class="GtkButton" id="B_Pref_Close">
+                <property name="label" translatable="yes">Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_B_Pref_Close_clicked" swapped="no"/>
+              </object>
+            </child>
+            <child>
               <object class="GtkButton" id="B_Pref_Save">
                 <property name="label" translatable="yes">Save Changes</property>
                 <property name="visible">True</property>
@@ -2910,6 +3269,9 @@ Steps</property>
                 <property name="receives_default">True</property>
                 <signal name="clicked" handler="on_B_Pref_Save_clicked" swapped="no"/>
               </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>

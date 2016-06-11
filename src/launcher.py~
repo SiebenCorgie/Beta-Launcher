@@ -891,6 +891,85 @@ class GUI:
 		about = self.builder.get_object('aboutdialog')
 		about.hide()
 
+#BackUpAndrestore___________________________________________________________
+#open
+	def on_Tool_B_BackUp_activate (self, menuitem):
+		BUM = self.builder.get_object('BackupManager')
+#Populate FileChooser with current projects and delete old
+		BUProjects = self.builder.get_object('BUM_BU_Source_Project')
+
+		CurrentModel = BUProjects.get_model()
+		CurrentModel.clear()
+		CurrentProjects = fct.get_folder_content(fct.readconf('proloc'))
+		for Project in range(len(CurrentProjects)):
+			BUProjects.append_text(CurrentProjects[Project])
+		
+		BUM.show_all()
+
+#close Window
+	def on_BUM_B_CLOSE_clicked (self, button):
+		BUM = self.builder.get_object('BackupManager')
+		BUM.hide()
+
+#Create Backup
+	def on_BUM_B_Backup_clicked (self, button):
+		BUProjects = self.builder.get_object('BUM_BU_Source_Project')
+		
+		NotifyLabel = self.builder.get_object('L_BUM_BU_NOTIFY')
+		
+		ProgressbarBU = self.builder.get_object('BUM_BU_LevelBar')
+		
+		AddingProject = BUProjects.get_active_text()
+		TargetLocation = self.builder.get_object('BUM_BU_Target_CB')
+
+		print('AddingProject = ' + AddingProject)
+		if TargetLocation.get_filename() != None and AddingProject != '':
+			command = 'cd ' + fct.readconf('proloc') + ' && tar czf ' + AddingProject + '.tar.gz ' + AddingProject + ' && mv ' + AddingProject + '.tar.gz ' + TargetLocation.get_filename()
+			print('command = ' + command)
+		else:
+			if AddingProject == '':
+				NotifyLabel.set_text('Please select a project')
+			elif TargetLocation.get_filename() == None:
+				NotifyLabel.set_text('Please select a location as output')
+
+		fct.execute_command(command, False)
+		ProgressbarBU.set_value(1)
+		NotifyLabel.set_text('Finished!')
+
+
+#Restoring
+	def on_BUM_REST_B_Restore_clicked (self, button):
+		FileLocation = self.builder.get_object('BUM_Rest_FC')
+		InfoLabel = self.builder.get_object('BUM_REST_InfoLabel')
+		RestFile = FileLocation.get_filename()
+		RestLocation = FileLocation.get_current_folder()
+		#Filename = RestFile[len(RestLocation):]
+		Filename = RestFile[+(len(RestLocation)+1):]
+		ProjectName = Filename[:-7]
+
+		DeleteCB = self.builder.get_object('BUM_REST_CB_Delete')
+		
+		Progressbar_REST = self.builder.get_object('BUM_REST_Progressbar')
+		Progressbar_REST.set_value(0.2)
+
+		if RestFile != None and RestLocation != None:
+			print('Filename = ' + RestFile)
+			print('folder = ' + RestLocation)
+			print('filename = ' + Filename)
+			print('Projectname = ' + ProjectName)
+			if DeleteCB.get_active() == True:
+				RESTCommand1 = 'rm -rf ' + fct.readconf('proloc') + '/' + ProjectName
+				fct.execute_command(RESTCommand1, False)
+				print('comm1 ' + RESTCommand1)
+			RESTCommand2 = 'cd ' + RestLocation + ' && ' + 'tar zxvf ' + Filename + ' -C' + ' ' + fct.readconf('proloc')
+			fct.execute_command(RESTCommand2, False)
+			print('comm2 ' + RESTCommand2)
+
+		else:
+			print('something went wrong')
+
+		Progressbar_REST.set_value(1)
+
 #AddToProject________________________________________________________________
 	def on__AddPreset_activate (self, menuitem):
 		Adder = self.builder.get_object('ProjectAdder')
@@ -912,21 +991,28 @@ class GUI:
 	def on_Adder_B_Add_clicked (self, button):
 		Box_Add = self.builder.get_object('Adder_CB_Add')
 		Box_ToBeAdded = self.builder.get_object('Adder_CB_ToBeAdded')
+		Progressbar = self.builder.get_object('Adder_Progress')
 
 		SourceProject = Box_Add.get_active_text()
 		TargetProject = Box_ToBeAdded.get_active_text()
 #making the path and final executing commands
 		SourceProject = fct.readconf('proloc') + '/' + SourceProject + '/Content'
-		print(SourceProject)
+		print('Source Directory: ' + SourceProject)
 
-		TargetProject = fct.readconf('proloc') + '/' + TargetProject + '/Content'
-		print(TargetProject)
+		TargetProject = fct.readconf('proloc') + '/' + TargetProject
+		print('Target Directory' + TargetProject)
+
+		Progressbar.set_value(0)
 
 		#execute final command
 		fct.execute_command(str('cp -r ' + SourceProject + ' ' + TargetProject), False)
+
+		Progressbar.set_value(1)
 #closeAdder
 	def on_B_Adder_Close_activate (self, button):
 		Adder = self.builder.get_object('ProjectAdder')
+		Progressbar = self.builder.get_object('Adder_Progress')
+		Progressbar.set_value(0)
 		Adder.hide()
 
 
