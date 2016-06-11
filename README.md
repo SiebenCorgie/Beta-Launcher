@@ -14,22 +14,23 @@ Features:
 -    Loading projects from the Launcher
 -    Start in OpenGl4 mode
 -    Start in OpenGl3 mode (when openGL4 is disabled)
--   Start with Primus-run enabled (for Nvidia + Intel hybrid graphic solutions)
+-    Start with Primus-run enabled (for Nvidia + Intel hybrid graphic solutions)
 -    Disable webpage loading on start (disabled by default, for enabling, enable "stream")
--   Change Installation procedure to other distribution (ATM: Ubuntu, Mint, Arch)
+-    Change Installation procedure to other distribution (ATM: Ubuntu, Mint, Arch)
 -    Changing all the commands, which will be executed when installing the engine
 -    Change the distribution specific commands
 -    Last but not least: Save all options into a readable .conf file in the the main directory of the launcher
 -    Create Desktop-File etc. from "Install.sh (see installation below)
-
+-    Create and restore backups of projects
+-    Add content from one project to another folder
 
 
 Things I want to do in the future
 
 -    get Vulkan working with the engine (you actually can try to enable Vulkan in the preferences menu, this will add the -vulkan option to the start-command. However, it does not start correctly on my system, but maybe I installed Vulkan the wrong way)
--    Add an option to make backups from project-folders, as well as restoring them
+-    Add an option to make backups from project-folders, as well as restoring them [done for version 0.4]
 -    Add a small tool for combining one-channel Textures like hight-maps with three channel Textures like albedo-maps
--    Add a small tool for adding pre-made project-files (like base materials and blueprints) to existing new projects
+-    Add a small tool for adding pre-made project-files (like base materials and blueprints) to existing new projects [done for version 0.4]
 -    to be continued 
 
 
