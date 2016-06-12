@@ -1906,7 +1906,7 @@ keziolio</property>
                 <property name="label" translatable="yes">Tools</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu">
+                  <object class="GtkMenu" id="_Tool_Submenu">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
