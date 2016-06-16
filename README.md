@@ -1,5 +1,5 @@
 #Github repository for Beta Launcher
-## version 0.3 BETA ##
+## version 0.4 BETA ##
 
 A small launcher project I started, to make compiling and using UE4 on Linux easier.
 Things done so far:
