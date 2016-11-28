@@ -36,8 +36,6 @@ Things I want to do in the future
 
 **Installation:**
 
-*Install Dependencies:*
-
 Ubuntu/Mint: download .deb from the master branch and double klick the file!
 
 Arch: Download the .tar.xz file from the master branch and install it via packman with `sudo pacman -U *filename*`
@@ -45,7 +43,33 @@ Arch: Download the .tar.xz file from the master branch and install it via packma
 for more Information, please visit the [forum-post](https://forums.unrealengine.com/showthread.php?110795-Beta-Launcher-for-Linux&p=532928#post532928) on the Unreal forum!
 
 
-[further information:]
+**Troubleshooting**
+
+- If you have problems when launching the Launcher:
+- go to /usr/share/beta-launcher/src 
+- open the "launcher.ui" file with an text editor
+- comment the line 1256 out
+- try to launch it again
+
+
+If you start the launcher in the terminal and there are some modules missing these are the dependencies:
+
+- python3
+- gtk+
+- pygtk
+- pyWebKit
+- VTE 2.91+
+- python-module: configparser, subprocess
+
+If you get the following error:
+
+Could not load image '/usr/share/pixmaps/beta-launcher.png'
+
+Create a icon file at the location '/usr/share/pixmaps' called 'beta-launcher.png'. You can use the official one from the launcher in src/pixmaps/beta-launcher.png .
+
+
+
+**further information:**
 
 Distribution I am writing on : Arch Linux
 Started:  around Easter 2016
