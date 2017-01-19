@@ -17,21 +17,20 @@ def anjuta():
 	return VALUE
 
 def readdefaults():
+	
+	global defaultsConfig
+	global customConfig
 
 	if anjuta() == True:
 		
-		global defaultsConfig
 		defaultsConfig.read('defaults.conf')
 		
-		global customConfig
 		customConfig.read('settings.conf')		
 	else:
 		
-		global defaultsConfig
 		defaultsConfig.read('/etc/beta-launcher/defaults.conf')
 		
 		
-		global customConfig
 		customConfig.read('/etc/beta-launcher/settings.conf')
 
 #_______________________________________________________________________________
