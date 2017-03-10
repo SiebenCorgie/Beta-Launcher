@@ -3,7 +3,7 @@
 #Script to make an new debian package of the beta-launcher
 
 #setting some variables
-PKGNAME=beta-launcher-0.2-1
+PKGNAME=beta-launcher-0.4-1
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #creating the building environment
